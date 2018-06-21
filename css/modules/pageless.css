@@ -1,0 +1,24 @@
+
+/* -- Navigation -- */
+.js_nav_button.active {
+	color: white;
+	background-color: deepskyblue;
+	border-color: deepskyblue;
+}
+
+/* -- Page Content -- */
+#page-content {
+	transition: 0.5s ease-in-out;
+	min-height: 100vh;
+}
+
+.fade {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.animate-reverse:before,
+.animate-reverse,
+.animate-reverse:after {
+	animation-direction: reverse !important;
+}

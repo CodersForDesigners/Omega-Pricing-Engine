@@ -1,0 +1,238 @@
+/*
+ * RERA Section
+ */
+
+.rera-section {
+	position: relative;
+	font-size: 0;
+	overflow-x: hidden;
+}
+
+.rera-section .rera {
+	position: relative;
+	padding: 80px 0 200px;
+	z-index: 2;
+}
+
+.rera-section .rera .title {
+	margin-bottom: 30px;
+	line-height: 1;
+}
+
+.rera-section .rera .point .heading {
+	position: relative;
+	margin-bottom: 10px;
+}
+
+
+.rera-section .rera .point .description {
+	margin-bottom: 30px;
+	line-height: 1.375;
+}
+
+.rera-section .rera .point .heading span {
+	display: inline-block;
+}
+
+.rera-section .rera .point .heading .svg-icon {
+	display: inline-block;
+	position: absolute;
+	width: 20px;
+	top: 0;
+	left: -8.33333%;
+	transform: translateX(-50%);
+}
+
+
+.rera-section .mg-bg {
+	width: 400px;
+	position: absolute;
+	left: 50%;
+	z-index: 1;
+	transform: translateX(-50%);
+	overflow: hidden;
+}
+
+.rera-section .mg-bg * {
+	width: 100%;
+	max-width: none;
+}
+
+.rera-section .mg-bg.emblem {
+	top: 30px;
+}
+
+.rera-section .mg-bg.emblem img {
+	position: relative;
+	left: 290px;
+	width: 160px;
+}
+
+.rera-section .mg-bg.rera-handbook {
+	bottom: 0;
+}
+
+.rera-section .mg-bg.rera-handbook img {
+	position: relative;
+	left: 190px;
+	width: 300px;
+}
+
+.rera-section .sub-heading {
+	text-transform: none;
+}
+
+.rera-section .action {
+	margin-top: 20px;
+}
+
+
+@media( min-width: 640px )  {
+	.rera-section .rera {
+		padding: 100px 0;
+	}
+
+	.rera-section .rera .title {
+		margin-bottom: 50px;
+	}
+
+	.rera-section .rera .point .heading {
+		margin-bottom: 15px;
+	}
+
+	.rera-section .rera .point .description {
+		margin-bottom: 50px;
+		line-height: 1.5;
+	}
+
+	.rera-section .rera .point .heading .svg-icon {
+		width: 24px;
+	}
+
+	.rera-section .mg-bg.emblem,
+	.rera-section .mg-bg.rera-handbook {
+		width: 800px;
+		height: auto;
+	}
+
+	.rera-section .mg-bg.emblem img {
+		left: 580px;
+		width: 320px;
+	}
+
+	.rera-section .mg-bg.rera-handbook img {
+		left: 480px;
+		width: 500px;
+	}
+
+	.rera-section .sub-heading {
+		margin-top: 60px;
+		line-height: 1.375;
+	}
+		
+	.rera-section .action {
+		margin-top: 40px;
+	}
+}
+
+
+
+
+@media( min-width: 1040px ) {
+	.rera-section .rera {
+		padding: 180px 0;
+	}
+
+	.rera-section .rera .title {
+		margin-bottom: 80px;
+	}
+
+	.rera-section .rera .point .heading {
+		font-size: 3.2rem;
+		margin-bottom: 20px;
+	}
+
+	.rera-section .rera .point .description {
+		margin-bottom: 80px;
+		line-height: 1.75;
+	}
+	
+	.rera-section .rera .point .heading .svg-icon {
+		width: 40px;
+	}
+
+	.rera-section .mg-bg.emblem,
+	.rera-section .mg-bg.rera-handbook {
+		right: auto;
+	}
+
+	.rera-section .mg-bg.emblem ,
+	.rera-section .mg-bg.rera-handbook {
+		width: 1200px;
+	}
+
+	.rera-section .mg-bg.emblem img {
+		left: -60px;
+		width: 420px;
+	}
+
+	.rera-section .mg-bg.rera-handbook img {
+		left: -80px;
+		width: 640px;
+	}
+
+	.rera-section .sub-heading {
+		margin-top: 80px;
+		font-size: 3.2rem;
+	}
+		
+	.rera-section .action {
+		margin-top: 40px;
+	}
+}
+
+
+
+
+@media( min-width: 1380px ) {
+	.rera-section .rera {
+		padding: 240px 0;
+	}
+
+	.rera-section .rera .title {
+		margin-bottom: 120px;
+	}
+
+	.rera-section .rera .point .heading {
+		font-size: 4.0rem;
+		margin-bottom: 40px;
+	}
+
+	.rera-section .rera .point .description {
+		margin-bottom: 120px;
+		line-height: 2;
+	}
+
+	.rera-section .rera .point .heading .svg-icon {
+		width: 48px;
+	}
+
+	.rera-section .mg-bg.emblem ,
+	.rera-section .mg-bg.rera-handbook {
+		width: 1600px;
+	}
+
+	.rera-section .mg-bg.emblem img {
+		left: -70px;
+		width: 520px;
+	}
+
+	.rera-section .mg-bg.rera-handbook img {
+		left: -120px;
+		width: 840px;
+	}
+
+	.rera-section .sub-heading {
+		font-size: 4rem;
+	}
+}

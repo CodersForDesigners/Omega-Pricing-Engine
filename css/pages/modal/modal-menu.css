@@ -1,0 +1,12 @@
+/*
+ * Modal Menu
+ */
+
+.modal-menu .button {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.modal-menu a {
+	text-decoration: none;
+}

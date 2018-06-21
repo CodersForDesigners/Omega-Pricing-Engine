@@ -1,0 +1,242 @@
+/*
+ * RERA Section
+ */
+
+.navigation-section {
+	display: block;
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	font-size: 0;
+}
+
+.navigation-section .logo {
+	display: inline-block;
+	width: 120px;
+	margin-top: 10px;
+}
+
+.navigation-section .toggle-menu {
+	display: inline-block;
+	height: 32px;
+	width: 32px;
+	margin-top: 9px;
+	float: right;
+	background-image: url('../../../img/icon-menu.svg');
+	background-size: 85%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	font-size: 0;
+	line-height: 0;
+	cursor: pointer;
+}
+
+.navigation-section .navigation {
+	display: none;
+}
+
+
+.navigation-section.scrolled {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.75);
+	opacity: 0.8;
+
+	transform: translateY(-100%); 
+	-moz-transform: translateY(-100%); 
+	-webkit-transform: translateY(-100%); 
+	animation: slide-nav .3s 1.5s forwards ease-out;
+}
+
+	@keyframes slide-nav {
+		0% {
+			-webkit-transform: translateY(-100%); 
+			transform: translateY(-100%); 
+		}
+		100% {
+			-webkit-transform: translateY(0%);
+			transform: translateY(0%);
+		}
+	}
+
+
+@media( min-width: 640px ) {
+	.navigation-section {
+		height: 70px;
+		top: 760px;
+	}
+
+	.navigation-section .logo {
+		margin-top: 20px;
+	}
+
+	.navigation-section .toggle-menu {
+		display: none;
+	}
+
+	.navigation-section .navigation {
+		margin-top: 20px;
+		display: inline-block;
+	}
+
+	.navigation-section .navigation .link {
+		display: inline-block;
+		padding: 0 10px;
+		line-height: 30px;
+		color: var(--light);
+		font-size: 12px;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer
+	}
+
+	.navigation-section.scrolled {
+		height: 50px;
+	}
+	
+	.navigation-section.scrolled .logo {
+		width: 120px;
+		margin-top: 10px;
+	}
+	
+	.navigation-section.scrolled .navigation {
+		margin-top: 10px;
+	}
+
+	.navigation-section.scrolled .navigation .link {
+		padding: 0 10px;
+		line-height: 30px;
+		font-size: 12px;
+	}
+
+	.navigation-section .navigation .benefits {
+		display: inline-block;
+		position: relative;
+		vertical-align: baseline;
+	}
+
+	.navigation-section .navigation .toggle-benefits-dropdown {
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 35px;
+		z-index: 11;
+		pointer-events: none;
+		opacity: 0;
+	}
+
+	.navigation-section .navigation .toggle-benefits-dropdown.show {
+		pointer-events: initial;
+		opacity: 1;
+	}
+
+	.navigation-section .navigation .toggle-benefits-dropdown .button {
+		text-align: left;
+		display: block;
+		background-color: var(--dark);
+		line-height: 40px;
+	}
+}
+
+@media( min-width: 1040px ) {
+	.navigation-section {
+		height: 90px;
+		top: 1040px;
+	}
+
+	.navigation-section .logo {
+		width: 160px;
+		margin-top: 26px;
+	}
+
+	.navigation-section .navigation {
+			margin-top: 26px;
+	}
+
+	.navigation-section .navigation .link {
+		padding: 0 15px;
+		font-size: 14px;
+		line-height: 38px;
+	}
+
+	.navigation-section.scrolled {
+		height: 60px;
+	}
+	
+	.navigation-section.scrolled .logo {
+		width: 130px;
+		margin-top: 15px;
+	}
+	
+	.navigation-section.scrolled .navigation {
+		margin-top: 15px;
+	}
+
+	.navigation-section.scrolled .navigation .link {
+		padding: 0 15px;
+	}
+
+	.navigation-section .navigation .toggle-benefits-dropdown {
+		top: 45px;
+	}
+}
+
+@media( min-width: 1380px ) {
+	.navigation-section {
+		height: 120px;
+		top: 1240px;
+	}
+
+	.navigation-section .logo {
+		margin-top: 36px;
+		width: 180px;
+	}
+
+	.navigation-section .navigation {
+		margin-top: 36px;
+	}
+
+	.navigation-section .navigation .link {
+		padding: 0 20px;
+		font-size: 18px;
+		line-height: 48px;
+	}
+
+	.navigation-section.scrolled {
+		height: 80px;
+	}
+	
+	.navigation-section.scrolled .logo {
+		width: 160px;
+		margin-top: 20px;
+	}
+	
+	.navigation-section.scrolled .navigation {
+		margin-top: 20px;
+	}
+
+	.navigation-section.scrolled .navigation .link {
+		padding: 0 20px;
+		font-size: 14px;
+		line-height: 38px;
+	}
+
+	.navigation-section .navigation .toggle-benefits-dropdown {
+		top: 60px;
+	}
+
+	.navigation-section .navigation .toggle-benefits-dropdown .button {
+		line-height: 48px;
+	}
+}
+
+@media( min-width: 1940px ) {
+	.navigation-section {
+		height: 120px;
+		top: 1620px;
+	}
+}

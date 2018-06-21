@@ -1,0 +1,86 @@
+/*
+ * Grid Special
+ */
+
+.container {
+	position: relative;
+	width: 100%;
+	max-width: 1380px;
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box; 
+}
+
+.contain-one {
+	margin: 0 auto; 
+	max-width: 720px;
+	text-align: center;
+}
+
+@media ( max-width: 1040px ) {
+	.contain-one {
+		max-width: 620px;
+	}
+}
+
+@media ( max-width: 640px ) {
+	.contain-one {
+		max-width: 380px;
+	}
+}
+
+@media ( max-width: 400px ) {
+	.contain-one {
+		max-width: 270px;
+	}
+}
+
+
+.contain-two {
+	width: 100%;
+	font-size: 0;
+}
+
+.one-of-two,
+.two-of-two {
+	display: inline-block;
+	vertical-align: top;
+	width: 50%;
+	font-size: 1.5em;
+}
+
+.one-of-two {
+	padding-left: 15rem;
+	padding-right: 5rem;
+}
+.two-of-two {
+	padding-left: 5rem;
+	padding-right: 15rem;
+}
+
+@media ( max-width: 1040px ) {
+	.one-of-two,
+	.two-of-two {
+		display: block;
+		width: 100%;
+		margin: 0 auto; 
+		max-width: 620px;
+		text-align: center;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+@media ( max-width: 640px ) {
+	.one-of-two,
+	.two-of-two {
+		max-width: 380px;
+	}
+}
+
+@media ( max-width: 400px ) {
+	.one-of-two,
+	.two-of-two {
+		max-width: 270px;
+	}
+}

@@ -1,0 +1,247 @@
+
+/*
+ * Alignment
+ */
+
+.text-right {
+	text-align: right;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-justify {
+	text-align: justify;
+}
+
+
+
+/*
+ * Text
+ */
+
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+.text-lowercase {
+	text-transform: lowercase;
+}
+
+
+/*
+ * Spacing
+ */
+
+.no-wrap {
+	white-space: nowrap;
+}
+
+.no-overflow {
+	overflow: hidden;
+}
+
+.no-whitespace {
+	font-size: 0;
+}
+
+
+/*
+ * Float
+ */
+
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
+}
+
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+
+/*
+ * Display
+ */
+
+.block {
+	display: block;
+	width: 100%;
+}
+
+.inline {
+	display: inline-block !important;
+	vertical-align: baseline;
+}
+
+.inline-top {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.inline-middle {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.inline-bottom {
+	display: inline-block;
+	vertical-align: text-bottom;
+}
+
+
+
+/*
+ * Pointer
+ */
+
+.pointer {
+	pointer-events: initial;
+}
+
+.no-pointer {
+	pointer-events: none;
+}
+
+
+
+/*
+ * Cursor
+ */
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+
+
+/*
+ * Hide visually and from screen readers:
+ */
+
+.hidden {
+	display: none !important;
+}
+
+
+
+/*
+ * Hide only visually, but have it available for screen readers:
+ * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+ */
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element
+ * to be focusable when navigated to via the keyboard:
+ * https://www.drupal.org/node/897638
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+
+/*
+ * Hide visually and from screen readers, but maintain layout
+ */
+
+.invisible {
+	visibility: hidden;
+}
+
+
+
+/*
+ * Mobile only -> Hide visually and from screen readers
+ */
+
+@media ( max-width: 640px ) {
+	.hide-for-mobile {
+		display: none !important;
+	}
+}
+
+.show-for-mobile { display: none !important; }
+
+@media ( max-width: 640px ) {
+	.show-for-mobile {
+		display: block !important;
+	}
+}
+
+
+
+/*
+ * Form error handling
+ */
+
+.form-error {
+	/*border-color: #FF2A2E !important;*/
+	background-color: rgba(255, 42, 46, 0.5) !important;
+}
+
+input[type="submit"].loading,
+input[type="submit"].loading:hover,
+input[type="submit"].loading:focus {
+	color: #333332;
+	background-color: transparent;
+	background-image: url('../../img/loadingbar.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	pointer-events: none;
+}
+
+input[type="submit"].done,
+input[type="submit"].done:hover,
+input[type="submit"].done:focus {
+	color: #1EAF59 !important;
+	background-color: transparent !important;
+	border-color: transparent !important;
+	background-image: none;
+
+
+/* -- End Helpers -- */

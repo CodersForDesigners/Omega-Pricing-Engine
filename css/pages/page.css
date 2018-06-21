@@ -1,0 +1,32 @@
+/*
+ * Page
+ */
+
+#page-wrapper {
+	overflow-x: hidden;
+}
+
+.outer-container {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+@media ( min-width: 640px ) {
+	.outer-container {
+		max-width: 800px; }
+}
+
+@media ( min-width: 1040px ) {
+	.outer-container {
+		max-width: 1200px; }
+}
+
+@media ( min-width: 1380px ) {
+	.outer-container {
+		max-width: 1600px; }
+}
+

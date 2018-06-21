@@ -1,0 +1,33 @@
+
+.section-unit-listing {
+	margin: 5rem 0 0;
+	text-align: center;
+}
+.section-unit-listing .unit-list-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+	width: 75%;
+	padding: 1.5rem;
+	border-bottom: 1px solid grey;
+	cursor: pointer;
+}
+.section-unit-listing .unit-list-item .view-details {
+	border: 1px dashed;
+	border-radius: 5px;
+	padding: 0.5rem 1rem;
+}
+
+/* ----- OLD ----- */
+.container-units-list {
+	/*text-align: center;*/
+}
+
+.units-list:not( :empty ) {
+	max-height: 36vh;
+	border: 1px dashed;
+	padding: 50px;
+	overflow: auto;
+	overscroll-behavior: contain;
+}

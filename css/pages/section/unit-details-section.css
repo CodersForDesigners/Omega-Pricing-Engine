@@ -1,0 +1,14 @@
+
+.section-unit-details-and-mods {
+	margin: 5rem 0 0;
+	text-align: center;
+}
+.section-unit-details-and-mods .unit-detail-list-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+	width: 63%;
+	padding: 1.5rem;
+	/*border-bottom: 1px dotted grey;*/
+}

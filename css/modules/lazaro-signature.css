@@ -1,0 +1,46 @@
+/*
+ * Lazaro Footer
+ */
+
+.lazaro-section {
+	font-family: inherit, sans-serif;
+	background-color: #FFF;
+	border-top: solid 1px #d9dde6;
+}
+
+	.lazaro-section .lazaro-link {
+		display: block;
+		width: 100%;
+		padding: 20px 15px;
+		color: #444;
+		text-align: right;
+		font-size: 14px;
+		line-height: 1.25;
+		font-weight: 400;
+		text-decoration: none;
+		background-image: url( "../../media/img/lazaro-icon.svg" );
+		background-repeat: no-repeat;
+		background-position: left center;
+	}
+
+	.lazaro-section .lazaro-link strong {
+		font-weight: 700;
+		letter-spacing: 0.5px;
+	}
+
+	.lazaro-section .lazaro-link:hover {
+		color: #E30F13;
+	}
+
+@media ( max-width: 640px ) {
+
+	.lazaro-section .lazaro-link {
+		font-size: 0;
+		padding: 25px 10px;
+	}
+
+	.lazaro-section .lazaro-link span {
+		font-size: 12px;
+	}
+
+}
