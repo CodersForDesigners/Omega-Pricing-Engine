@@ -1,0 +1,23 @@
+
+<IfModule mod_rewrite.c>
+
+RewriteEngine On
+
+# if the URI maps to an existing file on the server, just return it
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" -f
+RewriteRule .? "-" [QSA,L]
+
+# if the URI does not have a trailing slash,
+# and if it is a GET request,
+# but if it does not have a query string,
+# then append a trailing slash, and trigger a re-direct
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{REQUEST_METHOD} GET [NC]
+RewriteCond %{QUERY_STRING} ^\??$
+RewriteRule .? %{REQUEST_URI}/ [QSA,R=301,L]
+
+# the catch-all "else" block
+# forward the request to index.php; it will do the heavy-lifting
+RewriteRule .? index.php [QSA,L]
+
+</IfModule>

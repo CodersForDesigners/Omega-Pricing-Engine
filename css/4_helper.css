@@ -228,7 +228,7 @@ input[type="submit"].loading:hover,
 input[type="submit"].loading:focus {
 	color: #333332;
 	background-color: transparent;
-	background-image: url('../../img/loadingbar.gif');
+	background-image: url('/media/loadingbar.gif');
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;

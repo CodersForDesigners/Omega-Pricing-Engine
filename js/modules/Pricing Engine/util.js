@@ -13,7 +13,7 @@
 function getWorkbook () {
 
 	// var workbookFile = client + "/numbers.xlsx";
-	var workbookFile = "/media/assets/numbers.xlsx";
+	var workbookFile = "/data/numbers.xlsx";
 	// cache-busting
 	// workbookFile += "?v=" + window.__PRICING_ENGINE__.version.replace( /\./g, "" );
 	workbookFile += "?v=" + +( new Date() );
@@ -35,15 +35,36 @@ function getWorkbook () {
 			}
 		);
 
-		$( document ).trigger( "spreadsheet.load", workbook );
+		$( document ).trigger( "spreadsheet/load", workbook );
 
 	}
 
 	request.send();
 
 }
-$( document ).on( "spreadsheet.fetch", getWorkbook );
+$( document ).on( "spreadsheet/fetch", getWorkbook );
 
+
+/*
+ *
+ * This function will parse a (spread)sheet row-wise into an object.
+ *
+ * 	This is with the asumption that key belongs to the column `Detail`,
+ *	and the value to the column `Value`.
+ *
+ */
+function getDataFromSheet ( sheet ) {
+
+	var dataArray = XLSX.utils.sheet_to_json( sheet, { raw: true } );
+
+	var data = dataArray.reduce( function ( acc, curr ) {
+		acc[ curr.Detail ] = curr.Value;
+		return acc;
+	}, { } );
+
+	return data;
+
+};
 
 
 /*
@@ -81,6 +102,7 @@ var getSettings = function () {
 }();
 
 
+
 function filterByAnyCriteria ( things, criteria ) {
 
 	if ( ! criteria.length )
@@ -113,33 +135,22 @@ function filterByAllCriteria ( things, criteria ) {
 
 }
 
-
 /*
  *
- * Return the list of apartments that match the given conditions.
- * Conditions include,
- * 	- Type
- * 	- Floor?
- * 	- Availability
+ * Get the value of a modification that has been configured by a user
  *
  */
-function getApartmentsBasedOnCriteria ( units, criteria ) {
+function getModification ( event ) {
 
-	var theUnits = units
-		.filter( function ( unit ) {
-			var criterion;
-			for ( criterion in criteria ) {
-				if (
-					( criteria[ criterion ] != void 0 )
-					&& ( unit[ criterion ] != criteria[ criterion ] )
-				) {
-					return false;
-				}
-			}
-			return true;
-		} );
+	var $unitModification = $( event.target );
+	// var name = $unitModification.data( "modification" );
+	var name = $unitModification.attr( "name" );
+	var value = $unitModification.val();
 
-	return theUnits;
+	return {
+		name: name,
+		value: value
+	};
 
 }
 
@@ -184,93 +195,14 @@ function getComputedUnitData () {
 
 	// Pull the computed values
 	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Computed Unit Details" ], { raw: true } );
+	// Filter out points that are not to be display and ones whose values are empty
 	points = points.filter( function ( point ) {
-		return point.Display != "N";
+		return point.Modifiable || ( ( ! point.Hide ) && point.Value );
 	} );
 	return points;
 
 }
 
-
-
-
-/*
- *
- * Get the markup containing all the details pertaining to a unit
- *
- */
-function getUnitView ( unitId ) {
-
-	// Disable the interface
-	// Fill in this space
-
-	var unitParameters = __PRICING_ENGINE__.unitParameters;
-	var allUnits = __PRICING_ENGINE__.allUnits;
-	var unitIndex;
-	allUnits.some( function ( unit, index ) {
-		if ( unit.Unit == unitId ) {
-			unitIndex = index;
-			return true;
-		}
-	} );
-
-	__PRICING_ENGINE__.unitConstants = allUnits[ unitIndex ];
-
-	// Calculate data from the spreadsheet and assign to the local state
-	__PRICING_ENGINE__.unitData = getComputedApartmentDetails( __PRICING_ENGINE__.workbook, { unit: unitParameters.unit } );
-
-
-	// Build and plonk in the markup
-	$( ".js_unit_info_container" ).load(
-		// projectPath + "/templates/test.php",
-		projectPath + "/templates/unit-info.php",
-		$.extend( { projectPath: projectPath }, __PRICING_ENGINE__.unitConstants, __PRICING_ENGINE__.unitData, __PRICING_ENGINE__.unitParameters )
-	);
-
-	// Broadcast the fact that a unit view has been fetched
-	$( document ).trigger( "load::unit-view", { unit: unitId } );
-
-	// For the EMI calculator
-	$( ".js_emi_toggle" ).removeClass( "hidden" )
-	totalPrice = __PRICING_ENGINE__.unitData.total_grand
-
-	// Reflect the new figures elsewhere
-	$( document ).trigger( "change::grand-total" );
-
-	// $( ".js_enquiry_form [ name = enquiry-unit ]" ).val( unitId );
-
-
-	// Re-enable the interface
-	// Fill in this space
-
-}
-
-
-/*
- *
- * Calculate the EMI
- *
- */
-function calculateEMI () {
-
-	var $emiDownPayment = $( ".js_emi_calculator [ name = 'down-payment' ]" );
-	var $emiDownPaymentPercentage = $( ".js_emi_calculator .js_down_payment_percentage" );
-	var $emiLoanAmount = $( ".js_emi_calculator [ name = 'loan-amount' ]" );
-	var $emiTenure = $( ".js_emi_calculator [ name = 'tenure' ]" );
-	var $emiInterestRate = $( ".js_emi_calculator [ name = 'interest-rate' ]" );
-
-	var loanAmount = parseInt( $emiLoanAmount.val().replace( /[^\d\.]/g, "" ), 10 );
-	var tenureInMonths = parseInt( $emiTenure.val(), 10 )
-	var interestRate = $emiInterestRate.val() / 1200
-
-	var emi = Math.round( ( loanAmount * interestRate * Math.pow( 1 + interestRate, tenureInMonths ) ) / ( Math.pow( 1 + interestRate, tenureInMonths ) - 1 ) )
-
-	$( ".js_estimated_emi" ).text( formatNumberToIndianRupee( emi ) );
-	$( ".js_total_amount_payable" ).text( formatNumberToIndianRupee( emi * tenureInMonths ) );
-	$( ".js_principal_amount" ).text( formatNumberToIndianRupee( loanAmount ) );
-	$( ".js_interest_amount" ).text( formatNumberToIndianRupee( emi * tenureInMonths - loanAmount ) );
-
-}
 
 
 /*

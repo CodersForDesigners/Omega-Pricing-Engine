@@ -1,18 +1,13 @@
 /*
- * # BROWNIE FUDGE SUNDAE V2
- * ===========================
 
-
-/* ## Basic Breakpoints
- * ====================
- 
+## Basic Breakpoints
+* ==================== 
 @media( min-width: 640px )  {}
 @media( min-width: 1040px ) {}
 @media( min-width: 1380px ) {}
 
-/* ## Extra Breakpoints
- * ====================
-
+## Extra Breakpoints
+* ====================
 @media( min-width: 400px )  {}
 @media( min-width: 640px )  {}
 @media( min-width: 800px )  {}
@@ -22,43 +17,13 @@
 @media( min-width: 1600px ) {}
 @media( min-width: 1940px ) {}
 
-/*
- *
- *	## Colors
- *	=========
- *
- *	#FFFFFF : light
- *	#F0F7F7 : off-light
- *	#95A2A6 : neutral
- *	#D5E0E3 : off-neutral
- *	#282F33 : dark
- *	#626D73 : off-dark
- *	#1D2225 : black
- *
  */
-
-
-
-
-:root {
-	--light : #FFFFFF;
-	--off-light : #F0F7F7;
-	--neutral : #95A2A6;
-	--off-neutral : #D5E0E3;
-	--dark : #282F33;
-	--off-dark : #626D73;
-	--black : #1D2225;
-}
-
-
-
 
 body, .body {
 	position: relative;
-	color: var(--off-dark);
-	font-family: 'Roboto', Arial, sans-serif;
+	color: var(--dark);
+	font-family: var(--base-font);
 	font-weight: 400;
-	font-size: 1.4rem;
 	line-height: 1.375;
 	background-color: var(--light);
 }
@@ -87,53 +52,65 @@ hr {
  *
  */
 
-h1, h2, h3, h4,
-.h1, .h2, .h3, .h4 {
-	font-family: 'Concert One', 'Arial Black', Arial, sans-serif;
-	font-weight: 700;
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: var(--display-font);
+	font-weight: 400;
 	line-height: 1.25;
-	text-transform: uppercase;
 }
 
-h1, .h1 { font-size: 3.8rem; }
+body, p, .p, .column, .columns { font-size: 1.4rem; }
+h1, .h1 { font-size: 3.2rem; }
 h2, .h2 { font-size: 2.8rem; }
-h3, .h3 { font-size: 2.1rem; }
-h4, .h4 { font-size: 1.6rem; }
-p, .p 	{ font-size: 1.2rem; }
-small, .small { font-size: 0.8rem; }
-label, .label { font-size: 1.0rem; text-transform: uppercase; }
+h3, .h3 { font-size: 2.4rem; }
+h4, .h4 { font-size: 2.0rem; }
+h5, .h5 { font-size: 1.8rem; }
+h6, .h6 { font-size: 1.4rem; }
+label, .label { font-size: 1.2rem; }
+small, .small { font-size: 1.1rem; }
 
 @media( min-width: 640px )  {
-	h1, .h1 { font-size: 4.7rem; }
-	h2, .h2 { font-size: 3.6rem; }
-	h3, .h3 { font-size: 2.7rem; }
+	body, p, .p,  .column, .columns { font-size: 1.4rem; }
+	h1, .h1 { font-size: 3.2rem; }
+	h2, .h2 { font-size: 2.8rem; }
+	h3, .h3 { font-size: 2.4rem; }
 	h4, .h4 { font-size: 2.0rem; }
-	p, .p 	{ font-size: 1.4rem; }
-	small, .small { font-size: 1.0rem; }
+	h5, .h5 { font-size: 1.8rem; }
+	h6, .h6 { font-size: 1.4rem; }
 	label, .label { font-size: 1.2rem; }
+	small, .small { font-size: 1.1rem; }
 }
 
 @media( min-width: 1040px ) {
-	h1, .h1 { font-size: 7.6rem; }
-	h2, .h2 { font-size: 5.1rem; }
-	h3, .h3 { font-size: 3.2rem; }
-	h4, .h4 { font-size: 2.3rem; }
-	p, .p 	{ font-size: 1.5rem; }
-	small, .small { font-size: 1.0rem; }
-	label, .label { font-size: 1.2rem; }
+	body, p, .p,  .column, .columns { font-size: 1.6rem; }
+	h1, .h1 { font-size: 4.0rem; }
+	h2, .h2 { font-size: 3.4rem; }
+	h3, .h3 { font-size: 2.8rem; }
+	h4, .h4 { font-size: 2.4rem; }
+	h5, .h5 { font-size: 2.0rem; }
+	h6, .h6 { font-size: 1.6rem; }
+	label, .label { font-size: 1.4rem; }
+	small, .small { font-size: 1.2rem; }
 }
 
 @media( min-width: 1380px ) {
-	h1, .h1 { font-size: 9.1rem; }
-	h2, .h2 { font-size: 6.1rem; }
-	h3, .h3 { font-size: 4.0rem; }
-	h4, .h4 { font-size: 2.7rem; }
-	p, .p 	{ font-size: 1.8rem; }
-	small, .small { font-size: 1.2rem; }
-	label, .label { font-size: 1.4rem; }
+	body, p, .p,  .column, .columns { font-size: 1.8rem; }
+	h1, .h1 { font-size: 4.6rem; }
+	h2, .h2 { font-size: 3.8rem; }
+	h3, .h3 { font-size: 3.2rem; }
+	h4, .h4 { font-size: 2.6rem; }
+	h5, .h5 { font-size: 2.2rem; }
+	h6, .h6 { font-size: 1.8rem; }
+	label, .label { font-size: 1.5rem; }
+	small, .small { font-size: 1.3rem; }
 }
 
 
+/* -- Font Weights & Styles -- */
+.thin 		{ font-weight: var(--weight-thin); }
+.regular	{ font-weight: var(--weight-regular); }
+strong, .bold { font-weight: var(--weight-bold); }
+em, .em 	{ font-style: italic; }
 
 
 /*
@@ -145,16 +122,17 @@ label, .label { font-size: 1.0rem; text-transform: uppercase; }
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
+button,
 .button {
-	padding: 0 15px;
-	height: 36px;
-	font-size: 1rem;
-	line-height: 36px;
-	color: var(--off-light);
-	background-color: var(--dark);
-	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	padding: 0 12px;
+	height: 32px;
+	font-size: 1.1rem;
+	font-weight: var(--weight-bold);
+	line-height: 32px;
+	color: var(--neutral);
+	background-color: var(--off-light);
 	border: none;
-	border-radius: 4px;
+	border-radius: calc(var(--roundness)/2);
 	filter: brightness(1);
 	-webkit-transition: filter 0.2s;
 	-moz-transition: filter 0.2s;
@@ -164,32 +142,66 @@ input[type="button"],
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
+button:hover,
 .button:hover {
-	filter: brightness(1.2);
+    /*box-shadow: 0px 1px 2px 1px rgba(120,120,120,0.35);*/
 }
 
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus,
+button:focus,
+.button.selected,
 .button:focus {
+	border: none;
     outline: 0;
-    box-shadow: 0px 2px 6px rgba(20,20,10,0.5);
+	filter: brightness(1.2);
+    box-shadow: none;
 }
 
-.button img {
-	pointer-events: none;
-	width: 16px;
-	display: inline-block;
-	margin-bottom: -4px;
-	margin-left: 3px;
+@media( min-width: 640px )  {}
+@media( min-width: 1040px ) {
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		padding: 0 16px;
+		height: 36px;
+		font-size: 1.2rem;
+		line-height: 36px;
+	}
+}
+@media( min-width: 1380px ) {
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	button,
+	.button {
+		padding: 0 20px;
+		height: 42px;
+		font-size: 1.3rem;
+		line-height: 42px;
+	}
 }
 
-.button-large {
-	height: 48px;
-	line-height: 48px;
+input[type="submit"].secondary,
+input[type="reset"].secondary,
+input[type="button"].secondary,
+button.secondary,
+.button.secondary {
+	color: var(--light);
+	background-color: var(--neutral);
 }
 
-
+input[type="submit"].primary,
+input[type="reset"].primary,
+input[type="button"].primary,
+button.primary,
+.button.primary {
+	color: var(--light);
+	background-color: var(--off-dark);
+}
 
 
 /*
@@ -208,13 +220,12 @@ input[type="password"],
 input[type="date"],
 textarea,
 select {
-	height: 36px;
-	padding: 11px 15px; /* The 6px vertically centers text on FF, ignored by Webkit */
+	height: 32px;
+	padding: 8px 12px; /* The 6px vertically centers text on FF, ignored by Webkit */
 	color: var(--dark);
 	background-color: var(--off-light);
-	border: 0;
-	border-radius: 1px;
-	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+	border: none;
+	border-radius: calc(var(--roundness)/2);
 }
 
 textarea {
@@ -230,13 +241,13 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
+	border: none;
 	outline: 0;
-	box-shadow: 0px 2px 6px rgba(20,20,10,0.5);
+	box-shadow: inset 0px 0px 3px 1px rgba(120,120,110,0.5);
 }
 
 @media( min-width: 640px )  {}
-@media( min-width: 1040px ) {}
-@media( min-width: 1380px ) {
+@media( min-width: 1040px ) {
 	input[type="email"],
 	input[type="number"],
 	input[type="search"],
@@ -248,10 +259,25 @@ select:focus {
 	textarea,
 	select {
 		height: 36px;
-		padding: 6px 12px; /* The 6px vertically centers text on FF, ignored by Webkit */
+		padding: 8px 16px; /* The 6px vertically centers text on FF, ignored by Webkit */
 	}
 }
 
+@media( min-width: 1380px ) {
+	input[type="email"],
+	input[type="number"],
+	input[type="search"],
+	input[type="text"],
+	input[type="tel"],
+	input[type="url"],
+	input[type="password"],
+	input[type="date"],
+	textarea,
+	select {
+		height: 40px;
+		padding: 8px 20px; /* The 6px vertically centers text on FF, ignored by Webkit */
+	}
+}
 
 
 
@@ -261,29 +287,77 @@ select:focus {
  *
  */
 
+
+/* -- Neutrals -- */
 .fill-light {
-	color: var(--off-dark);
+	color: var(--dark);
 	background-color: var(--light); }
+	
 .fill-off-light {
-	color: var(--off-dark);
+	color: var(--neutral);
 	background-color: var(--off-light); }
+
 .fill-neutral {
-	color: var(--dark);
+	color: var(--light);
 	background-color: var(--neutral); }
-.fill-off-neutral {
-	color: var(--dark);
-	background-color: var(--off-neutral); }
+
 .fill-dark {
-	color: var(--off-light);
+	color: var(--light);
 	background-color: var(--dark); }
+
 .fill-off-dark {
-	color: var(--off-light);
+	color: var(--light);
 	background-color: var(--off-dark); }
-.fill-black {
-	color: var(--off-light);
-	background-color: var(--black); }
 
+/* -- Highlights -- */
+.fill-yellow {
+	color: var(--dark);
+	background-color: var(--yellow); }
 
+.fill-red {
+	color: var(--light);
+	background-color: var(--red); }
+
+.fill-blue {
+	color: var(--light);
+	background-color: var(--blue); }
+
+.fill-green {
+	color: var(--light);
+	background-color: var(--green); }
+
+/* -- Gradients -- */
+
+.fill-light.gradient {
+	-webkit-background: var(--webkit-gradient-light);
+	-moz-background: var(--moz-gradient-light);
+	background: var(--gradient-light); }
+
+.fill-dark.gradient {
+	-webkit-background: var(--webkit-gradient-dark);
+	-moz-background: var(--moz-gradient-dark);
+	background: var(--gradient-dark); }
+
+.fill-yellow.gradient {
+	-webkit-background: var(--webkit-gradient-yellow);
+	-moz-background: var(--moz-gradient-yellow);
+	background: var(--gradient-yellow); }
+
+.fill-red.gradient {
+	-webkit-background: var(--webkit-gradient-red);
+	-moz-background: var(--moz-gradient-red);
+	background: var(--gradient-red); }
+	
+.fill-blue.gradient {
+	-webkit-background: var(--webkit-gradient-blue);
+	-moz-background: var(--moz-gradient-blue);
+	background: var(--gradient-blue); }
+	
+.fill-green.gradient {
+	-webkit-background: var(--webkit-gradient-green);
+	-moz-background: var(--moz-gradient-green);
+	background: var(--gradient-green); }
+	
 
 
 /*
@@ -298,14 +372,11 @@ select:focus {
 	color: var(--off-light); }
 .text-neutral {
 	color: var(--neutral); }
-.text-off-neutral {
-	color: var(--off-neutral); }
 .text-dark {
 	color: var(--dark); }
 .text-off-dark {
 	color: var(--off-dark); }
-.text-black {
-	color: var(--black); }
+
 
 
 

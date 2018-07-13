@@ -1,0 +1,128 @@
+
+<!-- Unit Filtration section -->
+<textarea class="js_template" data-name="unitFiltration" style="display: none">
+
+	<div class="type-head fill-yellow gradient">
+		<div class="type-tabs">
+			{{#each taxonomies }}
+				<div class="tab-button h4 bold inline-middle js_tab_button {{ selected }}">{{ name }}</div>
+			{{/each}}
+		</div>
+	</div>
+	<div class="type-content">
+		{{#each taxonomies }}
+			<div class="tab-group js_tab_group {{ selected }}">
+				{{#each types }}
+					<div class="type-card inline-middle text-center js_unit_filter" data-taxonomy="{{ ../name }}" data-type="{{ Name }}">
+						<div class="title h5 bold">{{ Name }}</div>
+						<div class="description h6">{{ Description }}</div>
+						<div class="icon" style="background-image: url( '/media/pricing/{{ ../name }}-{{ Name }}.png' );"></div>
+					</div>
+				{{/each}}
+			</div>
+		{{/each}}
+	</div>
+
+</textarea>
+
+
+
+<!-- Unit Filtration Tag i.e. bubble -->
+<textarea class="js_template" data-name="unitFiltrationTags" style="display: none">
+
+	<button class="button js_unit_filter js_remove" data-taxonomy="{{ taxonomy }}" data-type="{{ type }}"><span>{{ type }}</span></button>
+
+</textarea>
+
+
+
+<!-- Unit Listing section -->
+<textarea class="js_template" data-name="unitListing" style="display: none">
+
+	{{#each units}}
+
+		<div class="unit-item clearfix js_unit_list_item {{#if Highlight }}highlight{{/if}}" data-unit="{{ Unit }}">
+			<span class="title h2 bold">{{ Unit }}</span>
+			<span class="price">
+				<span class="price-label small">Basic Price</span>
+				<span class="price-amount h6 bold">₹ {{ this.[Starting At] }}</span>
+			</span>
+			<span class="meta">
+				<span class="floor label bold">{{ this.[Floor Label] }}</span>
+				<span class="area label bold">{{ Area }} SFT</span>
+				<span class="type label bold">{{ Class }}</span>
+			</span>
+			<span class="action label bold">Get Full Price</span>
+		</div>
+
+	{{/each}}
+
+</textarea>
+
+
+
+<!-- Unit Details section -->
+<textarea class="js_template" data-name="unitDetails" style="display: none">
+
+	{{#each points}}
+
+		{{#if Modifiable}}
+			{{!-- If it is an interactive modification --}}
+			{{> (getTemplateName "modificationPoint__Type" this.modification.type) currentValue=Value }}
+		{{else}}
+			{{!-- If it is just a regular static point --}}
+			<div class="unit-detail-list-item">
+				<span class="detail">{{ Name }}</span>
+				<span class="value">{{ Value }}</span>
+			</div>
+		{{/if}}
+
+	{{/each}}
+
+</textarea>
+
+
+
+<!-- Unit Details section component -->
+	<!-- A modification line with multiple pre-canned options -->
+<textarea class="js_template" data-name="modificationPoint__TypeMultiple" style="display: none">
+
+	<div class="unit-detail-list-item modification">
+		<div class="detail">
+			<span>{{ modification.label }}</span>
+			<select class="js_unit_modification__multiple" name="{{ modification.name }}">
+				{{#each modification.options}}
+					<option value="{{ value }}" {{#if (is value ../currentValue) }} selected="true" {{/if}}>{{ label }}</option>
+				{{/each}}
+			</select>
+		</div>
+		<span class="value">{{ currentValue }}</span>
+	</div>
+
+</textarea>
+
+	<!-- A modification line with a binary choice -->
+<textarea class="js_template" data-name="modificationPoint__TypeBinary" style="display: none">
+
+	<div class="unit-detail-list-item modification">
+		<div class="detail">
+			<span>{{ modification.label }}</span>
+			<input class="js_unit_modification__binary" type="checkbox" name="{{ modification.name }}" value="{{ modification.value }}" {{#if (is modification.value currentValue) }} checked="true" {{/if}}>
+		</div>
+		<span class="value">{{ currentValue }}</span>
+	</div>
+
+</textarea>
+
+	<!-- A modification line with a manual input -->
+<textarea class="js_template" data-name="modificationPoint__TypeManual" style="display: none">
+
+	<div class="unit-detail-list-item modification">
+		<div class="detail">
+			<span>{{ modification.label }}</span>
+			<input class="js_unit_modification__manual" type="text" name="{{ modification.name }}" value="{{ currentValue }}">
+		</div>
+		<span class="value">{{ currentValue }}</span>
+	</div>
+
+</textarea>

@@ -1,0 +1,78 @@
+/* -- Order -- */
+
+.pricing-section .unit-order {
+	margin-bottom: 30px;
+	text-align: right;
+	font-size: 0;
+	line-height: 0;
+}
+
+.pricing-section .unit-order .title {
+	position: relative;
+	display: inline-block;
+	line-height: 12px;
+	padding-left: 14px;
+	margin-right: 10px;
+}
+
+.pricing-section .unit-order .title:before {
+	content: '';
+	display: inline-block;
+	height: 12px;
+	width: 12px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*background-color: pink;*/
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url('/media/pricing/order-neutral.svg');
+}
+
+.pricing-section .unit-order .button {
+	width: 90px;
+	margin-right: 10px;
+}
+
+
+@media( min-width: 640px )  {
+	.pricing-section .unit-order {
+		text-align: right;
+		padding-top: 9px;
+	}
+}
+
+@media( min-width: 1040px ) {
+	.pricing-section .unit-order {
+		padding-top: 7px;
+	}
+
+	.pricing-section .unit-order .title {
+		line-height: 14px;
+		padding-left: 16px;
+		padding-right: 6px;
+	}
+
+	.pricing-section .unit-order .title:before {
+		height: 14px;
+		width: 14px;
+	}
+}
+
+@media( min-width: 1380px ) {
+	.pricing-section .unit-order {
+		padding-top: 4px;
+	}
+
+	.pricing-section .unit-order .title {
+		line-height: 16px;
+		padding-left: 18px;
+		padding-right: 8px;
+	}
+
+	.pricing-section .unit-order .title:before {
+		height: 16px;
+		width: 16px;
+	}	
+}

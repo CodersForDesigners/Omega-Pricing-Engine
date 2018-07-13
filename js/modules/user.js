@@ -4,11 +4,11 @@
  * When the login prompt is to be shown
  *
  */
-$( document ).on( "user.login.show", function () {
+$( document ).on( "user/login/show", function () {
 
 	var phoneNumber = prompt( "Please provide your phone number:" );
 	// alert( phoneNumber );
-	$( document ).trigger( "user.authenticate", { phoneNumber: phoneNumber } )
+	$( document ).trigger( "user/authenticate", { phoneNumber: phoneNumber } )
 
 } );
 
@@ -19,13 +19,13 @@ $( document ).on( "user.login.show", function () {
  * When a user's credentials have been authenticated and are legit
  *
  */
-$( document ).on( "user.authenticate", function ( event, data ) {
+$( document ).on( "user/authenticate", function ( event, data ) {
 
 	var phoneNumber = data.phoneNumber;
 
 	// Fetch the user based on the phone number
 	// Assume for now, it's all good.
-	$( document ).trigger( "user.details.received" );
+	$( document ).trigger( "user/details/received" );
 
 } );
 
@@ -36,7 +36,7 @@ $( document ).on( "user.authenticate", function ( event, data ) {
  * When a user's credentials have been authenticated and are legit
  *
  */
-$( document ).on( "user.authenticated", function ( event, data ) {
+$( document ).on( "user/authenticated", function ( event, data ) {
 
 	// Create a cookie
 	var cookieName = "omega-user";
@@ -52,7 +52,7 @@ $( document ).on( "user.authenticated", function ( event, data ) {
  * When a user's data is to be fetched
  *
  */
-$( document ).on( "user.details.fetch", function ( event, data ) {
+$( document ).on( "user/details/fetch", function ( event, data ) {
 
 	// Fetch the lead based on the phone number
 	var requestPayload = { id: data.id };
@@ -82,7 +82,7 @@ $( document ).on( "user.details.fetch", function ( event, data ) {
 		// } );
 
 		// Broadcast the user data
-		$( document ).trigger( "user.details.received", userData );
+		$( document ).trigger( "user/details/received", userData );
 
 	} );
 

@@ -1,0 +1,67 @@
+
+@import url("https://use.typekit.net/fps4who.css");
+/*@import url('https://fonts.googleapis.com/css?family=Montserrat:700|Roboto:400,700');*/
+
+:root {
+
+	/* ## Fonts */
+	--base-font: 'aktiv-grotesk', Arial, sans-serif;
+	/*--base-font: 'Roboto', Arial, sans-serif;*/
+	--display-font: 'aktiv-grotesk', 'Arial Black', Arial, sans-serif;
+	/*--display-font: 'Montserrat', 'Arial Black', Arial, sans-serif;*/
+	
+	/* ## Weights */
+	--weight-thin: 200;
+	--weight-regular: 400;
+	--weight-bold: 700;
+
+	/* ## Roundness */
+	--roundness: 8px;
+
+	/* ## Colors */
+	--light : #FFFFFF;
+	--off-light : #E8EBEC;
+	
+	--neutral : #8A979F;
+	
+	--off-dark : #2D4351;
+	--dark : #172F3E;
+	
+	--yellow : #FCE38A;
+	--off-yellow : #F38181;
+
+	--red : #FF7676;
+	--off-red : #F54EA2;
+	
+	--blue : #17EAD9;
+	--off-blue : #6078EA;
+	
+	--green : #42E695;
+	--off-green : #3BB2B8;
+
+	/* ## Gradients */
+	--moz-gradient-light: -moz-linear-gradient(135deg, var(--light) 0%, var(--off-light) 100%);
+	--webkit-gradient-light: -webkit-linear-gradient(135deg, var(--light) 0%, var(--off-light) 100%);
+	--gradient-light: linear-gradient(135deg, var(--light) 0%, var(--off-light) 100%);
+
+	--moz-gradient-dark: -moz-linear-gradient(135deg, var(--dark) 0%, var(--off-dark) 100%);
+	--webkit-gradient-dark: -webkit-linear-gradient(135deg, var(--dark) 0%, var(--off-dark) 100%);
+	--gradient-dark: linear-gradient(135deg, var(--dark) 0%, var(--off-dark) 100%);
+
+	--moz-gradient-yellow: -moz-linear-gradient(135deg, var(--yellow) 0%, var(--off-yellow) 100%);
+	--webkit-gradient-yellow: -webkit-linear-gradient(135deg, var(--yellow) 0%, var(--off-yellow) 100%);
+	--gradient-yellow: linear-gradient(135deg, var(--yellow) 0%, var(--off-yellow) 100%);
+
+	--moz-gradient-red: -moz-linear-gradient(135deg, var(--red) 0%, var(--off-red) 100%);
+	--webkit-gradient-red: -webkit-linear-gradient(135deg, var(--red) 0%, var(--off-red) 100%);
+	--gradient-red: linear-gradient(135deg, var(--red) 0%, var(--off-red) 100%);
+
+	--moz-gradient-blue: -moz-linear-gradient(135deg, var(--blue) 0%, var(--off-blue) 100%);
+	--webkit-gradient-blue: -webkit-linear-gradient(135deg, var(--blue) 0%, var(--off-blue) 100%);
+	--gradient-blue: linear-gradient(135deg, var(--blue) 0%, var(--off-blue) 100%);
+	
+	--moz-gradient-green: -moz-linear-gradient(135deg, var(--green) 0%, var(--off-green) 100%);
+	--webkit-gradient-green: -webkit-linear-gradient(135deg, var(--green) 0%, var(--off-green) 100%);
+	--gradient-green: linear-gradient(135deg, var(--green) 0%, var(--off-green) 100%);
+
+}

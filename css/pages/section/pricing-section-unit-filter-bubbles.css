@@ -1,0 +1,112 @@
+/* -- Filter Bubbles -- */
+
+.pricing-section .unit-filter-bubbles {
+	height: 62px;
+	padding: 15px 10px;
+	margin-bottom: 15px;
+	text-align: center;
+	font-size: 0;
+	line-height: 0;
+	white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+
+	/* -- NOTE | Hindering "background-attachment: local;"  -- */
+	/*-webkit-overflow-scrolling: touch;*/
+	/*-webkit-transform: translateZ(0px);*/
+	
+	background: 
+				linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)),
+				linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1)) 100% 0,
+				radial-gradient(30% 50% at 0 50%, rgba(0,0,0,.3), rgba(0,0,0,0)),
+				radial-gradient(30% 50% at 100% 50%, rgba(0,0,0,.3), rgba(0,0,0,0)) 100% 0;
+
+	background-size: 40px 100%, 40px 100%, 35px 100%, 35px 100%;
+	background-repeat: no-repeat;
+	background-color: white;
+	background-attachment: local, local, scroll, scroll;
+}
+
+.pricing-section .unit-filter-bubbles .title {
+	position: relative;
+	display: inline-block;
+	line-height: 12px;
+	padding-left: 14px;
+	margin-right: 10px;
+}
+
+.pricing-section .unit-filter-bubbles .title:before {
+	content: '';
+	display: inline-block;
+	height: 12px;
+	width: 12px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*background-color: pink;*/
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url('/media/pricing/filter-neutral.svg');
+}
+
+.pricing-section .unit-filter-bubbles .bubbles {
+	display: inline-block;
+	position: relative;
+}
+
+.pricing-section .unit-filter-bubbles .bubbles .button {
+	position: relative;
+	margin-right: 10px;
+}
+
+.pricing-section .unit-filter-bubbles .bubbles .button span:after {
+	content: '';
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	position: relative;
+	margin-bottom: -3px;
+	margin-left: 5px;
+	/*background-color: pink;*/
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url('/media/pricing/close-neutral.svg');
+}
+
+@media( min-width: 640px )  {}
+
+@media( min-width: 1040px ) {
+	.pricing-section .unit-filter-bubbles {
+		height: 66px;
+	}
+
+	.pricing-section .unit-filter-bubbles .title {
+		line-height: 14px;
+		padding-left: 16px;
+		padding-right: 6px;
+	}
+
+	.pricing-section .unit-filter-bubbles .title:before {
+		height: 14px;
+		width: 14px;
+	}
+}
+
+@media( min-width: 1380px ) {
+	.pricing-section .unit-filter-bubbles {
+		height: 72px;
+	}
+
+	.pricing-section .unit-filter-bubbles .title {
+		line-height: 16px;
+		padding-left: 18px;
+		padding-right: 8px;
+	}
+
+	.pricing-section .unit-filter-bubbles .title:before {
+		height: 16px;
+		width: 16px;
+	}
+}

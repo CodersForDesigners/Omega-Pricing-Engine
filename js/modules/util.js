@@ -65,6 +65,20 @@ __UTIL.renderTemplate = function () {
 }();
 
 __UTIL.template = { };
+__UTIL.template.getTemplateName = function getTemplateName () {
+	return Array.prototype.slice.call( arguments, 0, arguments.length - 1 ).join( "" );
+};
+__UTIL.template.INR = formatNumberToIndianRupee;
+// A template helper that gives the floor number in an ordinal word form
+__UTIL.template.floorInOrdinalWord = function () {
+	var floorToWords = [ "Ground", "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth", "Twentieth", "Twenty-First", "Twenty-Second", "Twenty-Third", "Twenty-Fourth", "Twenty-Fifth", "Twenty-Sixth", "Twenty-Seventh" ];
+	return function floorInOrdinalWord ( floor ) {
+		return floorToWords[ floor ] || "";
+	}
+}();
+__UTIL.template.isMultipleOf = function isMultipleOf ( number, multipleOf ) {
+	return number % multipleOf == 0;
+};
 __UTIL.template.hiddenIfNull = function hiddenIfNull ( thing ) {
 	return thing ? "" : "hidden";
 };
@@ -97,6 +111,25 @@ __UTIL.groupListBy = function groupListBy ( list, by ) {
 	}
 	return groupedObject;
 };
+
+/*
+ *
+ * Parse a number formatted as a string to valid JavaScript number
+ *
+ */
+function parseStringToNumber ( value ) {
+
+	// If the value is not a string, return it back
+	if ( typeof value != "string" )
+		return value;
+
+	// If the value contains any character other than a digit, comma or a decimal point, return it back
+	if ( /[^\d\.,]/.test( value ) )
+		return value;
+
+	return parseFloat( value.replace( /,/g, "" ) );
+
+}
 
 /*
  *
@@ -161,6 +194,16 @@ function countToAmount ( $el, amount ) {
 		progress: function () {
 			$el.text( formatNumberToIndianRupee( this.amount ) );
 		}
+	} );
+
+}
+
+function waitFor ( seconds ) {
+
+	return new Promise( function ( resolve, reject ) {
+		setTimeout( function () {
+			resolve();
+		}, seconds * 1000 );
 	} );
 
 }
