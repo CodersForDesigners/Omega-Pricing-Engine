@@ -25,14 +25,14 @@
 <link rel="stylesheet" type="text/css" href="css/pages/modal/modal-menu.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/sample-section.css<?php echo $ver ?>">
 
+<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section.css<?php echo $ver ?>">
+<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-toaster.css<?php echo $ver ?>">
+<link rel="stylesheet" type="text/css" href="css/pages/section/page-phone-trap.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-heading.css<?php echo $ver ?>">
-<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-filter-bubbles.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-filter.css<?php echo $ver ?>">
-<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-list.css<?php echo $ver ?>">
+<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-filter-bubbles.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-order.css<?php echo $ver ?>">
+<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-available.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-search.css<?php echo $ver ?>">
-
-
-
-<link rel="stylesheet" type="text/css" href="css/pages/section/unit-details-section.css<?php echo $ver ?>">
-<link rel="stylesheet" type="text/css" href="css/pages/section/emi-calculator-section.css<?php echo $ver ?>">
+<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-list.css<?php echo $ver ?>">
+<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-details.css<?php echo $ver ?>">

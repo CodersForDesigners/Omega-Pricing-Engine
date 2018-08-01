@@ -1,21 +1,24 @@
 /* -- List -- */
 
 .pricing-section .unit-list {
-	margin-bottom: 20px;
+	position: relative;
+	z-index: 1;
+	margin-bottom: 30px;
 }
 
 .pricing-section .unit-list .unit-item {
 	position: relative;
 	cursor: pointer;
 	height: 70px;
-	margin-bottom: 20px;
+	margin-top: 2px;
+	margin-bottom: 18px;
 	overflow: hidden;
 	font-size: 0;
 	line-height: 0;
-	background-color: var(--light);
-	background: -moz-linear-gradient(left, var(--off-dark) 0%, var(--off-dark) 50%, var(--light) 50%, var(--light) 100%);
-	background: -webkit-linear-gradient(left, var(--off-dark) 0%, var(--off-dark) 50%, var(--light) 50%, var(--light) 100%);
-	background: linear-gradient(to right, var(--off-dark) 0%, var(--off-dark) 50%, var(--light) 50%, var(--light) 100%);
+	background-color: #FFFFFF;
+	background-image: -moz-linear-gradient(left, var(--off-dark) 0%, var(--off-dark) 50%, transparent 50%, transparent 100%);
+	background-image: -webkit-linear-gradient(left, var(--off-dark) 0%, var(--off-dark) 50%, transparent 50%, transparent 100%);
+	background-image: linear-gradient(to right, var(--off-dark) 0%, var(--off-dark) 50%, transparent 50%, transparent 100%);
 	background-size: 202%;
 	background-position-x: 101%;
 	background-repeat: no-repeat;
@@ -24,7 +27,13 @@
 	transition: background .3s ease-out;
 }
 
-/*.pricing-section .unit-list .unit-item * { pointer-events: none; }*/
+.pricing-section .unit-list .unit-item * { pointer-events: none; }
+
+.pricing-section .unit-list .slick-slide:nth-of-type(2n+1) > div:nth-of-type(2n+2) .unit-item,
+.pricing-section .unit-list .slick-slide:nth-of-type(2n+2) > div:nth-of-type(2n+1) .unit-item {
+	/* zebra stripe */
+	background-color: var(--off-light);
+}
 
 .pricing-section .unit-list .unit-item .title {
 	display: inline-block;
@@ -132,31 +141,6 @@
 	background-position: center right;
 	background-size: 16px 16px;
 	background-image: url('/media/pricing/down-light.svg');
-}
-
-
-/* -- Highlight List Item -- */
-.pricing-section .unit-list .unit-item.highlight {
-	background: -moz-linear-gradient(left, var(--off-yellow) 0%, var(--off-yellow) 50%, var(--light) 50%, var(--light) 100%);
-	background: -webkit-linear-gradient(left, var(--off-yellow) 0%, var(--off-yellow) 50%, var(--light) 50%, var(--light) 100%);
-	background: linear-gradient(to right, var(--off-yellow) 0%, var(--off-yellow) 50%, var(--light) 50%, var(--light) 100%);
-	background-size: 202%;
-	background-position-x: 101%;
-	background-repeat: no-repeat;
-	transition: background .3s ease-out;
-}
-
-.pricing-section .unit-list .unit-item.highlight .title {
-	color: var(--off-dark);
-	background: -moz-linear-gradient(left, var(--yellow) 0%, var(--off-yellow) 100%);
-	background: -webkit-linear-gradient(left, var(--yellow) 0%, var(--off-yellow) 100%);
-	background: linear-gradient(to right, var(--yellow) 0%, var(--off-yellow) 100%);
-}
-
-.pricing-section .unit-list .unit-item.highlight .title:after,
-.pricing-section .unit-list .unit-item.highlight .title:after {
-	background-color: var(--off-dark);
-	opacity: 0.75;
 }
 
 /* -- Selected List Item -- */
@@ -301,4 +285,470 @@
 	.pricing-section .unit-list .unit-item.selected .title:after {
 		height: 38px;
 	}
+}
+
+
+
+
+
+
+
+
+
+
+/* -- Slick Theme -- */
+.pricing-section .unit-list .slick {
+	position: relative;
+	z-index: 1;
+}
+
+.pricing-section .unit-list .slick .slick-slide {
+	padding: 0 2px;
+	outline: 0;
+}
+
+/*.pricing-section .unit-list .slick .slick-list {
+	background: 
+				radial-gradient(30% 50% at 0 50%, rgba(0,0,0,.3), rgba(0,0,0,0)),
+				radial-gradient(30% 50% at 100% 50%, rgba(0,0,0,.3), rgba(0,0,0,0)) 100% 0;
+
+	background-size: 120px 100%, 120px 100%;
+	background-repeat: no-repeat;
+	background-attachment: local, local;
+}
+
+.pricing-section .unit-list .slick .slick-track {
+	background: 
+				linear-gradient(to right, rgba(255,0,255,1), rgba(255,0,255,0)),
+				linear-gradient(to right, rgba(255,0,255,0), rgba(255,0,255,1)) 100% 0;
+
+	background-size: 140px 100%, 140px 100%;
+	background-repeat: no-repeat;
+	background-attachment: scroll, scroll;
+}*/
+
+.pricing-section .unit-list .slick.slick-dotted {
+	margin-bottom: 0;
+	padding-bottom: 32px;
+}
+
+.pricing-section .unit-list .slick .slick-dots {
+	counter-reset: pagination;
+	bottom: 0px;
+}
+
+.pricing-section .unit-list .slick .slick-dots li {
+	position: relative;
+	width: auto;
+	height: auto;
+	text-align: center;
+	line-height: 32px;
+	font-size: 1.1rem;
+	color: var(--neutral);
+	font-weight: var(--weight-bold);
+}
+
+.pricing-section .unit-list .slick .slick-dots li:after {
+	counter-increment: pagination;
+	content: counter(pagination);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+}
+
+
+.pricing-section .unit-list .slick .slick-dots button {
+	background-color: var(--off-light);
+	width: 32px;
+	height: 32px;
+	border-radius: 100%;
+}
+
+.pricing-section .unit-list .slick .slick-dots button:before { display: none; }
+
+.pricing-section .unit-list .slick .slick-dots .slick-active {
+	color: var(--light);
+}
+
+.pricing-section .unit-list .slick .slick-dots .slick-active button {
+	background-color: var(--neutral)
+}
+
+@media( min-width: 640px )  {
+	.pricing-section .unit-list .slick .slick-slide {
+		padding: 0 5px;
+	}
+}
+@media( min-width: 1040px ) {
+	.pricing-section .unit-list .slick .slick-slide {
+		padding: 0 10px;
+	}
+
+	.pricing-section .unit-list .slick.slick-dotted {
+		padding-bottom: 36px;
+	}
+
+	.pricing-section .unit-list .slick .slick-dots li {
+		margin: 0 7px;
+		font-size: 1.2rem;
+		line-height: 36px;
+	}
+
+	.pricing-section .unit-list .slick .slick-dots button {
+		background-color: var(--off-light);
+		width: 36px;
+		height: 36px;
+	}
+}
+@media( min-width: 1380px ) {
+	.pricing-section .unit-list .slick.slick-dotted {
+		padding-bottom: 40px;
+	}
+
+	.pricing-section .unit-list .slick .slick-dots li {
+		margin: 0 10px;
+		font-size: 1.3rem;
+		line-height: 40px;
+	}
+
+	.pricing-section .unit-list .slick .slick-dots button {
+		background-color: var(--off-light);
+		width: 40px;
+		height: 40px;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ *
+ * Phone Trap
+ *
+ */
+
+.unit-list .phone-trap {
+	visibility: hidden;
+	pointer-events: none;
+	position: absolute;
+	z-index: 4;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	border-radius: calc(var(--roundness)*1);
+	box-shadow: none;
+	overflow: hidden;
+}
+
+.unit-list .phone-trap:before {
+	content: '';
+	display: block;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	width: 100px;
+	height: 100px;
+	/*background: var(--moz-gradient-yellow);*/
+	/*background: var(--webkit-gradient-yellow);*/
+	/*background: var(--gradient-yellow);*/
+	background: linear-gradient(to right, var(--off-blue), var(--blue));
+	border-radius: 100%;
+	opacity: 0;
+	transform: scale(0);
+	transition: all .3s ease-out;
+}
+
+.unit-list .phone-trap .trap-content {
+	position: relative;
+	z-index: 3;
+	opacity: 0;
+	transition: opacity .3s ease-out;
+}
+
+.unit-list .phone-trap.show {
+	visibility: visible;
+	pointer-events: auto;
+	box-shadow: 0px 0px 6px 2px rgba(45, 67, 81, .25);
+	transition: box-shadow .3s .3s ease-out;
+}
+
+.unit-list .phone-trap * {
+	pointer-events: auto;
+}
+
+.unit-list .phone-trap.show:before {
+	opacity: 1;
+	transform: scale(12); 
+	transition: all .3s ease-out;
+}
+
+.unit-list .phone-trap.show .trap-content {
+	position: relative;
+	opacity: 1;
+	transition: opacity .3s .3s ease-out;
+	font-size: 0;
+	line-height: 0;
+}
+
+.unit-list .phone-trap .trap-content .title {
+	margin-bottom: 20px;
+}
+
+
+.unit-list .phone-trap .trap-content .phone {
+	position: relative;
+	z-index: 2;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.unit-list .phone-trap .trap-content .otp {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: auto;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.unit-list .phone-trap .trap-content .phone.show,
+.unit-list .phone-trap .trap-content .otp.show {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+	transition: opacity .3s .3s ease-out;
+}
+
+.unit-list .phone-trap .trap-content .phone .title,
+.unit-list .phone-trap .trap-content .otp .title {	
+	line-height: 20px;
+	margin-bottom: 5px;
+}
+
+.unit-list .phone-trap .trap-content .phone .invisible-select,
+.unit-list .phone-trap .trap-content .phone .visible-select {
+	position: absolute;
+	top: 25px;
+	left: 0;
+	width: 80px;
+	color: var(--light);
+	background-color: var(--off-dark);
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.unit-list .phone-trap .trap-content .phone .invisible-select {
+	z-index: 2;
+	opacity: 0; 
+}
+
+.unit-list .phone-trap .trap-content .phone .visible-select {
+	text-align: left;
+	z-index: 3;
+	pointer-events: none;
+	background-image: url('/media/pricing/select-light.svg');
+}
+
+.unit-list .phone-trap .trap-content .phone .input {
+	position: relative;
+	z-index: 1; 
+	display: inline-block;
+	width: 100%;
+	padding-left: 90px;
+	padding-right: 70px;
+}
+
+.unit-list .phone-trap .trap-content .phone .submit {
+	position: absolute;
+	top: 25px;
+	right: 0;
+	z-index: 4;
+	width: 60px;
+	color: var(--light);
+	background-color: var(--off-dark);
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.unit-list .phone-trap .trap-content .otp .input {
+	position: relative;
+	z-index: 1; 
+	display: inline-block;
+	width: 100%;
+	padding-right: 90px;
+}
+
+.unit-list .phone-trap .trap-content .otp .submit {
+	position: absolute;
+	z-index: 4;
+	top: 25px;
+	right: 0;
+	width: 80px;
+	color: var(--light);
+	background-color: var(--off-dark);
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.unit-list .phone-trap .trap-content .phone .note,
+.unit-list .phone-trap .trap-content .otp .note {	
+	line-height: 20px;
+	margin-top: 5px;
+	padding: 0 2px;
+}
+
+
+.unit-list .phone-trap .trap-content .phone .note .link,
+.unit-list .phone-trap .trap-content .otp .note  .link {
+	cursor: pointer;
+}
+
+.unit-list .phone-trap .trap-close {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.unit-list .phone-trap.show .trap-close {
+	cursor: pointer;
+	pointer-events: auto;
+	position: absolute;
+	display: block;
+	z-index: 4;
+	top: 20px;
+	right: 20px;
+	width: 32px;
+	line-height: 32px;
+	text-align: center;
+	border-radius: 100%;
+	opacity: 0.7;
+	transition: opacity .3s .3s ease-out;
+}
+
+.unit-list .phone-trap.show .trap-close:hover,
+.unit-list .phone-trap.show .trap-close:focus,
+.unit-list .phone-trap.show .trap-close:active {
+	opacity: 1;
+}
+
+
+.unit-list .phone-trap .trap-bg {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.unit-list .phone-trap.show .trap-bg {
+	opacity: 1;
+	pointer-events: auto;
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	transition: opacity .3s .3s ease-out;
+	background: url(/media/pricing/phone-trap-bg.png);
+	background-position: right bottom;
+	background-size: 280px;
+	background-repeat: no-repeat;
+}
+
+@media( min-width: 640px )  {
+	.unit-list .phone-trap.show:before {
+		transform: scale(14); 
+	}
+}
+
+@media( min-width: 1040px ) {
+	.unit-list .phone-trap {
+		padding: 32px;
+	}
+
+	.unit-list .phone-trap.show:before {
+		transform: scale(18); 
+	}
+
+	.unit-list .phone-trap .trap-content .phone .invisible-select,
+	.unit-list .phone-trap .trap-content .phone .visible-select {
+		width: 90px;
+	}
+
+	.unit-list .phone-trap .trap-content .phone .input {
+		padding-left: 100px;
+		padding-right: 80px;
+	}
+	.unit-list .phone-trap .trap-content .phone .submit {
+		width: 70px;
+	}
+	.unit-list .phone-trap .trap-content .otp .input {
+		padding-right: 100px;
+	}
+
+	.unit-list .phone-trap .trap-content .otp .submit {
+		width: 90px;
+	}
+
+	.unit-list .phone-trap.show .trap-close {
+		top: 32px;
+		right: 32px;
+		width: 36px;
+		line-height: 36px;
+	}
+}
+
+@media( min-width: 1380px ) {
+	.unit-list .phone-trap {
+		padding: 40px;
+	}
+
+	.unit-list .phone-trap.show:before {
+		transform: scale(20); 
+	}
+
+	.unit-list .phone-trap .trap-content .phone .invisible-select,
+	.unit-list .phone-trap .trap-content .phone .visible-select {
+		width: 100px;
+	}
+
+	.unit-list .phone-trap .trap-content .phone .input {
+		padding-left: 110px;
+		padding-right: 90px;
+	}
+	.unit-list .phone-trap .trap-content .phone .submit {
+		width: 80px;
+	}
+	.unit-list .phone-trap .trap-content .otp .input {
+		padding-right: 110px;
+	}
+
+	.unit-list .phone-trap .trap-content .otp .submit {
+		width: 100px;
+	}
+
+	.unit-list .phone-trap.show .trap-close {
+		top: 40px;
+		right: 40px;
+		width: 42px;
+		line-height: 42px;
+	}
+}
+
+@media print {
+	.pricing-section .unit-list { display: none; }
 }

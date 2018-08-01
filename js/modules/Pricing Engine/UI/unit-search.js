@@ -17,7 +17,11 @@ $( function () {
 
 $( document ).on( "click", ".js_clear_search", function ( event ) {
 
-	$( document ).trigger( "unit/search/deactivate", { query: "" } );
+	// If there is a query in the search bar, proceed to clear / de-activate the search
+	var searchQuery = $( event.target ).closest( ".js_search_form" ).find( ".js_search_query" ).val();
+	if ( searchQuery ) {
+		$( document ).trigger( "unit/search/deactivate", { query: "" } );
+	}
 
 } );
 

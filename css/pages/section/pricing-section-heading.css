@@ -9,3 +9,7 @@
 @media( min-width: 640px )  {}
 @media( min-width: 1040px ) {}
 @media( min-width: 1380px ) {}
+
+@media print {
+	.pricing-section .heading { display: none; }
+}

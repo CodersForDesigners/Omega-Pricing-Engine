@@ -13,7 +13,8 @@ $( function () {
 	// EMI Calculator
 	__UI.$emiSection = $( ".js_section_emi_calculator" );
 	__UI.$emiDownPayment = __UI.$emiSection.find( ".js_down_payment" );
-	__UI.$emiLoanAmount = __UI.$emiSection.find( ".js_loan_amount" );
+	__UI.$emiDownPaymentPercentage = __UI.$emiSection.find( ".js_down_payment_percentage" );
+	// __UI.$emiLoanAmount = __UI.$emiSection.find( ".js_loan_amount" );
 	__UI.$emiTenure = __UI.$emiSection.find( ".js_tenure" );
 	__UI.$emiInterestRate = __UI.$emiSection.find( ".js_interest_rate" );
 
@@ -36,12 +37,14 @@ $( document ).on( "emi-calculator/render", function ( event, data ) {
 
 	// Set the `Down payment` to be 20% of total by default
 	var downPayment = 0.2 * total;
+	var downPaymentPercentage = 20;
 	var loanAmount = total - downPayment;
 	var tenure = 240;
 	var interestRate = 8.35;
 
-	__UI.$emiDownPayment.val( downPayment );
-	__UI.$emiLoanAmount.val( loanAmount );
+	__UI.$emiDownPayment.val( formatNumberToIndianRupee( downPayment ) );
+	__UI.$emiDownPaymentPercentage.text( downPaymentPercentage + "%" );
+	// __UI.$emiLoanAmount.val( loanAmount );
 	__UI.$emiTenure.val( tenure );
 	__UI.$emiInterestRate.val( interestRate );
 
@@ -70,10 +73,10 @@ $( document ).on( "emi-calculator/render/figures", function ( event, data ) {
 	var principalAmount = data.principalAmount
 	var interestAmount = data.interestAmount
 
-	__UI.$emiEstimated.text( emi );
-	__UI.$emiTotalAmountPayable.text( totalAmountPayable );
-	__UI.$emiPrincipalAmount.text( principalAmount );
-	__UI.$emiInterestAmount.text( interestAmount );
+	__UI.$emiEstimated.text( formatNumberToIndianRupee( emi ) );
+	__UI.$emiTotalAmountPayable.text( formatNumberToIndianRupee( totalAmountPayable ) );
+	__UI.$emiPrincipalAmount.text( formatNumberToIndianRupee( principalAmount ) );
+	__UI.$emiInterestAmount.text( formatNumberToIndianRupee( interestAmount ) );
 
 } );
 
@@ -95,37 +98,41 @@ $( document ).on( "input", ".js_down_payment", function () {
 	var downPayment = parseInt( __UI.$emiDownPayment.val().replace( /[^\d\.]/g, "" ), 10 );
 	__OMEGA.emi.downPayment = downPayment;
 
+	// Calculate the percentage of the Grand Total that the Down Payment is
+	var downPaymentPercentage = Math.round( ( downPayment / total ) * 100 );
+	__UI.$emiDownPaymentPercentage.text( downPaymentPercentage + "%" );
+
 	// Calculate the loan amount
 	var loanAmount = total - downPayment;
 	__OMEGA.emi.loanAmount = loanAmount;
 
 	// Reflect it in the UI
-	__UI.$emiLoanAmount.val( loanAmount )
+	// __UI.$emiLoanAmount.val( loanAmount )
 
 	// Re-calculate the EMI figures
 	$( document ).trigger( "emi-calculator/calculate" );
 
 } );
 // Loan amount
-$( document ).on( "input", ".js_loan_amount", function () {
+// $( document ).on( "input", ".js_loan_amount", function () {
 
-	var total = __OMEGA.unitData.grandTotal;
+// 	var total = __OMEGA.unitData.grandTotal;
 
-	// Pull the values from the markup, stripping away the formatting
-	var loanAmount = parseInt( __UI.$emiLoanAmount.val().replace( /[^\d\.]/g, "" ), 10 );
-	__OMEGA.emi.loanAmount = loanAmount;
+// 	// Pull the values from the markup, stripping away the formatting
+// 	var loanAmount = parseInt( __UI.$emiLoanAmount.val().replace( /[^\d\.]/g, "" ), 10 );
+// 	__OMEGA.emi.loanAmount = loanAmount;
 
-	// Calculate the down payment
-	var downPayment = total - loanAmount;
-	__OMEGA.emi.downPayment = downPayment;
+// 	// Calculate the down payment
+// 	var downPayment = total - loanAmount;
+// 	__OMEGA.emi.downPayment = downPayment;
 
-	// Reflect it in the UI
-	__UI.$emiDownPayment.val( downPayment )
+// 	// Reflect it in the UI
+// 	__UI.$emiDownPayment.val( downPayment )
 
-	// Re-calculate the EMI figures
-	$( document ).trigger( "emi-calculator/calculate" );
+// 	// Re-calculate the EMI figures
+// 	$( document ).trigger( "emi-calculator/calculate" );
 
-} );
+// } );
 // Tenure
 $( document ).on( "input", ".js_tenure", function () {
 

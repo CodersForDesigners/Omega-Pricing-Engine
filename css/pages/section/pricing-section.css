@@ -1,0 +1,13 @@
+/*
+ * Pricing Section
+ */
+
+.pricing-section {
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: top center;
+}
+
+@media( min-width: 640px )  {}
+@media( min-width: 1040px ) {}
+@media( min-width: 1380px ) {}

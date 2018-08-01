@@ -13,7 +13,7 @@
 function getWorkbook () {
 
 	// var workbookFile = client + "/numbers.xlsx";
-	var workbookFile = "/data/numbers.xlsx";
+	var workbookFile = "data/numbers.xlsx";
 	// cache-busting
 	// workbookFile += "?v=" + window.__PRICING_ENGINE__.version.replace( /\./g, "" );
 	workbookFile += "?v=" + +( new Date() );
@@ -58,7 +58,7 @@ function getDataFromSheet ( sheet ) {
 	var dataArray = XLSX.utils.sheet_to_json( sheet, { raw: true } );
 
 	var data = dataArray.reduce( function ( acc, curr ) {
-		acc[ curr.Detail ] = curr.Value;
+		acc[ curr.Detail || curr.Name ] = curr.Value;
 		return acc;
 	}, { } );
 
@@ -168,7 +168,7 @@ function getModification ( event ) {
 function computeUnitData ( parameters ) {
 
 	var workbook = __OMEGA.workbook;
-	var inputSheet = workbook.Sheets[ "User Input" ];
+	var inputSheet = workbook.Sheets[ "Input" ];
 	var unit = parameters.Unit;
 
 	// Get input sheet structure
@@ -194,10 +194,34 @@ function computeUnitData ( parameters ) {
 function getComputedUnitData () {
 
 	// Pull the computed values
-	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Computed Unit Details" ], { raw: true } );
-	// Filter out points that are not to be display and ones whose values are empty
+	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output" ], { raw: true } );
+	/*
+	 *
+	 * Filter out line items,
+	 * - that are not to be displayed (i.e. hidden)
+	 * - whose values are empty (unless they're not "Text" content type)
+	 *
+	*/
 	points = points.filter( function ( point ) {
-		return point.Modifiable || ( ( ! point.Hide ) && point.Value );
+		if ( point.Hide )
+			if ( point.Name == "Grand Total" )
+				return true;
+			else
+				return false;
+		if ( point.Content == "Helper" )
+			return true;
+		if ( ! point.Name ) {
+			if ( ( ! point.Content ) || point.Content == "Text" )
+				return false;
+			else
+				return true;
+		}
+		if ( ! point.Value ) {
+			if ( ! point.Modifiable )
+				return false;
+		}
+		return true;
+		// return point.Modifiable || ( ( ! point.Hide ) && point.Value );
 	} );
 	return points;
 
@@ -217,7 +241,11 @@ function getComputedUnitData () {
  */
 function setCookie ( name, data, duration ) {
 
-	var url = "http://omega.api/lib/set-cookie-async.php";
+	var url = location.origin;
+	if ( __envProduction ) {
+		url += "/secret-soil";
+	}
+	url += "/inc/set-cookie-async.php";
 	var queryString = "?" + "_cookie=" + encodeURIComponent( name );
 	queryString += "&_duration=" + encodeURIComponent( duration );
 	queryString += "&data=" + encodeURIComponent( JSON.stringify( data ) );

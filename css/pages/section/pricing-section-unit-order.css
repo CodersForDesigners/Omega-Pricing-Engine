@@ -30,9 +30,10 @@
 	background-image: url('/media/pricing/order-neutral.svg');
 }
 
-.pricing-section .unit-order .button {
-	width: 90px;
-	margin-right: 10px;
+.pricing-section .unit-order .select {
+	width: 190px;
+	margin-right: 5px;
+	line-height: 1;
 }
 
 
@@ -58,6 +59,11 @@
 		height: 14px;
 		width: 14px;
 	}
+
+	.pricing-section .unit-order .select {
+		width: 250px;
+		margin-right: 10px;
+	}
 }
 
 @media( min-width: 1380px ) {
@@ -74,5 +80,13 @@
 	.pricing-section .unit-order .title:before {
 		height: 16px;
 		width: 16px;
-	}	
+	}
+
+	.pricing-section .unit-order .select {
+		width: 270px;
+	}
+}
+
+@media print {
+	.pricing-section .unit-order { display: none; }
 }

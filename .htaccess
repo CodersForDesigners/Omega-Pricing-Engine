@@ -3,21 +3,54 @@
 
 RewriteEngine On
 
+# RewriteRule .? http://example.com/?dr=%{DOCUMENT_ROOT}&ru=%{REQUEST_URI}
+
 # if the URI maps to an existing file on the server, just return it
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" -f
 RewriteRule .? "-" [QSA,L]
+
+# Pricing Engine | Customer
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?pricing/?$ index.php?_route=pricing [QSA,L,NC]
+
+# Pricing Engine | Customer – Individual Unit
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?pricing/([^/]+)/?$ index.php?_route=pricing-individual&_unit=$1 [QSA,L,NC]
+
+# Pricing Engine | Quote
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?quote/?$ index.php?_route=quote [QSA,L,NC]
+
+# Pricing Engine | Print Template
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?print-pricing-sheet/?$ index.php?_route=print-pricing-sheet [QSA,L,NC]
+
+# The Login page that delegates to the Omega API
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?login$ http://lw.lazaro.in/omega/login [P]
+# RewriteRule ^/?login$ http://lw.lazaro.in/omega/login [R=301,QSA,L,NC]
+
+# The Login callback route that delegates to the Omega API
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?login/callback/google$ http://lw.lazaro.in/omega/login/callback/google [P]
+
+# The Logout route that logs a user out
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?logout$ http://lw.lazaro.in/omega/logout?redirect=http://lw.lazaro.in/secret-soil/pricing [P]
+
 
 # if the URI does not have a trailing slash,
 # and if it is a GET request,
 # but if it does not have a query string,
 # then append a trailing slash, and trigger a re-direct
-RewriteCond %{REQUEST_URI} !/$
-RewriteCond %{REQUEST_METHOD} GET [NC]
-RewriteCond %{QUERY_STRING} ^\??$
-RewriteRule .? %{REQUEST_URI}/ [QSA,R=301,L]
+# RewriteCond %{REQUEST_URI} !/$
+# RewriteCond %{REQUEST_METHOD} GET [NC]
+# RewriteCond %{QUERY_STRING} ^\??$
+# RewriteRule .? %{REQUEST_URI}/ [QSA,R=301,L]
 
 # the catch-all "else" block
 # forward the request to index.php; it will do the heavy-lifting
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
 RewriteRule .? index.php [QSA,L]
 
 </IfModule>

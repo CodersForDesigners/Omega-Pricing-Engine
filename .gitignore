@@ -7,3 +7,6 @@
 
 # the data directory
 /data
+
+# the account directory
+/account

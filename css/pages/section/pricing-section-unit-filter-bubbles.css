@@ -8,14 +8,14 @@
 	font-size: 0;
 	line-height: 0;
 	white-space: nowrap;
-	overflow-x: auto;
+	overflow-x: scroll;
 	overflow-y: hidden;
 
 	/* -- NOTE | Hindering "background-attachment: local;"  -- */
 	/*-webkit-overflow-scrolling: touch;*/
 	/*-webkit-transform: translateZ(0px);*/
-	
-	background: 
+
+	background:
 				linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)),
 				linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1)) 100% 0,
 				radial-gradient(30% 50% at 0 50%, rgba(0,0,0,.3), rgba(0,0,0,0)),
@@ -58,6 +58,17 @@
 .pricing-section .unit-filter-bubbles .bubbles .button {
 	position: relative;
 	margin-right: 10px;
+	max-width: 300px;
+}
+
+.pricing-section .unit-filter-bubbles .bubbles .button.pop {
+	max-width: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	visibility: hidden;
+	transform: scale(0);
+	transition: transform .3s ease-out, max-width .3s .3s ease-out, padding .3s .3s ease-out, margin .3s .3s ease-out, visibility .3s .3s ease-out;
 }
 
 .pricing-section .unit-filter-bubbles .bubbles .button span:after {
@@ -73,6 +84,16 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-image: url('/media/pricing/close-neutral.svg');
+}
+
+/*
+ *
+ * The default "Filter by" message when no filters are applied.
+ * Hide this message when atleast one filter is applied.
+ *
+ */
+.pricing-section .unit-filter-bubbles .bubbles:not( :empty ) + .empty {
+	display: none;
 }
 
 @media( min-width: 640px )  {}
@@ -109,4 +130,8 @@
 		height: 16px;
 		width: 16px;
 	}
+}
+
+@media print {
+	.pricing-section .unit-filter-bubbles { display: none; }
 }

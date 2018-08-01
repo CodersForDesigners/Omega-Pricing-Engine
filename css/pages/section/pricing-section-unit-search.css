@@ -74,6 +74,27 @@
 	background-image: url('/media/pricing/close-neutral.svg');
 }
 
-@media( min-width: 640px )  {}
-@media( min-width: 1040px ) {}
+@media( min-width: 640px )  {
+	.pricing-section .unit-search {
+		padding-left: 5px;
+	}
+	.pricing-section .unit-search:after {
+		left: 5px;
+	}
+}
+	
+@media( min-width: 1040px ) {
+	.pricing-section .unit-search {
+		padding-left: 10px;
+	}
+	.pricing-section .unit-search:after {
+		left: 10px;
+	}
+}
+
 @media( min-width: 1380px ) {}
+
+
+@media print {
+	.pricing-section .unit-search { display: none; }
+}

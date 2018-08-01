@@ -1,6 +1,9 @@
 <?php function gethead(){ ?>
 
-	<?php global $ver; ?>
+	<?php
+		global $ver;
+		global $productionEnv;
+	?>
 
 	<!--
 	*
@@ -39,7 +42,11 @@
 	*
 	- -->
 	<!-- Set the base URL for all relative URLs within the document -->
-	<base href="/"><!-- ( example : http://example.com/page.html ) -->
+	<?php if ( $productionEnv == true ) : ?>
+		<base href="/secret-soil/"><!-- ( example : http://example.com/page.html ) -->
+	<?php else : ?>
+		<base href="/"><!-- ( example : http://example.com/page.html ) -->
+	<?php endif; ?>
 	<!-- Links to top level resource in an hierarchical structure -->
 	<link rel="index" href="http://example.com/article/">
 	<!-- Helps prevent duplicate content issues -->
@@ -183,6 +190,10 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- Stylesheet -->
 	<?php require __DIR__ . '/../style.php'; ?>
+	<!-- Globals -->
+	<script type="text/javascript">
+		window.__envProduction = <?php if ( $productionEnv ) echo 'true'; else echo 'false'; ?>
+	</script>
 	<!-- jQuery -->
 	<script type="text/javascript" src="plugins/jquery/jQuery-v3.3.1.min.js<?php echo $ver ?>"></script>
 	<!-- Slick Carousel -->

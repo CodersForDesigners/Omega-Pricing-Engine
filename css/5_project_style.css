@@ -39,6 +39,10 @@ p, small, label {
 	letter-spacing: inherit;
 }
 
+a, a:hover, a:focus {
+	text-decoration: none;
+	color: inherit; }
+
 hr {
 	border-color: var(--dark);
 }
@@ -111,6 +115,7 @@ small, .small { font-size: 1.1rem; }
 .regular	{ font-weight: var(--weight-regular); }
 strong, .bold { font-weight: var(--weight-bold); }
 em, .em 	{ font-style: italic; }
+s, strike, del, .strike { text-decoration: line-through; }
 
 
 /*
@@ -157,6 +162,7 @@ button:focus,
     outline: 0;
 	filter: brightness(1.2);
     box-shadow: none;
+    cursor: default;
 }
 
 @media( min-width: 640px )  {}
@@ -185,15 +191,6 @@ button:focus,
 	}
 }
 
-input[type="submit"].secondary,
-input[type="reset"].secondary,
-input[type="button"].secondary,
-button.secondary,
-.button.secondary {
-	color: var(--light);
-	background-color: var(--neutral);
-}
-
 input[type="submit"].primary,
 input[type="reset"].primary,
 input[type="button"].primary,
@@ -201,6 +198,15 @@ button.primary,
 .button.primary {
 	color: var(--light);
 	background-color: var(--off-dark);
+}
+
+input[type="submit"].secondary,
+input[type="reset"].secondary,
+input[type="button"].secondary,
+button.secondary,
+.button.secondary {
+	color: var(--light);
+	background-color: var(--neutral);
 }
 
 
@@ -232,6 +238,16 @@ textarea {
 	min-height: 65px;
 }
 
+.select,
+select {
+	cursor: pointer;
+	padding-right: 32px;
+	background-image: url('/media/pricing/select-neutral.svg');
+	background-repeat: no-repeat;
+	background-size: 32px 16px;
+	background-position: right center;
+}
+
 input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
@@ -261,6 +277,12 @@ select:focus {
 		height: 36px;
 		padding: 8px 16px; /* The 6px vertically centers text on FF, ignored by Webkit */
 	}
+
+	.select,
+	select {
+		padding-right: 36px;
+		background-size: 36px 18px;
+	}
 }
 
 @media( min-width: 1380px ) {
@@ -274,9 +296,25 @@ select:focus {
 	input[type="date"],
 	textarea,
 	select {
-		height: 40px;
+		height: 42px;
 		padding: 8px 20px; /* The 6px vertically centers text on FF, ignored by Webkit */
 	}
+
+	.select,
+	select {
+		padding-right: 42px;
+		background-size: 42px 20px;
+	}
+}
+
+
+/* -- Disabled -- */
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+	opacity: 0.5
+	cursor: not-allowed;
 }
 
 
@@ -314,17 +352,33 @@ select:focus {
 	color: var(--dark);
 	background-color: var(--yellow); }
 
+.fill-off-yellow {
+	color: var(--dark);
+	background-color: var(--off-yellow); }
+
 .fill-red {
 	color: var(--light);
 	background-color: var(--red); }
+
+.fill-off-red {
+	color: var(--light);
+	background-color: var(--off-red); }
 
 .fill-blue {
 	color: var(--light);
 	background-color: var(--blue); }
 
+.fill-off-blue {
+	color: var(--light);
+	background-color: var(--off-blue); }
+
 .fill-green {
 	color: var(--light);
 	background-color: var(--green); }
+
+.fill-off-green {
+	color: var(--light);
+	background-color: var(--off-green); }
 
 /* -- Gradients -- */
 
@@ -366,6 +420,7 @@ select:focus {
  *
  */
 
+/* -- Neutrals -- */
 .text-light {
 	color: var(--light); }
 .text-off-light {
@@ -377,6 +432,23 @@ select:focus {
 .text-off-dark {
 	color: var(--off-dark); }
 
+/* -- Highlights -- */
+.text-yellow { 
+	color: var(--yellow); }
+.text-off-yellow { 
+	color: var(--off-yellow); }
+.text-red { 
+	color: var(--red); }
+.text-off-red { 
+	color: var(--off-red); }
+.text-blue { 
+	color: var(--blue); }
+.text-off-blue { 
+	color: var(--off-blue); }
+.text-green { 
+	color: var(--green); }
+.text-off-green { 
+	color: var(--off-green); }
 
 
 

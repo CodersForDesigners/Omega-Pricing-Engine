@@ -1,0 +1,24 @@
+/*
+ * Unit Available
+ */
+
+.pricing-section .unit-available {
+	padding: 5px 0;
+}
+
+
+@media( min-width: 640px )  {}
+@media( min-width: 1040px ) {
+	.pricing-section .unit-available {
+		padding: 10px 0;
+	}
+}
+@media( min-width: 1380px ) {
+	.pricing-section .unit-available {
+		padding: 15px 0;
+	}
+}
+
+@media print {
+	.pricing-section .unit-available { display: none; }
+}

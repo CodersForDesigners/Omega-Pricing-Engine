@@ -12,8 +12,7 @@ $( function () {
 
 	// Unit Details
 	__UI.$unitDetailsSection = $( ".js_section_unit_details_and_mods" );
-	__UI.$unitDetailsUnitNumber = __UI.$unitDetailsSection.find( ".js_unit_number_heading" );
-	__UI.$unitDetailsList = __UI.$unitDetailsSection.find( ".js_unit_details_and_mods" );
+	__UI.$unitDetailsList = __UI.$unitDetailsSection.find( ".js_content" );
 
 } );
 
@@ -83,7 +82,6 @@ $( document ).on( "unit-details/render", function ( event, data ) {
 	var points = data.points.filter( function ( detail ) { return ! detail.Hide } );
 	var modifications = __OMEGA.modifications;
 
-	__UI.$unitDetailsUnitNumber.text( unitNumber );
 	var unitDetailsMarkup = __UI.templates.unitDetails( {
 		points: points,
 		// modifications: modifications
@@ -95,3 +93,52 @@ $( document ).on( "unit-details/render", function ( event, data ) {
 	__UI.$unitDetailsSection.find( ".js_loading_stub" ).addClass( "hidden" );
 
 } );
+
+var unstickGrandTotalLineItem = function () {
+
+	var $window = $( window );
+	var $grandTotalLineItem;
+	var $preceedingLineItem;
+	var $followingLineItem;
+
+	$( document ).on( "unit/view/done", function () {
+		$grandTotalLineItem = $( ".js_grand_total_line_item" );
+		$preceedingLineItem = $grandTotalLineItem.prev();
+		$followingLineItem = $grandTotalLineItem.next();
+		if ( ! $followingLineItem.length ) {
+			$followingLineItem = $grandTotalLineItem.parent().next();
+		}
+	} );
+
+	return function unstickGrandTotalLineItem ( event ) {
+
+		// If no unit's details has been loaded
+		if ( ! $grandTotalLineItem || ! $grandTotalLineItem.length ) {
+			return;
+		}
+
+		var scrollTop = window.scrollY || document.body.scrollTop;
+		var viewportHeight = $window.height();
+		var scrollBottom = scrollTop + viewportHeight;
+
+		var grandTotalLineItemHeight = $grandTotalLineItem.outerHeight();
+		var followingLineItemTop = $followingLineItem.position().top - parseFloat( $followingLineItem.css( "margin-top" ) );
+
+		// console.log( "Scroll bottom: " + scrollBottom );
+		// console.log( "Grand Total Line Item Hieght: " + grandTotalLineItemHeight );
+		// console.log( "Bottom Position of preceeding line item line item: " + ( $preceedingLineItem.offset().top + $preceedingLineItem.height() ) );
+		// console.log( "Top Position of following line item: " + $followingLineItem.offset().top );
+		// console.log()
+		// console.log( "–––––––––––––––––––––––––––––––––––––––––––––––––––––––" )
+		// console.log()
+		if ( scrollBottom >= followingLineItemTop + grandTotalLineItemHeight ) {
+			$grandTotalLineItem.removeClass( "fixed" );
+		}
+		else {
+			$grandTotalLineItem.addClass( "fixed" );
+		}
+
+	};
+
+}();
+$( window ).on( "scroll", unstickGrandTotalLineItem );

@@ -22,6 +22,11 @@ __UTIL.comparators = {
 	},
 	"is less than or equal to": function ( operand1, operand2 ) {
 		return operand1 <= operand2;
+	},
+	"is between": function ( value, lowerAndUpperLimit ) {
+		var lowerLimit = lowerAndUpperLimit[ 0 ];
+		var upperLimit = lowerAndUpperLimit[ 1 ];
+		return ( value > lowerLimit ) && ( value < upperLimit );
 	}
 };
 __UTIL.comparators[ "is" ] = __UTIL.comparators[ "is equal to" ];
@@ -68,6 +73,7 @@ __UTIL.template = { };
 __UTIL.template.getTemplateName = function getTemplateName () {
 	return Array.prototype.slice.call( arguments, 0, arguments.length - 1 ).join( "" );
 };
+__UTIL.template.INF = indianNumberingFormat;
 __UTIL.template.INR = formatNumberToIndianRupee;
 // A template helper that gives the floor number in an ordinal word form
 __UTIL.template.floorInOrdinalWord = function () {
@@ -173,6 +179,44 @@ function formatNumberToIndianRupee ( number, options ) {
 }
 
 
+
+/*
+ *
+ * Format a number to the Indian Numbering format
+ *
+ */
+function indianNumberingFormat ( number ) {
+
+	var formattedNumber;
+
+	var roundedNumber = number.toFixed( 0 );
+	var integerAndFractionalParts = ( roundedNumber + "" ).split( "." );
+	var integerPart = integerAndFractionalParts[ 0 ];
+	var fractionalPart = integerAndFractionalParts[ 1 ];
+
+	var lastThreeDigitsOfIntegerPart = integerPart.slice( -3 );
+	var allButLastThreeDigitsOfIntegerPart = integerPart.slice( 0, -3 );
+
+	formattedNumber = allButLastThreeDigitsOfIntegerPart.replace( /\B(?=(\d{2})+(?!\d))/g, "," );
+
+	if ( allButLastThreeDigitsOfIntegerPart ) {
+		formattedNumber += ",";
+	}
+	formattedNumber += lastThreeDigitsOfIntegerPart;
+
+	if ( fractionalPart ) {
+		formattedNumber += "." + fractionalPart;
+	}
+
+	if ( /^-/.test( formattedNumber ) ) {
+		formattedNumber = formattedNumber.replace( /^-/, "minus " );
+	}
+
+	return formattedNumber;
+
+}
+
+
 /*
  *
  * Animate the count-down or count-up of a number in the INR format
@@ -195,6 +239,83 @@ function countToAmount ( $el, amount ) {
 			$el.text( formatNumberToIndianRupee( this.amount ) );
 		}
 	} );
+
+}
+
+function getDateAndTimeStamp () {
+
+	var dateObject = new Date();
+
+	// Date components
+		// Year
+	var year = dateObject.getUTCFullYear();
+		// Month
+	var month = ( dateObject.getUTCMonth() + 1 );
+	if ( month < 10 ) month = "0" + month;
+		// Day
+	var day = dateObject.getUTCDate();
+	if ( day < 10 ) day = "0" + day;
+
+	// Time components
+		// Hours
+	var hours = dateObject.getUTCHours();
+	if ( hours < 10 ) hours = "0" + hours;
+		// Minutes
+	var minutes = dateObject.getUTCMinutes();
+	if ( minutes < 10 ) minutes = "0" + minutes;
+		// Seconds
+	var seconds = dateObject.getUTCSeconds();
+	if ( seconds < 10 ) seconds = "0" + seconds;
+		// Milli-seconds
+	var milliseconds = dateObject.getUTCMilliseconds();
+	if ( milliseconds < 10 ) milliseconds = "00" + milliseconds;
+	else if ( milliseconds < 100 ) milliseconds = "0" + milliseconds;
+
+	// Assembling all the parts
+	var datetimestamp = year
+				+ "/" + month
+				+ "/" + day
+
+				+ " " + hours
+				+ ":" + minutes
+				+ ":" + seconds
+				+ "." + milliseconds
+
+	return datetimestamp;
+
+}
+
+function slugify ( string, options ) {
+
+	options = ( typeof options === "string" )
+				? { replacement: options }
+				: options || { }
+	options.remove = options.remove || /[^\w\s$*_+~.()'"!\-:@]/g;
+
+	// Not seeded at all
+	var charMap = { };
+
+	// var slug = string.split( "" )
+					// .reduce( function ( result, ch ) {
+					// 	return result
+					// 		// allowed
+					// 		+ ( charMap[ ch ] || ch ).replace( options.remove, "" )
+					// }, "" )
+	var slug = string
+				// Map special to Latin ones
+				.replace( /[^\w\s]/g, function ( match ) {
+					return charMap[ match ] || match;
+				} )
+				// Remove certain specified characters
+				.replace( options.remove, "" )
+				// Trim leading and trailing spaces
+				.replace( /^\s+|\s+$/g, "" )
+				// Convert spaces to the specified separator
+				.replace( /[-\s]+/g, options.replacement || "-" )
+				// Remove trailing separators
+				.replace( "#{replacement}$", "" )
+
+	return slug.toLowerCase();
 
 }
 

@@ -116,6 +116,17 @@
 	var formulae = { };
 
 
+	formulae.AND = function () {
+		var args = utils.flatten( arguments );
+		var result = true;
+		for ( var i = 0; i < args.length; i +=1 ) {
+			if ( ! args[ i ] ) {
+				result = false;
+			}
+		}
+		return result;
+	};
+
 	formulae.CONCATENATE = function () {
 		var args = utils.flatten( arguments );
 
@@ -130,6 +141,16 @@
 		}
 
 		return args.join( "" );
+	};
+
+	formulae.ROUNDUP = function ( number, digits ) {
+		number = utils.parseNumber( number );
+		digits = utils.parseNumber( digits );
+		if ( utils.anyIsError( number, digits ) ) {
+			return error.value;
+		}
+		var sign = ( number > 0 ) ? 1 : -1;
+		return sign * ( Math.ceil( Math.abs( number ) * Math.pow( 10, digits ) ) ) / Math.pow( 10, digits );
 	};
 
 	formulae.ROUNDDOWN = function ( number, digits ) {

@@ -15,8 +15,8 @@
 				{{#each types }}
 					<div class="type-card inline-middle text-center js_unit_filter" data-taxonomy="{{ ../name }}" data-type="{{ Name }}">
 						<div class="title h5 bold">{{ Name }}</div>
-						<div class="description h6">{{ Description }}</div>
-						<div class="icon" style="background-image: url( '/media/pricing/{{ ../name }}-{{ Name }}.png' );"></div>
+						<div class="description label">{{ Description }}</div>
+						<div class="icon" style="background-image: url( 'account/livingwalls-secretsoil/{{ Image }}' );"></div>
 					</div>
 				{{/each}}
 			</div>
@@ -41,19 +41,23 @@
 
 	{{#each units}}
 
-		<div class="unit-item clearfix js_unit_list_item {{#if Highlight }}highlight{{/if}}" data-unit="{{ Unit }}">
+		<a class="unit-item clearfix js_unit_list_item js_user_required {{#if Highlight }}highlight{{/if}}" data-unit="{{ Unit }}" href="{{ ../rootPath }}/{{ Unit }}" target="_blank">
 			<span class="title h2 bold">{{ Unit }}</span>
 			<span class="price">
 				<span class="price-label small">Basic Price</span>
-				<span class="price-amount h6 bold">₹ {{ this.[Starting At] }}</span>
+				<span class="price-amount h6 bold">{{ this.[Basic Price Label] }}</span>
 			</span>
 			<span class="meta">
 				<span class="floor label bold">{{ this.[Floor Label] }}</span>
 				<span class="area label bold">{{ Area }} SFT</span>
-				<span class="type label bold">{{ Class }}</span>
+				<span class="type label bold fill-blue gradient">{{ Class }}</span>
 			</span>
 			<span class="action label bold">Get Full Price</span>
-		</div>
+		</a>
+
+	{{else}}
+
+		<h1>No units were found :(</h1>
 
 	{{/each}}
 
@@ -66,14 +70,127 @@
 
 	{{#each points}}
 
-		{{#if Modifiable}}
+		{{!-- Section Demarcators --}}
+		{{#if (is Content "Section")}}
+			{{#unless @first}}
+				</div>
+			{{/unless}}
+			{{#if (is Section "Header")}}
+				<div class="header fill-red gradient">
+			{{/if}}
+			{{#if (is Section "Total")}}
+				<div class="total detail-section fill-red gradient fixed js_grand_total_line_item">
+			{{/if}}
+			{{#if (is Section "Light")}}
+				<div class="floor detail-section">
+			{{/if}}
+			{{#if (is Section "Dark")}}
+				<div class="basic detail-section fill-dark gradient">
+			{{/if}}
+		{{/if}}
+
+		{{#if (is Content "Helper")}}
+
+			{{!-- If it is a purely visual element --}}
+			{{#if Name}}
+				<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+					<div class="title float-left {{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}">{{ Name }}</div>
+				</div>
+			{{/if}}
+
+		{{else if (is Content "Image")}}
+
+			<div class="image-row">
+				<div class="image block" style="background-image: url( 'account/livingwalls-secretsoil/{{ Background }}' );">
+					{{#if Foreground }}
+						<img class="block" src="account/livingwalls-secretsoil/{{ Foreground }}">
+					{{/if}}
+				</div>
+			</div>
+
+		{{else if Modifiable}}
+
+			{{!-- If it is an interactive modification --}}
+			{{!-- {{> (getTemplateName "modificationPoint__Type" this.modification.type) currentValue=Value }} --}}
+
+		{{else}}
+
+			{{!-- If it is a text element --}}
+			{{!-- If the line item belongs to the Header section --}}
+			{{#if (is Align "center")}}
+				<div class="
+					{{ this.[Font Size] }}
+					{{ this.[Font Weight] }}
+					text-{{ Align }}
+					text-{{ Color }}
+					{{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}"
+				>{{ Name }}{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}}{{ Suffix }}</div>
+			{{else}}
+				<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+					<div class="title float-left {{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}">{{ Name }}</div>
+					<div class="value float-right">
+						{{ Prefix }}
+						{{#if (is Format "number")}}
+							{{ INF Value }}
+						{{else}}
+							{{ Value }}
+						{{/if}}
+						{{ Suffix }}
+					</div>
+				</div>
+			{{/if}}
+
+		{{/if}}
+
+		{{!-- If the line has a horizontal rule --}}
+		{{#if this.[Horizontal Rule]}}
+			<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+				<hr class="{{this.[Horizontal Rule]}}">
+			</div>
+		{{/if}}
+
+		{{!-- Section Demarcators – Implicitly close the last section --}}
+		{{#if @last}}
+			</div>
+		{{/if}}
+
+	{{/each}}
+
+</textarea>
+
+<textarea class="js_template" data-name="unitDetailsOld" style="display: none">
+
+	{{#each points}}
+
+		{{#if (is Content "Helper")}}
+			{{!-- If it is a purely visual element --}}
+			{{#if Name}}
+				<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+					<div class="title float-left {{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}">{{ Name }}</div>
+				</div>
+			{{/if}}
+		{{else if (is Content "Image")}}
+		{{else if Modifiable}}
 			{{!-- If it is an interactive modification --}}
 			{{> (getTemplateName "modificationPoint__Type" this.modification.type) currentValue=Value }}
 		{{else}}
-			{{!-- If it is just a regular static point --}}
-			<div class="unit-detail-list-item">
-				<span class="detail">{{ Name }}</span>
-				<span class="value">{{ Value }}</span>
+			{{!-- If it is a text element --}}
+			<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+				<div class="title float-left {{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}">{{ Name }}</div>
+				<div class="value float-right">
+					{{ Prefix }}
+					{{#if (is Format "number")}}
+						{{ INF Value }}
+					{{else}}
+						{{ Value }}
+					{{/if}}
+					{{ Suffix }}
+				</div>
+			</div>
+		{{/if}}
+		{{#if this.[Horizontal Rule]}}
+			<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+				<hr class="{{this.[Horizontal Rule]}}">
 			</div>
 		{{/if}}
 
@@ -87,16 +204,15 @@
 	<!-- A modification line with multiple pre-canned options -->
 <textarea class="js_template" data-name="modificationPoint__TypeMultiple" style="display: none">
 
-	<div class="unit-detail-list-item modification">
-		<div class="detail">
-			<span>{{ modification.label }}</span>
+	<div class="detail-row modification clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+		<div class="title float-left">{{ modification.label }}</div>
+		<div class="value float-right">
 			<select class="js_unit_modification__multiple" name="{{ modification.name }}">
 				{{#each modification.options}}
 					<option value="{{ value }}" {{#if (is value ../currentValue) }} selected="true" {{/if}}>{{ label }}</option>
 				{{/each}}
 			</select>
 		</div>
-		<span class="value">{{ currentValue }}</span>
 	</div>
 
 </textarea>
@@ -104,12 +220,12 @@
 	<!-- A modification line with a binary choice -->
 <textarea class="js_template" data-name="modificationPoint__TypeBinary" style="display: none">
 
-	<div class="unit-detail-list-item modification">
-		<div class="detail">
+	<div class="detail-row clearfix modification {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+		<div class="title float-left">
 			<span>{{ modification.label }}</span>
 			<input class="js_unit_modification__binary" type="checkbox" name="{{ modification.name }}" value="{{ modification.value }}" {{#if (is modification.value currentValue) }} checked="true" {{/if}}>
 		</div>
-		<span class="value">{{ currentValue }}</span>
+		<span class="value float-right">{{ currentValue }}</span>
 	</div>
 
 </textarea>
@@ -117,12 +233,12 @@
 	<!-- A modification line with a manual input -->
 <textarea class="js_template" data-name="modificationPoint__TypeManual" style="display: none">
 
-	<div class="unit-detail-list-item modification">
-		<div class="detail">
+	<div class="detail-row clearfix modification {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+		<div class="title float-left">
 			<span>{{ modification.label }}</span>
 			<input class="js_unit_modification__manual" type="text" name="{{ modification.name }}" value="{{ currentValue }}">
 		</div>
-		<span class="value">{{ currentValue }}</span>
+		<span class="value float-right">{{ currentValue }}</span>
 	</div>
 
 </textarea>

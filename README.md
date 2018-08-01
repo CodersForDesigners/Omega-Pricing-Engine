@@ -1,69 +1,90 @@
 
+# Setup and Installation
+Install these PHP extensions,
+apt-get install php7.0-mbstring
+apt-get install php7.0-gd
+apt-get install php7.0-xml
+apt-get install php7.0-zip
+apt-get install php7.0-curl
+
+## Google Chrome
+https://askubuntu.com/questions/510056/how-to-install-google-chrome#510186
+
+
+# Launching the app
+## nodeJS
+When deploying a node app, we use PM2 as a process manager.
+Go to the directory where the entry-point file of the app resides,
+	NODE_ENV=production pm2 start index.js --name="enquiry processor" -i 1 --wait-ready --kill-timeout 15000
+
+You change `index.js` and `enquiry_processor` for your use case.
+
+
+
+
+
+
 # events
 Following are the custom events.
 
 ## pricing engine
-spreadsheet.fetch
+spreadsheet/fetch
 	When the pricing engine spreadsheet has to be fetched
 
-spreadsheet.load
+spreadsheet/load
 	When the pricing engine spreadsheet has been loaded
 
-unit-filter.add
+unit-filter/add
 	When a unit filter is added
 
-unit-filter.remove
+unit-filter/remove
 	When a unit filter is removed
 
-unit.view
+unit/view
 	When a unit is to be viewed
 
 ## user
-user.login.show
-	When a login prompt has to be shown
+user/login/prompt
+	Prompt the user to "log in", contextual to the trigger
 
-user.authenticate
-	When a user's credentials have been provided and now it has to be authenticated
-
-user.authenticated
-	When a user's credentials have been authenticated and are legit
-
-user.details.fetch
-	When a user's details have to be fetched
-
-user.details.received
-	When a user's details has been received
+user/logged-in
 
 ## ui
-pricing-engine.render
+pricing-engine/render
 	When the pricing engine is to be rendered
 
-unit-filtration.render
+unit-filtration/render
 	When the unit search UI is to be rendered
 
-unit-details.render
+unit-details/render
 	When the Unit Details UI is to be rendered
 
 # todo
+[ ] Figure out a better to deal with URL-fetching when Apache and htaccess are involved. For example, fetching the spreadsheet via AJAX breaks.
+[ ] URLs are hardcoded in several places. Find a way to propagate it throughout
+	- pdf-create/index.js
+	- enquiry-processor.js
+	- quote-processor.js
+[ ] Figure out how to have (contextual) data independent of the spreadsheet and load it on the page. It's required to get data for existing users.
+[ ] Comprehensive logging and e-mailing of errors
+[ ] Interface-driven Mechanisms to re-start failed enquiries
+[ ] 404 page
+[ ] Unit Ordering – random, ascending, descending
+
 [ ] add arbitrary sections headings
 [ ] add image type data
 [ ] add horizontal rows – solid, dashed
+[ ] Expose line item based on User Role
 [ ] images for mods
 
+## bugs
+[ ] The login prompt's OTP form is overlayed by the phone form
+[ ] An individual unit that **is not** available ( or blocked ) can be viewed by simply changing the URL to match that unit number.
 
-[ ] Show images in the unit details view.
-[ ] Build the EMI component.
-[ ] Figure out a modification taxonomy.
-[ ] Sending of the enquiry.
-[ ] Enquiry processing on the server.
-[ ] Figure out formatting of values.
+## later
+[ ] Date-based formulae in a spreadsheet
 
-# later
-Loading indicator for when the unit search UI is being rendered on the server.
-Figure out adding of sub-headings and horizontal rules in the unit details view.
-Figure out if a modification can be embedded along with a detail or be separate.
-
-# done
+## done
 [x] Render the unit details view.
 [x] Figure out the ordering of details in the unit details view.
 
@@ -139,3 +160,19 @@ Minimum value
 	( for the `manual` input type )
 Maximum value
 	( for the `manual` input type )
+
+
+
+
+
+# Developing
+## PDF templates
+Make sure to include these CSS properties to ensure any color in your template is captured in the PDF,
+
+```CSS
+
+-webkit-print-color-adjust: exact;
+color-adjust: exact;
+
+```
+

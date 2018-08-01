@@ -171,4 +171,11 @@ function removeFilterBubble ( filter ) {
 	} );
 	$filterBubble.remove();
 
+	// If there are **no** selected filters, clear the container element regardless.
+	// This is so the CSS for when the container is empty will kick in.
+	// By default, there is an HTML comment in it.
+	if ( ! __UI.$unitFilters.children().length ) {
+		__UI.$unitFilters.empty()
+	}
+
 }
