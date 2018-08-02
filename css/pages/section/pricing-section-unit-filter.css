@@ -156,7 +156,7 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: 65%;
-	background-image: url('/media/pricing/check.svg');
+	background-image: url('../../../media/pricing/check.svg');
 	transform: scale(0);
 	opacity: 0;
 	transition: transform .3s ease-out, opacity .3s ease-out;

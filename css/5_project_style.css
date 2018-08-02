@@ -242,7 +242,7 @@ textarea {
 select {
 	cursor: pointer;
 	padding-right: 32px;
-	background-image: url('/media/pricing/select-neutral.svg');
+	background-image: url('../media/pricing/select-neutral.svg');
 	background-repeat: no-repeat;
 	background-size: 32px 16px;
 	background-position: right center;

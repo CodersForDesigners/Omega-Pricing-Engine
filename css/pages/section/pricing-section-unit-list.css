@@ -140,7 +140,7 @@
 	background-repeat: no-repeat;
 	background-position: center right;
 	background-size: 16px 16px;
-	background-image: url('/media/pricing/down-light.svg');
+	background-image: url('../../../media/pricing/down-light.svg');
 }
 
 /* -- Selected List Item -- */
@@ -159,7 +159,7 @@
 
 .pricing-section .unit-list .unit-item.selected .price {
 	color: var(--light);
-} 
+}
 
 .pricing-section .unit-list .unit-item.selected .action {
 	color: var(--dark);
@@ -167,7 +167,7 @@
 }
 
 .pricing-section .unit-list .unit-item.selected .action:after {
-	background-image: url('/media/pricing/down-dark.svg');
+	background-image: url('../../../media/pricing/down-dark.svg');
 }
 
 @media( min-width: 640px )  {
@@ -563,7 +563,7 @@
 	text-align: left;
 	z-index: 3;
 	pointer-events: none;
-	background-image: url('/media/pricing/select-light.svg');
+	background-image: url('../../../media/pricing/select-light.svg');
 }
 
 .unit-list .phone-trap .trap-content .phone .input {
@@ -663,7 +663,7 @@
 	right: 0;
 	bottom: 0;
 	transition: opacity .3s .3s ease-out;
-	background: url(/media/pricing/phone-trap-bg.png);
+	background: url('../../../media/pricing/phone-trap-bg.png');
 	background-position: right bottom;
 	background-size: 280px;
 	background-repeat: no-repeat;

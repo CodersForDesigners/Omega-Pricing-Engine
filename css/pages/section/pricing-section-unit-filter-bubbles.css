@@ -47,7 +47,7 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url('/media/pricing/filter-neutral.svg');
+	background-image: url('../../../media/pricing/filter-neutral.svg');
 }
 
 .pricing-section .unit-filter-bubbles .bubbles {
@@ -83,7 +83,7 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url('/media/pricing/close-neutral.svg');
+	background-image: url('../../../media/pricing/close-neutral.svg');
 }
 
 /*

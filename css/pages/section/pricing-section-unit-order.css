@@ -27,7 +27,7 @@
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url('/media/pricing/order-neutral.svg');
+	background-image: url('../../../media/pricing/order-neutral.svg');
 }
 
 .pricing-section .unit-order .select {
