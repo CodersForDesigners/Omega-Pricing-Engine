@@ -19,6 +19,8 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 	 * Disable the form
 	 ----- */
 	$form.find( "input, select, button" ).prop( "disabled", true );
+	var initialTextOnSubmitButton = $form.find( "[ type = submit ]" ).text();
+	$form.find( "[ type = submit ]" ).text( "Processing" );
 
 	/* -----
 	 * Pull the data from the form
@@ -33,16 +35,24 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 	 ----- */
 	// Remove any prior "error"s
 	$form.find( ".js_error" ).removeClass( "js_error" );
+	// Initialize a validation error message
+	var validationErrorMessage = "Please provide";
 	// Name
 	if ( ! $name.val().trim() ) {
 		$name.addClass( "js_error" );
 		$name.parent().addClass( "validation-error" );
-		alert( "Please enter your name." );
+		validationErrorMessage += " your name";
 	}
 	// If the form has even one error ( i.e. validation issue )
 	// do not proceed
 	if ( $form.find( ".js_error" ).length ) {
 		$form.find( "input, select, button" ).prop( "disabled", false );
+		$form.find( "[ type = submit ]" ).text( "Try Again." );
+		validationErrorMessage += ".";
+		notify( validationErrorMessage, {
+			level: "error",
+			context: "Enquiry Form"
+		} );
 		return;
 	}
 
@@ -92,6 +102,11 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 	/* -----
 	 * Process the data
 	 ----- */
+	// Notify that the enquiry is being processed
+	notify( "We've sent for the pricing sheet.", {
+		level: "info",
+		context: "Enquiry Form"
+	} );
 	// Update the user
 	updateUser( _id, project, userData )
 		.catch( function ( e ) {
@@ -116,9 +131,14 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 			return makeAnEnquiry( enquiry );
 		} )
 		.then( function () {
+			notify( "You should get an email shortly.", {
+				level: "info",
+				context: "Enquiry Form"
+			} );
 			/* -----
 			 * Re-enable the form
 			 ----- */
+			$form.find( "[ type = submit ]" ).text( initialTextOnSubmitButton );
 			$form.find( "input, select, button" ).prop( "disabled", false );
 			$form.find( "[ name = 'phone' ]" ).prop( "disabled", true );
 		} )
