@@ -210,7 +210,7 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 			// If the user exists, log the user in
 			loginUser( user );
 			// Then, close the login prompt
-			Loginner.prompts[ context ].onLogin();
+			Loginner.prompts[ context ].onLogin( user );
 		} )
 		.catch( function ( { code, message } ) {
 			// If no user was found, send an OTP
@@ -424,7 +424,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 					// Log the user in
 					loginUser( user._id );
 					// Then, close the login prompt
-					Loginner.prompts[ context ].onLogin();
+					Loginner.prompts[ context ].onLogin( user );
 				} )
 				.catch( function ( { code, message } ) {
 					if ( code == 1 ) {
