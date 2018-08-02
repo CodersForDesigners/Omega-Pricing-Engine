@@ -308,7 +308,7 @@
 }
 
 /*.pricing-section .unit-list .slick .slick-list {
-	background: 
+	background:
 				radial-gradient(30% 50% at 0 50%, rgba(0,0,0,.3), rgba(0,0,0,0)),
 				radial-gradient(30% 50% at 100% 50%, rgba(0,0,0,.3), rgba(0,0,0,0)) 100% 0;
 
@@ -318,7 +318,7 @@
 }
 
 .pricing-section .unit-list .slick .slick-track {
-	background: 
+	background:
 				linear-gradient(to right, rgba(255,0,255,1), rgba(255,0,255,0)),
 				linear-gradient(to right, rgba(255,0,255,0), rgba(255,0,255,1)) 100% 0;
 
@@ -339,6 +339,7 @@
 
 .pricing-section .unit-list .slick .slick-dots li {
 	position: relative;
+	margin: 0 5px;
 	width: auto;
 	height: auto;
 	text-align: center;
@@ -346,24 +347,66 @@
 	font-size: 1.1rem;
 	color: var(--neutral);
 	font-weight: var(--weight-bold);
+	display: none;
 }
 
-.pricing-section .unit-list .slick .slick-dots li:after {
-	counter-increment: pagination;
-	content: counter(pagination);
+.pricing-section .unit-list .slick .slick-dots li:first-child,
+.pricing-section .unit-list .slick .slick-dots li:last-child,
+.pricing-section .unit-list .slick .slick-dots .previous,
+.pricing-section .unit-list .slick .slick-dots .slick-active,
+.pricing-section .unit-list .slick .slick-dots .slick-active + li {
+	display: inline-block !important;
+}
+
+/*
+ *
+ * Do not show all the dots, only five at a time.
+ *
+ * The first, the last, the one that is selected and the ones that preceed and follow the one that is selected.
+ *
+ *
+ */
+
+/* If the 1st dot is selected, show the 3rd and 4th dots as well */
+.pricing-section .unit-list .slick .slick-dots li:first-child.slick-active + li + li,
+.pricing-section .unit-list .slick .slick-dots li:first-child.slick-active + li + li + li {
+	display: inline-block !important;
+}
+/* If the 2nd dot is selected, show the 4th dot as well */
+.pricing-section .unit-list .slick .slick-dots li:nth-child( 2 ).slick-active + li + li {
+	display: inline-block !important;
+}
+/* If the last dot is selected, show the 3rd-last and 4th-last dots as well (refer to unit-listing.js) */
+/* If the 2nd-last dot is selected, show the 4th-last dot as well (refer to unit-listing.js) */
+
+/*
+ *
+ * Add some literal dots ( ". . ." ) after the first "dot" and before the last "dot"
+ *
+ */
+.pricing-section .unit-list .slick .slick-dots li:first-child ~ .previous-most,
+.pricing-section .unit-list .slick .slick-dots .slick-active + li + li ~ li:last-child {
+	margin-left: 3.6rem !important;
+}
+
+.pricing-section .unit-list .slick .slick-dots li:first-child ~ .previous-most:before,
+.pricing-section .unit-list .slick .slick-dots .slick-active + li + li ~ li:last-child:before {
+	content: ".  .  .";
 	position: absolute;
-	top: 0;
-	left: 0;
+	right: 112%;
+	top: -5%;
 	width: 100%;
-	height: auto;
+	white-space: pre-wrap;
+	opacity: 0.69;
 }
-
 
 .pricing-section .unit-list .slick .slick-dots button {
 	background-color: var(--off-light);
 	width: 32px;
 	height: 32px;
 	border-radius: 100%;
+	font-size: inherit;
+	color: inherit;
 }
 
 .pricing-section .unit-list .slick .slick-dots button:before { display: none; }
@@ -391,7 +434,6 @@
 	}
 
 	.pricing-section .unit-list .slick .slick-dots li {
-		margin: 0 7px;
 		font-size: 1.2rem;
 		line-height: 36px;
 	}
@@ -492,7 +534,7 @@
 
 .unit-list .phone-trap.show:before {
 	opacity: 1;
-	transform: scale(12); 
+	transform: scale(12);
 	transition: all .3s ease-out;
 }
 
@@ -537,7 +579,7 @@
 }
 
 .unit-list .phone-trap .trap-content .phone .title,
-.unit-list .phone-trap .trap-content .otp .title {	
+.unit-list .phone-trap .trap-content .otp .title {
 	line-height: 20px;
 	margin-bottom: 5px;
 }
@@ -556,7 +598,7 @@
 
 .unit-list .phone-trap .trap-content .phone .invisible-select {
 	z-index: 2;
-	opacity: 0; 
+	opacity: 0;
 }
 
 .unit-list .phone-trap .trap-content .phone .visible-select {
@@ -568,7 +610,7 @@
 
 .unit-list .phone-trap .trap-content .phone .input {
 	position: relative;
-	z-index: 1; 
+	z-index: 1;
 	display: inline-block;
 	width: 100%;
 	padding-left: 90px;
@@ -589,7 +631,7 @@
 
 .unit-list .phone-trap .trap-content .otp .input {
 	position: relative;
-	z-index: 1; 
+	z-index: 1;
 	display: inline-block;
 	width: 100%;
 	padding-right: 90px;
@@ -608,7 +650,7 @@
 }
 
 .unit-list .phone-trap .trap-content .phone .note,
-.unit-list .phone-trap .trap-content .otp .note {	
+.unit-list .phone-trap .trap-content .otp .note {
 	line-height: 20px;
 	margin-top: 5px;
 	padding: 0 2px;
@@ -671,7 +713,7 @@
 
 @media( min-width: 640px )  {
 	.unit-list .phone-trap.show:before {
-		transform: scale(14); 
+		transform: scale(14);
 	}
 }
 
@@ -681,7 +723,7 @@
 	}
 
 	.unit-list .phone-trap.show:before {
-		transform: scale(18); 
+		transform: scale(18);
 	}
 
 	.unit-list .phone-trap .trap-content .phone .invisible-select,
@@ -718,7 +760,7 @@
 	}
 
 	.unit-list .phone-trap.show:before {
-		transform: scale(20); 
+		transform: scale(20);
 	}
 
 	.unit-list .phone-trap .trap-content .phone .invisible-select,

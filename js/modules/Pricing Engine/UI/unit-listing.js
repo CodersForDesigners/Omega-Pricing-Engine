@@ -51,6 +51,36 @@ $( document ).on( "click", ".js_unit_list_item", function ( event ) {
 
 } );
 
+
+/*
+ *
+ * When the unit listing UI is paged,
+ *	mark the "currentSlide" ( which will no longer be current soon after this ) with a class of "previous"
+ *
+ */
+$( ".js_unit_listing_section .js_unit_listing" ).on( "beforeChange", function ( event, slick, currentSlideIndex, nextSlideIndex ) {
+	var $dots = slick.$dots.find( "li" );
+	var numberOfDots = $dots.length;
+	$dots.removeClass( "previous previous-most next" );
+	$dots.eq( nextSlideIndex + 1 ).addClass( "next" );
+	// If the last dot is selected, show the 3rd-last and 4th-last dots as well
+	if ( numberOfDots - nextSlideIndex == 1 ) {
+		$dots.eq( nextSlideIndex - 2 ).addClass( "previous" );
+		$dots.eq( nextSlideIndex - 3 ).addClass( "previous" );
+		$dots.eq( nextSlideIndex - 4 ).addClass( "previous previous-most" );
+	}
+	// If the 2nd-last dot is selected, show the 4th-last dot as well
+	else if ( numberOfDots - nextSlideIndex == 2 ) {
+		$dots.eq( nextSlideIndex - 2 ).addClass( "previous" );
+		$dots.eq( nextSlideIndex - 3 ).addClass( "previous previous-most" );
+	}
+	// Else in all other instances
+	else {
+		$dots.eq( nextSlideIndex - 1 ).addClass( "previous previous-most" )
+	}
+} );
+
+
 /*
  *
  * When the unit listing UI is to be rendered
