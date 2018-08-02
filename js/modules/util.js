@@ -144,6 +144,9 @@ function parseStringToNumber ( value ) {
  */
 function formatNumberToIndianRupee ( number, options ) {
 
+	if ( ! number )
+		return 0;
+
 	options = options || { };
 	var formattedNumber;
 
@@ -186,6 +189,9 @@ function formatNumberToIndianRupee ( number, options ) {
  *
  */
 function indianNumberingFormat ( number ) {
+
+	if ( ! number )
+		return 0;
 
 	var formattedNumber;
 

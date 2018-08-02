@@ -42,6 +42,10 @@
 	white-space: nowrap;
 }
 
+.pre-wrap {
+	white-space: pre-wrap !important;
+}
+
 .no-overflow {
 	overflow: hidden;
 }

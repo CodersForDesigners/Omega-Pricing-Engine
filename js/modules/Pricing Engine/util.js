@@ -158,8 +158,10 @@ function notify ( message, options ) {
 
 	// An object that maps notification levels to class names
 	var levelToClassNameMap = {
-		info: "fill-light",
-		error: "fill-red"
+		info: "fill-blue",
+		success: "fill-green",
+		error: "fill-red",
+		alert: "fill-yellow"
 	};
 	// Get the corresponding class name for the notification level
 	var levelClassName = levelToClassNameMap[ level ] || "";
@@ -262,18 +264,20 @@ function getComputedUnitData () {
 				return true;
 			else
 				return false;
-		if ( point.Content == "Helper" )
-			return true;
-		if ( ! point.Name ) {
-			if ( ( ! point.Content ) || point.Content == "Text" )
-				return false;
-			else
-				return true;
-		}
-		if ( ! point.Value ) {
-			if ( ! point.Modifiable )
-				return false;
-		}
+		if ( ! point.Content )
+			return false;
+		// if ( point.Content == "Helper" )
+		// 	return true;
+		// if ( ! point.Name ) {
+		// 	if ( ( ! point.Content ) || point.Content == "Text" )
+		// 		return false;
+		// 	else
+		// 		return true;
+		// }
+		// if ( ! point.Value ) {
+		// 	if ( ! point.Modifiable )
+		// 		return false;
+		// }
 		return true;
 		// return point.Modifiable || ( ( ! point.Hide ) && point.Value );
 	} );

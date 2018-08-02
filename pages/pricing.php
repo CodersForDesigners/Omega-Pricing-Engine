@@ -9,10 +9,6 @@ html {
 	color-adjust: exact;
 }
 
-.pre-wrap {
-	white-space: pre-wrap !important;
-}
-
 @media ( max-width: 640px ) {
 
 	.pricing-section .unit-details .detail-section .detail-row .title {

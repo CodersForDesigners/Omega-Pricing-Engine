@@ -68,10 +68,6 @@
 			<span class="action label bold">Get Full Price</span>
 		</a>
 
-	{{else}}
-
-		<h1>No units were found :(</h1>
-
 	{{/each}}
 
 </textarea>
@@ -83,37 +79,31 @@
 
 	{{#each points}}
 
-		{{!-- Section Demarcators --}}
-		{{#if (is Content "Section")}}
+		{{#if (is Content "Sectioner")}}
+
+			{{!-- Section Demarcators: If it is not the first line, then we have to close the preceeding section --}}
 			{{#unless @first}}
 				</div>
 			{{/unless}}
-			{{#if (is Section "Header")}}
-				<div class="header fill-red gradient">
-			{{/if}}
-			{{#if (is Section "Total")}}
-				<div class="total detail-section fill-red gradient fixed js_grand_total_line_item">
-			{{/if}}
-			{{#if (is Section "Light")}}
-				<div class="floor detail-section">
-			{{/if}}
-			{{#if (is Section "Dark")}}
-				<div class="basic detail-section fill-dark gradient">
-			{{/if}}
-		{{/if}}
 
-		{{#if (is Content "Helper")}}
-
-			{{!-- If it is a purely visual element --}}
-			{{#if Name}}
-				<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
-					<div class="title float-left {{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}">{{ Name }}</div>
-				</div>
-			{{/if}}
+			<div class="
+					detail-section
+					{{#if (is Layout "Tabular")}}
+						table
+					{{/if}}
+					fill-{{ this.[Section Color] }}
+					{{this.[Section Gradient]}}
+					{{this.[Page Break] }}
+					{{this.[Prevent Page Break] }}
+			">
 
 		{{else if (is Content "Image")}}
 
-			<div class="image-row">
+			<div class="
+					{{#unless (is Layout "Full-width")}}
+						image-row
+					{{/unless}}
+			">
 				<div class="image block" style="background-image: url( 'account/livingwalls-secretsoil/{{ Background }}' );">
 					{{#if Foreground }}
 						<img class="block" src="account/livingwalls-secretsoil/{{ Foreground }}">
@@ -121,43 +111,37 @@
 				</div>
 			</div>
 
-		{{else if Modifiable}}
+		{{else if (is Content "Space")}}
 
-			{{!-- If it is an interactive modification --}}
-			{{!-- {{> (getTemplateName "modificationPoint__Type" this.modification.type) currentValue=Value }} --}}
+			<div class="detail-row row clearfix {{this.[Font Size] }}">
+				<div>&nbsp;</div>
+			</div>
 
 		{{else}}
 
-			{{!-- If it is a text element --}}
-			{{!-- If the line item belongs to the Header section --}}
-			{{#if (is Align "center")}}
-				<div class="
-					{{ this.[Font Size] }}
-					{{ this.[Font Weight] }}
+			<div class="
+					{{#unless (is Layout "Full-width")}}
+						detail-row row clearfix
+					{{/unless}}
 					text-{{ Align }}
 					text-{{ Color }}
-					{{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}"
-				>{{ Name }}{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}}{{ Suffix }}</div>
-			{{else}}
-				<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
-					<div class="title float-left {{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}">{{ Name }}</div>
-					<div class="value float-right">
-						{{ Prefix }}
-						{{#if (is Format "number")}}
-							{{ INF Value }}
-						{{else}}
-							{{ Value }}
-						{{/if}}
-						{{ Suffix }}
-					</div>
-				</div>
-			{{/if}}
+			">
+				{{#if (is Layout "Tabular")}}
+					<div class="title columns small-8 {{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{ Name }}</div>
+					<div class="value columns small-4 {{this.[Font Size] }} {{this.[Font Weight] }} {{ Strikethrough }}">{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+				{{else if (is Layout "Floating")}}
+					<div class="title float-left {{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{ Name }}</div>
+					<div class="value float-right {{this.[Font Size] }} {{this.[Font Weight] }} {{ Strikethrough }}">{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+				{{else}}
+					<div class="{{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{Name}} {{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+				{{/if}}
+			</div>
 
 		{{/if}}
 
 		{{!-- If the line has a horizontal rule --}}
 		{{#if this.[Horizontal Rule]}}
-			<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
+			<div class="detail-row row clearfix">
 				<hr class="{{this.[Horizontal Rule]}}">
 			</div>
 		{{/if}}
@@ -170,48 +154,6 @@
 	{{/each}}
 
 </textarea>
-
-<textarea class="js_template" data-name="unitDetailsOld" style="display: none">
-
-	{{#each points}}
-
-		{{#if (is Content "Helper")}}
-			{{!-- If it is a purely visual element --}}
-			{{#if Name}}
-				<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
-					<div class="title float-left {{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}">{{ Name }}</div>
-				</div>
-			{{/if}}
-		{{else if (is Content "Image")}}
-		{{else if Modifiable}}
-			{{!-- If it is an interactive modification --}}
-			{{> (getTemplateName "modificationPoint__Type" this.modification.type) currentValue=Value }}
-		{{else}}
-			{{!-- If it is a text element --}}
-			<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
-				<div class="title float-left {{#if this.[Preserve Whitespace]}}pre-wrap{{/if}}">{{ Name }}</div>
-				<div class="value float-right">
-					{{ Prefix }}
-					{{#if (is Format "number")}}
-						{{ INF Value }}
-					{{else}}
-						{{ Value }}
-					{{/if}}
-					{{ Suffix }}
-				</div>
-			</div>
-		{{/if}}
-		{{#if this.[Horizontal Rule]}}
-			<div class="detail-row clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
-				<hr class="{{this.[Horizontal Rule]}}">
-			</div>
-		{{/if}}
-
-	{{/each}}
-
-</textarea>
-
-
 
 <!-- Unit Details section component -->
 	<!-- A modification line with multiple pre-canned options -->
