@@ -55,28 +55,29 @@ html {
 
 <section class="pricing-section">
 
-	<?php if ( $page == 'quote' ) : ?>
-	<!-- Context Bar -->
-	<div class="toaster row">
+	<!-- Notification (Toasts) Bar -->
+	<div class="toaster row fixed">
 		<div class="container">
-			<div class="columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2">
-				<div class="toast row fill-dark gradient">
-					<span class="welcome inline-middle h6 columns small-12 medium-6 large-8"><?php if ( ! empty( $user[ 'name' ] ) ) echo 'Welcome back, ' . $user[ 'name' ] ?></span>
-					<span class="login inline-middle columns small-6 medium-3 large-2">
-						<a class="button block fill-off-blue" href="login">
-							<span>Login with</span>
-							<img class="inline-middle" src="media/pricing/google-plus-light.svg">
-						 </a>
-					</span>
-					<span class="logout inline-middle columns small-6 medium-3 large-2">
-						<a class="button block fill-red" href="logout">
-							<span>Sign Out</span>
-							<img class="inline-middle" src="media/pricing/log-out-light.svg">
-						</a>
-					</span>
-				</div>
+			<div class="columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2 js_notification_section">
+				<?php if ( $page == 'quote' ) : ?>
+					<div class="toast row fill-dark gradient">
+						<span class="welcome inline-middle h6 columns small-12 medium-6 large-8"><?php if ( ! empty( $user[ 'name' ] ) ) echo 'Welcome back, ' . $user[ 'name' ] ?></span>
+						<span class="login inline-middle columns small-6 medium-3 large-2">
+							<a class="button block fill-off-blue" href="login">
+								<span>Login with</span>
+								<img class="inline-middle" src="media/pricing/google-plus-light.svg">
+							 </a>
+						</span>
+						<span class="logout inline-middle columns small-6 medium-3 large-2">
+							<a class="button block fill-red" href="logout">
+								<span>Sign Out</span>
+								<img class="inline-middle" src="media/pricing/log-out-light.svg">
+							</a>
+						</span>
+					</div>
+				<?php endif; ?>
 				<!-- <div class="toast row fill-blue gradient">
-					<span class="h6 columns small-11">Welcome back, Mr. Aldrin Mario Windsor</span>
+					<span class="h6 columns small-11">Welcome back, Mr. Poe-tay-toe Po-taa-toe</span>
 					<span class="close columns small-1 text-right"><img src="media/pricing/close-light.svg"></span>
 				</div> -->
 				<!-- <div class="toast row fill-red gradient">
@@ -86,7 +87,6 @@ html {
 			</div>
 		</div>
 	</div>
-	<?php endif; ?>
 
 	<!-- Pricing Engine Loading Stub -->
 	<div class="page-loading-stub js_pricing_engine_loading_stub">
@@ -481,6 +481,7 @@ html {
 <script type="text/javascript" src="plugins/handlebars/handlebars-v4.0.11.min.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/util.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/main.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/notifications.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-filtration.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-search.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-sort.js"></script>

@@ -135,6 +135,60 @@ function filterByAllCriteria ( things, criteria ) {
 
 }
 
+
+
+/*
+ *
+ * Show a notification
+ *
+ * This shows a notification toast with the provided message.
+ *
+ */
+function notify ( message, options ) {
+
+	options = options || { };
+	var level = options.level || "info";
+	var context = options.context || "";
+
+	// If other notifications exist in the same in the same context, clear those out
+	if ( context ) {
+		var $existingNotificationInTheSameContext = __UI.$notificationSection.find( "[ data-context = '" + context + "' ]" );
+		$existingNotificationInTheSameContext.remove();
+	}
+
+	// An object that maps notification levels to class names
+	var levelToClassNameMap = {
+		info: "fill-light",
+		error: "fill-red"
+	};
+	// Get the corresponding class name for the notification level
+	var levelClassName = levelToClassNameMap[ level ] || "";
+	// Get the mark for the notification
+	var notificationMarkup = __UI.templates.notification( {
+		message: message,
+		context: context,
+		level: levelClassName
+	} );
+	var $notification = $( notificationMarkup );
+
+	// Append the notification
+	__UI.$notificationSection.append( $notification );
+	// Animate it in
+	$notification.get( 0 ).offsetTop; //
+	$notification.addClass( "show" );
+
+	// "Attempt" to remove the notification after a while
+	// If the notification has already been removed by hitting the close button,
+	// 	this will throw up, hence the try/catch block
+	setTimeout( function () {
+		try {
+			$notification.remove();
+		} catch ( e ) {}
+	}, 9000 );
+
+}
+
+
 /*
  *
  * Get the value of a modification that has been configured by a user
