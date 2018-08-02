@@ -11,22 +11,39 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 			.find( ".js_phone_form_section" ).addClass( "show" );
 	},
 	onPhoneValidationError: function ( message ) {
-		$( this ).find( ".js_feedback_error" ).text( message )
+		notify( message, {
+			level: "error",
+			context: "Login Prompt"
+		} );
 	},
 	onOTPValidationError: function ( message ) {
-		$( this ).find( ".js_feedback_error" ).text( message )
+		notify( message, {
+			level: "error",
+			context: "Login Prompt"
+		} );
 	},
 	onShowOTP: function ( domPhoneForm, domOTPForm ) {
 		$( domPhoneForm ).parent().removeClass( "show" );
 		$( domOTPForm ).parent().addClass( "show" );
 	},
 	onPhoneError: function ( code, message ) {
-		alert( message );
+		notify( message, {
+			level: "error",
+			context: "Login Prompt"
+		} );
 	},
 	onOTPError: function ( code, message ) {
-		$( this ).find( ".js_feedback_error" ).text( message )
+		notify( message, {
+			level: "error",
+			context: "Login Prompt"
+		} );
 	},
-	onLogin: function () {
+	onLogin: function ( user ) {
+		var message = "Welcome back, " + user.firstName + ".";
+		notify( message, {
+			level: "info",
+			context: "Login Prompt"
+		} );
 		$( ".js_unit_listing_login_prompt" ).removeClass( "show" );
 		// Pre-fill the Enquiry Form with the user's phone number
 		$( ".js_enquiry_form" ).find( "[ name = 'phone' ]" ).val( __OMEGA.user.phoneNumber );
@@ -65,20 +82,33 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 	// 	$( ".js_unit_listing_login_prompt" ).addClass( "show" );
 	// },
 	onPhoneValidationError: function ( message ) {
-		$( this ).find( ".js_feedback_error" ).text( message )
+		notify( message, {
+			level: "error",
+			context: "Login Prompt"
+		} );
+		// $( this ).find( ".js_feedback_error" ).text( message )
 	},
 	onOTPValidationError: function ( message ) {
-		$( this ).find( ".js_feedback_error" ).text( message )
+		notify( message, {
+			level: "error",
+			context: "Login Prompt"
+		} );
 	},
 	onShowOTP: function ( domPhoneForm, domOTPForm ) {
 		$( domPhoneForm ).parent().removeClass( "show" );
 		$( domOTPForm ).parent().addClass( "show" );
 	},
 	onPhoneError: function ( code, message ) {
-		alert( message );
+		notify( message, {
+			level: "error",
+			context: "Login Prompt"
+		} );
 	},
 	onOTPError: function ( code, message ) {
-		$( this ).find( ".js_feedback_error" ).text( message )
+		notify( message, {
+			level: "error",
+			context: "Login Prompt"
+		} );
 	},
 	onLogin: function () {
 		$( ".js_page_login_prompt" ).slideUp();

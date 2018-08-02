@@ -117,13 +117,13 @@ html {
 									<input class="label input inline-middle" type="text" name="phone-number" required>
 									<button class="submit inline-middle" type="submit">Send</button>
 									<div class="note label clearfix">
-										<span class="error float-right text-red js_feedback_error">&nbsp;</span>
+										<span class="error float-right text-red">&nbsp;</span>
 									</div>
 								</form>
 							</div>
 							<div class="otp">
 								<form class="loginner_form_otp">
-									<div class="title h6 text-light block js_feedback_error">An OTP has been sent to this number.</div>
+									<div class="title h6 text-light block">An OTP has been sent to this number.</div>
 									<input class="label input inline-middle" type="text" name="otp" placeholder="Enter OTP" required>
 									<button class="submit inline-middle" type="submit">Submit</button>
 									<div class="note label clearfix">
@@ -239,13 +239,13 @@ html {
 								<input class="label input inline-middle" type="text" name="phone-number">
 								<button class="submit inline-middle" type="submit">Send</button>
 								<div class="note label clearfix">
-									<span class="error float-right text-red js_feedback_error">&nbsp;</span>
+									<span class="error float-right text-red">&nbsp;</span>
 								</div>
 							</form>
 						</div>
 						<div class="otp">
 							<form class="loginner_form_otp">
-								<div class="title h6 text-light block js_feedback_error">An OTP has been sent to this number.</div>
+								<div class="title h6 text-light block">An OTP has been sent to this number.</div>
 								<input class="label input inline-middle" type="text" name="otp" placeholder="Enter OTP">
 								<button class="submit inline-middle" type="submit">Submit</button>
 								<div class="note label clearfix">
