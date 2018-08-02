@@ -106,7 +106,10 @@ $( document ).on( "submit", ".js_user_search_form", function ( event ) {
 
 		} )
 		.catch( function ( e ) {
-			alert( e.message );
+			notify( e.message, {
+				level: "error",
+				context: "Quote Form"
+			} );
 			$form.find( "input, select, button" ).prop( "disabled", false );
 			$form.find( "[ type = 'submit' ]" ).text( "Search" );
 		} );
@@ -149,12 +152,18 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 
 	makeAQuote( quote )
 		.then( function () {
-			alert( "The quote has been made." );
+			notify( "The quote has been made. It will accessible on the CRM shortly.", {
+				level: "info",
+				context: "Quote Form"
+			} );
 			// Re-enable the form
 			__UI.$quoteFormSection.find( "input, button" ).prop( "disabled", false );
 		} )
 		.catch( function () {
-			alert( "Something went wrong. Please try again later." );
+			notify( "Something went wrong. Please try again after a while.", {
+				level: "error",
+				context: "Quote Form"
+			} );
 			// Re-enable the form
 			__UI.$quoteFormSection.find( "input, button" ).prop( "disabled", false );
 		} )
