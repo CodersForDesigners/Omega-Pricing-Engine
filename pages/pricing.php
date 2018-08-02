@@ -173,6 +173,13 @@ html {
 						<!-- Markup will be managed by JavaScript -->
 					</div>
 
+					<!-- Units Available -->
+					<div class="unit-available text-center columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2">
+						<div class="h4 regular js_units_in_list">
+							<!-- Markup will be managed by JavaScript -->
+						</div>
+					</div>
+
 					<!-- Selected Unit Filters (Unit Filter Bubbles) -->
 					<div class="unit-filter-bubbles columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2 js_unit_filter_bubbles hidden">
 						<span class="title label bold text-uppercase text-neutral">Filter By :</span>

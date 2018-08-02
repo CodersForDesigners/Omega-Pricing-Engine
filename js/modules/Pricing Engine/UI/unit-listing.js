@@ -13,6 +13,7 @@ $( function () {
 	// Unit Listing
 	__UI.$unitListingSection = $( ".js_unit_listing_section" );
 	__UI.$unitListing = __UI.$unitListingSection.find( ".js_unit_listing" );
+	__UI.$numberOfUnitsInListing = $( ".js_units_in_list" );
 
 } );
 
@@ -89,6 +90,7 @@ $( ".js_unit_listing_section .js_unit_listing" ).on( "beforeChange", function ( 
 $( document ).on( "unit-listing/render", function ( event, data ) {
 
 	if ( ! ( data && data.units ) ) {
+		__UI.$numberOfUnitsInListing.text( "Searching....." );
 		__UI.$unitListingSection.find( ".js_content" ).addClass( "invisible" );
 		__UI.$unitListingSection.find( ".js_loading_stub" ).removeClass( "hidden" );
 		return;
@@ -96,6 +98,19 @@ $( document ).on( "unit-listing/render", function ( event, data ) {
 
 	var units = data.units;
 
+	// Plonk in the message that tells how many units were found
+	var numberOfUnitsInListing = units.length;
+	var termForUnit = __OMEGA.settings[ "Term for \"Unit\"" ];
+	var unitsFoundText;
+	if ( numberOfUnitsInListing == 0 )
+		unitsFoundText = "No " + termForUnit + "s were found.";
+	else if ( numberOfUnitsInListing == 1 )
+		unitsFoundText = "1 " + termForUnit + " found.";
+	else
+		unitsFoundText = numberOfUnitsInListing + " " + termForUnit + "s found.";
+	__UI.$numberOfUnitsInListing.text( unitsFoundText );
+
+	// Build the actual unit listing markup
 	var unitListingMarkup = __UI.templates.unitListing( {
 		units: units,
 		rootPath: location.pathname.replace( /\/$/, "" )
