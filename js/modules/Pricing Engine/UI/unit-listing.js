@@ -93,7 +93,7 @@ $( document ).on( "unit-listing/render", function ( event, data ) {
 	if ( ! ( data && data.units ) ) {
 		__UI.$numberOfUnitsInListing.text( "Searching....." );
 		__UI.$unitListingSection.find( ".js_content" ).addClass( "invisible" );
-		__UI.$unitListingSection.find( ".js_loading_stub" ).removeClass( "hidden" );
+		__UI.$unitListingSection.addClass( "loading" );
 		return;
 	}
 
@@ -139,7 +139,7 @@ $( document ).on( "unit-listing/render", function ( event, data ) {
 
 		// Finally, reveal the UI
 		__UI.$unitListingSection.find( ".js_content" ).removeClass( "invisible" );
-		__UI.$unitListingSection.find( ".js_loading_stub" ).addClass( "hidden" );
+		__UI.$unitListingSection.removeClass( "loading" );
 
 	}, 0 );
 

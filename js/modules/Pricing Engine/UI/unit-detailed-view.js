@@ -71,8 +71,10 @@ $( document ).on( "change", ".js_unit_modification__multiple", function ( event 
 $( document ).on( "unit-details/render", function ( event, data ) {
 
 	if ( ! data ) {
-		__UI.$unitDetailsSection.find( ".js_content" ).addClass( "hidden" );
-		__UI.$unitDetailsSection.find( ".js_loading_stub" ).removeClass( "hidden" );
+		__UI.$unitDetailsSection.addClass( "loading" );
+		__UI.$unitDetailsSection.css( "height", function ( _i, height ) {
+			return height;
+		} );
 		// Reveal the section itself ( if it has not been shown even once )
 		__UI.$unitDetailsSection.removeClass( "hidden" );
 		return;
@@ -90,7 +92,8 @@ $( document ).on( "unit-details/render", function ( event, data ) {
 
 	// Finally, reveal the UI _with_ the data
 	__UI.$unitDetailsSection.find( ".js_content" ).removeClass( "hidden" );
-	__UI.$unitDetailsSection.find( ".js_loading_stub" ).addClass( "hidden" );
+	__UI.$unitDetailsSection.css( "height", "" );
+	__UI.$unitDetailsSection.removeClass( "loading" );
 
 } );
 

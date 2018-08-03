@@ -8,6 +8,45 @@
 	background-position: top center;
 }
 
-@media( min-width: 640px )  {}
-@media( min-width: 1040px ) {}
-@media( min-width: 1380px ) {}
+.pricing-section .pricing {
+	position: relative;
+	z-index: 3;
+	margin-top: -150px;
+}
+
+.pricing-section .loading {
+	filter: blur(4px);
+	opacity: .4;
+}
+
+.pricing-section .loading:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9;
+	pointer-events: none;
+	border-radius: calc(var(--roundness)*2);
+	background-color: rgba(23,47,62,0.3);
+	filter: grayscale(1);
+	opacity: .4;
+	background-image: url('../../../media/loadingstripe.gif');
+}
+
+@media( min-width: 640px )  {
+	.pricing-section .pricing {
+		margin-top: -180px;
+	}
+}
+@media( min-width: 1040px ) {
+	.pricing-section .pricing {
+		margin-top: -420px;
+	}
+}
+@media( min-width: 1380px ) {
+	.pricing-section .pricing {
+		margin-top: -480px;
+	}
+}

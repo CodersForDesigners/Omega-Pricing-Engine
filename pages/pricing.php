@@ -219,12 +219,6 @@
 			<!-- Unit Listing -->
 			<div class="unit-list columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2 js_unit_listing_section hidden" data-loginner="Unit Listing" data-context="Pricing Engine | Unit Listing">
 
-				<!-- Loading Stub -->
-				<div class="loading-stub js_loading_stub">
-					<p>The units are being fetched.....</p>
-				</div>
-				<!-- END : Loading Stub -->
-
 <?php if ( ! $singleUnitIsBeingViewed ) : ?>
 				<!-- Phone Trap (Login Prompt) -->
 				<div class="phone-trap row js_unit_listing_login_prompt">
@@ -279,12 +273,6 @@
 
 			<!-- Unit Detailed View -->
 			<div class="unit-details columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2 js_section_unit_details_and_mods hidden">
-
-				<!-- Loading Stub -->
-				<div class="loading-stub js_loading_stub">
-					<p>Our accountants are crunching the numbers.....</p>
-				</div>
-				<!-- END : Loading Stub -->
 
 				<!-- Content -->
 				<div class="content js_content hidden">
