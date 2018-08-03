@@ -366,13 +366,12 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 	var context = $form.closest( "[ data-loginner ]" ).data( "loginner" );
 
 	// Confirm with the user if they're okay with us collecting their personal info
-	var userIsOkayWithOurTerms = window.confirm( "By saying \"OK\", you agree to our terms, of which there are many." );
+	// var userIsOkayWithOurTerms = window.confirm( "By saying \"OK\", you agree to our terms, of which there are many." );
 
-	if ( ! userIsOkayWithOurTerms ) {
-		alert( "Sorry, you won't be able to view the full pricing." );
-		// Loginner.prompts[ context ].onOTPValidationError.call( $form.get( 0 ), "Please enter the OTP." );
-		return;
-	}
+	// if ( ! userIsOkayWithOurTerms ) {
+		// alert( "Sorry, you won't be able to view the full pricing." );
+		// return;
+	// }
 
 	/* -----
 	 * Disable the form

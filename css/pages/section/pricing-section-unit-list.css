@@ -662,6 +662,15 @@
 	cursor: pointer;
 }
 
+.unit-list .phone-trap .trap-content .otp .disclaimer {
+	position: absolute;
+	line-height: 1.3;
+	top: 100%;
+	left: 0;
+	padding: 0 2px;
+	margin-top: 15px;
+}
+
 .unit-list .phone-trap .trap-close {
 	opacity: 0;
 	pointer-events: none;
@@ -781,6 +790,10 @@
 
 	.unit-list .phone-trap .trap-content .otp .submit {
 		width: 100px;
+	}
+
+	.unit-list .phone-trap .trap-content .otp .disclaimer {
+		margin-top: 20px;
 	}
 
 	.unit-list .phone-trap.show .trap-close {

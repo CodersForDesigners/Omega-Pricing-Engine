@@ -187,6 +187,15 @@
 	cursor: pointer;
 }
 
+.page-phone-trap .trap-content .otp .disclaimer {
+	position: absolute;
+	line-height: 1.3;
+	top: 100%;
+	left: 0;
+	padding: 0 2px;
+	margin-top: 15px;
+}
+
 .page-phone-trap .trap-close {
 	opacity: 0;
 	pointer-events: none;
@@ -311,6 +320,10 @@
 
 	.page-phone-trap .trap-content .otp .submit {
 		width: 100px;
+	}
+
+	.page-phone-trap .trap-content .otp .disclaimer {
+		margin-top: 20px;
 	}
 
 	.page-phone-trap.show .trap-close {
