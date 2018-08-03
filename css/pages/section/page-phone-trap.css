@@ -139,7 +139,7 @@
 	display: inline-block;
 	width: 100%;
 	padding-left: 90px;
-	padding-right: 70px;
+	padding-right: 90px;
 }
 
 .page-phone-trap .trap-content .phone .submit {
@@ -147,7 +147,8 @@
 	top: 25px;
 	right: 0;
 	z-index: 4;
-	width: 60px;
+	padding: 0;
+	width: 80px;
 	color: var(--light);
 	background-color: var(--off-dark);
 	border-top-left-radius: 0;
@@ -271,10 +272,10 @@
 
 	.page-phone-trap .trap-content .phone .input {
 		padding-left: 100px;
-		padding-right: 80px;
+		padding-right: 100px;
 	}
 	.page-phone-trap .trap-content .phone .submit {
-		width: 70px;
+		width: 90px;
 	}
 	.page-phone-trap .trap-content .otp .input {
 		padding-right: 100px;
@@ -309,10 +310,10 @@
 
 	.page-phone-trap .trap-content .phone .input {
 		padding-left: 110px;
-		padding-right: 90px;
+		padding-right: 110px;
 	}
 	.page-phone-trap .trap-content .phone .submit {
-		width: 80px;
+		width: 100px;
 	}
 	.page-phone-trap .trap-content .otp .input {
 		padding-right: 110px;

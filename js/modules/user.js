@@ -150,6 +150,7 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	event.preventDefault();
 
 	var $form = $( event.target );
+	var domForm = $form.get( 0 );
 
 	// Get the context
 	var context = $form.closest( "[ data-loginner ]" ).data( "loginner" );
@@ -205,6 +206,7 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	 * Process the data
 	 ----- */
 	// Authenticate the user
+	Loginner.prompts[ context ].onPhoneSend.call( domForm );
 	authenticateUserPhone( phoneNumber )
 		.then( function ( user ) {
 			// If the user exists, log the user in
@@ -218,23 +220,19 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 				return sendOTP( phoneNumber )
 			}
 			else { // code == -1
-				alert( "Please try again." );
-				var domPhoneForm = $form.get( 0 );
-				Loginner.prompts[ context ].onRetry( domPhoneForm );
+				Loginner.prompts[ context ].onPhoneError.call( domForm, code, message );
 			}
 		} )
 		.then( function ( otpSessionId ) {
 			if ( ! otpSessionId ) return;
 			__OMEGA.user = __OMEGA.user || { };
 			__OMEGA.user.otpSessionId = otpSessionId;
-			var domPhoneForm = $form.get( 0 );
 			var domOTPForm = $form.closest( "[ data-loginner ]" ).find( ".loginner_form_otp" ).get( 0 );
-			Loginner.prompts[ context ].onShowOTP( domPhoneForm, domOTPForm );
+			Loginner.prompts[ context ].onShowOTP( domForm, domOTPForm );
 		} )
 		.catch( function ( { code, message } ) {
 			if ( code == 1 ) {
-				alert( message );
-				Loginner.prompts[ context ].onPhoneError( code, message );
+				Loginner.prompts[ context ].onPhoneError.call( domForm, code, message );
 				$form.find( "input, select, button" ).prop( "disabled", false );
 			}
 		} );
@@ -361,6 +359,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 	event.preventDefault();
 
 	var $form = $( event.target );
+	var domForm = $form.get( 0 );
 
 	// Get the context
 	var context = $form.closest( "[ data-loginner ]" ).data( "loginner" );
@@ -411,6 +410,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 	 * Process the data
 	 ----- */
 	// Verify the OTP
+	Loginner.prompts[ context ].onOTPSend.call( domForm );
 	verifyOTP( otp )
 		.then( function ( response ) {
 			// If the OTP matched,
@@ -437,8 +437,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 		} )
 		.catch( function ( { code, message } ) {
 			if ( code == 1 ) {
-				// alert( message );
-				Loginner.prompts[ context ].onOTPError.call( $form.get( 0 ), code, message );
+				Loginner.prompts[ context ].onOTPError.call( domForm, code, message );
 				$form.find( "input, select, button" ).prop( "disabled", false );
 			}
 		} );

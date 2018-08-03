@@ -24,21 +24,31 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 			context: "Login Prompt"
 		} );
 	},
+	onPhoneSend: function () {
+		$( this ).find( "[ type = submit ]" ).text( "Sending" );
+	},
 	onShowOTP: function ( domPhoneForm, domOTPForm ) {
 		$( domPhoneForm ).parent().removeClass( "show" );
 		$( domOTPForm ).parent().addClass( "show" );
+	},
+	onOTPSend: function () {
+		$( this ).find( "[ type = submit ]" ).text( "Sending" );
 	},
 	onPhoneError: function ( code, message ) {
 		notify( message, {
 			level: "error",
 			context: "Login Prompt"
 		} );
+		$( this ).find( "[ type = submit ]" ).text( "Send" );
+		$( this ).find( "input, select, button" ).prop( "disabled", false );
 	},
 	onOTPError: function ( code, message ) {
 		notify( message, {
 			level: "error",
 			context: "Login Prompt"
 		} );
+		$( this ).find( "[ type = submit ]" ).text( "Send" );
+		$( this ).find( "input, select, button" ).prop( "disabled", false );
 	},
 	onLogin: function ( user ) {
 		var message = "Welcome back, " + user.firstName + ".";
@@ -96,21 +106,29 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 			context: "Login Prompt"
 		} );
 	},
+	onPhoneSend: function () {
+		$( this ).find( "[ type = submit ]" ).text( "Sending" );
+	},
 	onShowOTP: function ( domPhoneForm, domOTPForm ) {
 		$( domPhoneForm ).parent().removeClass( "show" );
 		$( domOTPForm ).parent().addClass( "show" );
+	},
+	onOTPSend: function () {
+		$( this ).find( "[ type = submit ]" ).text( "Sending" );
 	},
 	onPhoneError: function ( code, message ) {
 		notify( message, {
 			level: "error",
 			context: "Login Prompt"
 		} );
+		$( this ).find( "[ type = submit ]" ).text( "Send" );
 	},
 	onOTPError: function ( code, message ) {
 		notify( message, {
 			level: "error",
 			context: "Login Prompt"
 		} );
+		$( this ).find( "[ type = submit ]" ).text( "Send" );
 	},
 	onLogin: function () {
 		$( ".js_page_login_prompt" ).slideUp();
