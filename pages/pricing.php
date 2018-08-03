@@ -272,7 +272,7 @@
 
 
 			<!-- Unit Detailed View -->
-			<div class="unit-details columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2 js_section_unit_details_and_mods hidden">
+			<div class="unit-details columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2 js_section_unit_details_and_mods" style="display: none">
 
 				<!-- Content -->
 				<div class="content js_content hidden">

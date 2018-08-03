@@ -62,4 +62,6 @@ $( document ).on( "unit-listing/render", function ( event, data ) {
 		$( document ).trigger( "unit/search/clear" );
 	}
 
+	$( document ).trigger( "unit-details/render", { hide: true } );
+
 } );
