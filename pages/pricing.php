@@ -48,6 +48,18 @@ html {
 
 </script>
 
+<?php if ( $page == 'quote' ) : ?>
+
+	<script type="text/javascript">
+
+		$( function () {
+			$( ".js_user_bar" ).addClass( "show" );
+		} )
+
+	</script>
+
+<?php endif; ?>
+
 
 <section class="pricing-section">
 
@@ -56,7 +68,7 @@ html {
 		<div class="container">
 			<div class="columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2 js_notification_section">
 				<?php if ( $page == 'quote' ) : ?>
-					<div class="toast row fill-dark gradient">
+					<div class="toast row fill-dark gradient js_user_bar">
 						<span class="welcome inline-middle h6 columns small-12 medium-6 large-8"><?php if ( ! empty( $user[ 'name' ] ) ) echo 'Welcome back, ' . $user[ 'name' ] ?></span>
 						<span class="login inline-middle columns small-6 medium-3 large-2">
 							<a class="button block fill-off-blue" href="login">

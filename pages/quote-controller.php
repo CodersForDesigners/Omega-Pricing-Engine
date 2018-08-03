@@ -6,7 +6,7 @@ $cookieName = 'ruser';
 
 // Invalidate the cookie if it has expired
 // 	( i.e. if it's present in the first place )
-$userIsLoggedIn = true;
+$userIsLoggedIn = false;
 if ( isset( $_COOKIE[ $cookieName ] ) ) {
 	try {
 		$token = json_decode( base64_decode( $_COOKIE[ $cookieName ] ), true );
