@@ -12,7 +12,5 @@ done
 # Establish symbolic links to the `media`, `data` and `account` directories
 rm media
 ln -s ../media/${PROJECT_DIR} media
-rm data
-ln -s ../data/${PROJECT_DIR} data
 rm account
-ln -s ../account/${PROJECT_DIR} account
+ln -s ../accounts/${PROJECT_DIR} account
