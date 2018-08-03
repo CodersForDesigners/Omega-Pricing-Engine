@@ -163,7 +163,7 @@
 					<!-- Heading -->
 					<div class="heading columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2">
 						<?php if ( $page == 'quote' and $userIsLoggedIn ) : ?>
-							<div class="h1 text-center thin">Generate a Quote</div>
+							<div class="h1 text-center thin text-light" style="margin-top: 7rem;">Generate a Quote</div>
 						<?php else : ?>
 							<div class="h1 text-center thin">77 unique <span class="text-uppercase">Houses</span> to choose from.</div>
 						<?php endif; ?>
