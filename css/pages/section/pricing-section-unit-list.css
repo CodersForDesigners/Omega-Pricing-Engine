@@ -348,6 +348,9 @@
 	color: var(--neutral);
 	font-weight: var(--weight-bold);
 	display: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .pricing-section .unit-list .slick .slick-dots li:first-child,
@@ -384,12 +387,12 @@
  * Add some literal dots ( ". . ." ) after the first "dot" and before the last "dot"
  *
  */
-.pricing-section .unit-list .slick .slick-dots li:first-child ~ .previous-most,
+.pricing-section .unit-list .slick .slick-dots li:first-child + li ~ .previous-most,
 .pricing-section .unit-list .slick .slick-dots .slick-active + li + li ~ li:last-child {
 	margin-left: 3.6rem !important;
 }
 
-.pricing-section .unit-list .slick .slick-dots li:first-child ~ .previous-most:before,
+.pricing-section .unit-list .slick .slick-dots li:first-child + li ~ .previous-most:before,
 .pricing-section .unit-list .slick .slick-dots .slick-active + li + li ~ li:last-child:before {
 	content: ".  .  .";
 	position: absolute;
@@ -398,6 +401,7 @@
 	width: 100%;
 	white-space: pre-wrap;
 	opacity: 0.69;
+	pointer-events: none;
 }
 
 .pricing-section .unit-list .slick .slick-dots button {
