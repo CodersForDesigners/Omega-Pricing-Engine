@@ -383,6 +383,15 @@
 									<span class="suffix js_down_payment_percentage"></span>
 								</label>
 							</div>
+							<!-- Loan Amount -->
+							<div class="form-item columns small-12 medium-6">
+								<label>
+									<span class="label">Loan Amount</span>
+									<input class="block js_loan_amount" type="text" name="loan-amount">
+									<span class="symbol">₹</span>
+									<!-- <span class="suffix js_loan_amount_percentage"></span> -->
+								</label>
+							</div>
 							<!-- Tenure -->
 							<div class="form-item columns small-12 medium-6">
 								<label>
@@ -402,12 +411,12 @@
 								</label>
 							</div>
 							<!-- Submit button -->
-							<div class="form-item columns small-12 medium-6">
+							<!-- <div class="form-item columns small-12 medium-6">
 								<label>
 									<span class="label invisible">Submit</span>
 									<button class="block button secondary" type="submit">Calculate</button>
 								</label>
-							</div>
+							</div> -->
 						</form>
 					</div><!-- END: Calculator Form -->
 

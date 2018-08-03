@@ -14,7 +14,7 @@ $( function () {
 	__UI.$emiSection = $( ".js_section_emi_calculator" );
 	__UI.$emiDownPayment = __UI.$emiSection.find( ".js_down_payment" );
 	__UI.$emiDownPaymentPercentage = __UI.$emiSection.find( ".js_down_payment_percentage" );
-	// __UI.$emiLoanAmount = __UI.$emiSection.find( ".js_loan_amount" );
+	__UI.$emiLoanAmount = __UI.$emiSection.find( ".js_loan_amount" );
 	__UI.$emiTenure = __UI.$emiSection.find( ".js_tenure" );
 	__UI.$emiInterestRate = __UI.$emiSection.find( ".js_interest_rate" );
 
@@ -44,7 +44,7 @@ $( document ).on( "emi-calculator/render", function ( event, data ) {
 
 	__UI.$emiDownPayment.val( formatNumberToIndianRupee( downPayment ) );
 	__UI.$emiDownPaymentPercentage.text( downPaymentPercentage + "%" );
-	// __UI.$emiLoanAmount.val( loanAmount );
+	__UI.$emiLoanAmount.val( formatNumberToIndianRupee( loanAmount ) );
 	__UI.$emiTenure.val( tenure );
 	__UI.$emiInterestRate.val( interestRate );
 
@@ -107,32 +107,48 @@ $( document ).on( "input", ".js_down_payment", function () {
 	__OMEGA.emi.loanAmount = loanAmount;
 
 	// Reflect it in the UI
-	// __UI.$emiLoanAmount.val( loanAmount )
+	__UI.$emiLoanAmount.val( formatNumberToIndianRupee( loanAmount ) );
 
 	// Re-calculate the EMI figures
 	$( document ).trigger( "emi-calculator/calculate" );
 
 } );
+$( document ).on( "blur", ".js_down_payment", function () {
+	__UI.$emiDownPayment.val( function ( _i, downPayment ) {
+		downPayment = parseInt( downPayment.replace( /[^\d\.]/g, "" ), 10 );
+		return formatNumberToIndianRupee( downPayment );
+	} );
+} );
 // Loan amount
-// $( document ).on( "input", ".js_loan_amount", function () {
+$( document ).on( "input", ".js_loan_amount", function () {
 
-// 	var total = __OMEGA.unitData.grandTotal;
+	var total = __OMEGA.unitData.grandTotal;
 
-// 	// Pull the values from the markup, stripping away the formatting
-// 	var loanAmount = parseInt( __UI.$emiLoanAmount.val().replace( /[^\d\.]/g, "" ), 10 );
-// 	__OMEGA.emi.loanAmount = loanAmount;
+	// Pull the values from the markup, stripping away the formatting
+	var loanAmount = parseInt( __UI.$emiLoanAmount.val().replace( /[^\d\.]/g, "" ), 10 );
+	__OMEGA.emi.loanAmount = loanAmount;
 
-// 	// Calculate the down payment
-// 	var downPayment = total - loanAmount;
-// 	__OMEGA.emi.downPayment = downPayment;
+	// Calculate the down payment
+	var downPayment = total - loanAmount;
+	__OMEGA.emi.downPayment = downPayment;
 
-// 	// Reflect it in the UI
-// 	__UI.$emiDownPayment.val( downPayment )
+	// Calculate the percentage of the Grand Total that the Down Payment is
+	var downPaymentPercentage = Math.round( ( downPayment / total ) * 100 );
+	__UI.$emiDownPaymentPercentage.text( downPaymentPercentage + "%" );
 
-// 	// Re-calculate the EMI figures
-// 	$( document ).trigger( "emi-calculator/calculate" );
+	// Reflect it in the UI
+	__UI.$emiDownPayment.val( formatNumberToIndianRupee( downPayment ) );
 
-// } );
+	// Re-calculate the EMI figures
+	$( document ).trigger( "emi-calculator/calculate" );
+
+} );
+$( document ).on( "blur", ".js_loan_amount", function () {
+	__UI.$emiLoanAmount.val( function ( _i, loanAmount ) {
+		loanAmount = parseInt( loanAmount.replace( /[^\d\.]/g, "" ), 10 );
+		return formatNumberToIndianRupee( loanAmount );
+	} );
+} );
 // Tenure
 $( document ).on( "input", ".js_tenure", function () {
 
