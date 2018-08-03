@@ -123,17 +123,16 @@
 					{{#unless (is Layout "Full-width")}}
 						detail-row row clearfix
 					{{/unless}}
-					text-{{ Align }}
 					text-{{ Color }}
 			">
 				{{#if (is Layout "Tabular")}}
 					<div class="title columns small-8 {{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{ Name }}</div>
-					<div class="value columns small-4 {{this.[Font Size] }} {{this.[Font Weight] }} {{ Strikethrough }}">{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+					<div class="value columns small-4 text-{{ Align }} {{this.[Font Size] }} {{this.[Font Weight] }} {{ Strikethrough }}">{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
 				{{else if (is Layout "Floating")}}
 					<div class="title float-left {{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{ Name }}</div>
 					<div class="value float-right {{this.[Font Size] }} {{this.[Font Weight] }} {{ Strikethrough }}">{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
 				{{else}}
-					<div class="{{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{Name}} {{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+					<div class="text-{{ Align }} {{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{Name}} {{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
 				{{/if}}
 			</div>
 
