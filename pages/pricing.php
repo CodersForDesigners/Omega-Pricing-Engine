@@ -246,7 +246,7 @@ html {
 								</div>
 							</form>
 						</div>
-						<div class="otp">
+						<div class="otp js_otp_form_section">
 							<form class="loginner_form_otp">
 								<div class="title h6 text-light block">An OTP has been sent to this number.</div>
 								<input class="label input inline-middle" type="text" name="otp" placeholder="Enter OTP">

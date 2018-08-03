@@ -6,9 +6,11 @@
  */
 Loginner.registerLoginPrompt( "Unit Listing", {
 	onTrigger: function ( event ) {
-		$( ".js_unit_listing_login_prompt" )
+		$( ".js_unit_listing_login_prompt .js_phone_form_section" )
 			.addClass( "show" )
-			.find( ".js_phone_form_section" ).addClass( "show" );
+			.find( "input, button" ).prop( "disabled", false )
+		$( ".js_unit_listing_login_prompt .js_otp_form_section" ).removeClass( "show" );
+		$( ".js_unit_listing_login_prompt" ).addClass( "show" );
 	},
 	onPhoneValidationError: function ( message ) {
 		notify( message, {
