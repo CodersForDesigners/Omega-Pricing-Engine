@@ -4,11 +4,6 @@
 
 <style type="text/css">
 
-html {
-	-webkit-print-color-adjust: exact;
-	color-adjust: exact;
-}
-
 @media ( max-width: 640px ) {
 
 	.pricing-section .unit-details .detail-section .detail-row .title {

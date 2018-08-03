@@ -1,7 +1,7 @@
 /*
 
 ## Basic Breakpoints
-* ==================== 
+* ====================
 @media( min-width: 640px )  {}
 @media( min-width: 1040px ) {}
 @media( min-width: 1380px ) {}
@@ -28,7 +28,7 @@ body, .body {
 	background-color: var(--light);
 }
 
-h1, h2, h3, h4, h5, h6, 
+h1, h2, h3, h4, h5, h6,
 p, small, label {
 	margin: 0;
 	display: inline;
@@ -330,7 +330,7 @@ select:disabled {
 .fill-light {
 	color: var(--dark);
 	background-color: var(--light); }
-	
+
 .fill-off-light {
 	color: var(--neutral);
 	background-color: var(--off-light); }
@@ -401,17 +401,17 @@ select:disabled {
 	-webkit-background: var(--webkit-gradient-red);
 	-moz-background: var(--moz-gradient-red);
 	background: var(--gradient-red); }
-	
+
 .fill-blue.gradient {
 	-webkit-background: var(--webkit-gradient-blue);
 	-moz-background: var(--moz-gradient-blue);
 	background: var(--gradient-blue); }
-	
+
 .fill-green.gradient {
 	-webkit-background: var(--webkit-gradient-green);
 	-moz-background: var(--moz-gradient-green);
 	background: var(--gradient-green); }
-	
+
 
 
 /*
@@ -433,25 +433,35 @@ select:disabled {
 	color: var(--off-dark); }
 
 /* -- Highlights -- */
-.text-yellow { 
+.text-yellow {
 	color: var(--yellow); }
-.text-off-yellow { 
+.text-off-yellow {
 	color: var(--off-yellow); }
-.text-red { 
+.text-red {
 	color: var(--red); }
-.text-off-red { 
+.text-off-red {
 	color: var(--off-red); }
-.text-blue { 
+.text-blue {
 	color: var(--blue); }
-.text-off-blue { 
+.text-off-blue {
 	color: var(--off-blue); }
-.text-green { 
+.text-green {
 	color: var(--green); }
-.text-off-green { 
+.text-off-green {
 	color: var(--off-green); }
 
 
 
+/*
+ *
+ *	Print Styles
+ *
+ */
+/* This ensures that colors are preserved and not discarded ( especially background colors ) */
+html {
+	-webkit-print-color-adjust: exact;
+	color-adjust: exact;
+}
 
 
 
