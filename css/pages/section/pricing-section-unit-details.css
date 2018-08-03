@@ -145,6 +145,12 @@
 	background-size: contain;
 }
 
+@media ( max-width: 640px ) {
+	/* For small screens, preserve the whitespace ( and text-wrapping ), as expressed in the spreadsheet, so that the text does not overflow */
+	.pricing-section .unit-details .detail-section .detail-row .title {
+		white-space: pre-wrap;
+	}
+}
 @media( min-width: 640px )  {
 	.pricing-section .unit-details .detail-section {
 		padding: 30px 0;
@@ -211,7 +217,7 @@
 	width: 300px;
 	height: 60px;
 	padding: 15px 0;
-	overflow: hidden; 
+	overflow: hidden;
 	transform: translateY(0);
 	box-shadow: none;
 }
@@ -661,9 +667,14 @@
 		width: 100%;
 		height: auto;
 		padding: 15px 0;
-		overflow: auto; 
+		overflow: auto;
 		box-shadow: none;
 		transform: translateY(0);
+	}
+
+	/* Undo the preserving of whitespace ( and text-wrapping ) so that the layout does not break */
+	.pricing-section .unit-details .detail-section .detail-row .title {
+		white-space: normal;
 	}
 
 	.pricing-section .unit-details .detail-section .image-row .image img {
@@ -676,7 +687,7 @@
 	}*/
 
 	/*.pricing-section .unit-details .detail-section .detail-row {
-		page-break-before: always; 
+		page-break-before: always;
 	}*/
 
 	.pricing-section .unit-details .detail-section .detail-row.modification {

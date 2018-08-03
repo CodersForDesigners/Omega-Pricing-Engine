@@ -2,18 +2,6 @@
 
 ?>
 
-<style type="text/css">
-
-@media ( max-width: 640px ) {
-
-	.pricing-section .unit-details .detail-section .detail-row .title {
-		white-space: pre-wrap;
-	}
-
-}
-
-</style>
-
 <!-- Check if the page is embedded in an iframe -->
 <script type="text/javascript">
 
