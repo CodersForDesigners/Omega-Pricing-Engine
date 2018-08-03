@@ -150,6 +150,13 @@ function notify ( message, options ) {
 	var level = options.level || "info";
 	var context = options.context || "";
 
+	if ( ! message ) {
+		if ( level == "error" )
+			message = "Something went wrong.";
+		else
+			return;
+	}
+
 	// If other notifications exist in the same in the same context, clear those out
 	if ( context ) {
 		var $existingNotificationInTheSameContext = __UI.$notificationSection.find( "[ data-context = '" + context + "' ]" );
