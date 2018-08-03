@@ -51,14 +51,31 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 		$( this ).find( "input, select, button" ).prop( "disabled", false );
 	},
 	onLogin: function ( user ) {
-		var message = "Welcome back, " + user.firstName + ".";
+
+		// Hide the login form
+		$( ".js_unit_listing_login_prompt" ).removeClass( "show" );
+
+		// Show a welcome back message
+		var leadImplicitNamePrefix = __OMEGA.settings[ "Lead Implicit Name Prefix" ];
+		var message = "Welcome back";
+		if ( user.name.startsWith( leadImplicitNamePrefix ) )
+			message += "!";
+		else
+			message += ", " + user.firstName + ".";
+
 		notify( message, {
 			level: "info",
 			context: "Login Prompt"
 		} );
-		$( ".js_unit_listing_login_prompt" ).removeClass( "show" );
+
 		// Pre-fill the Enquiry Form with the user's phone number
-		$( ".js_enquiry_form" ).find( "[ name = 'phone' ]" ).val( __OMEGA.user.phoneNumber );
+		$( ".js_enquiry_form" )
+			.find( "[ name = 'phone' ]" ).val( user.phoneNumber )
+			.end()
+			.find( "[ name = 'email' ]" ).val( user.email );
+		if ( ! user.name.startsWith( leadImplicitNamePrefix ) )
+			$( ".js_enquiry_form" ).find( "[ name = 'name' ]" ).val( user.name );
+
 	},
 	onRetry: function ( domForm ) {
 		$( domForm ).find( "input, select, button" ).prop( "disabled", false );
@@ -130,13 +147,35 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 		} );
 		$( this ).find( "[ type = submit ]" ).text( "Send" );
 	},
-	onLogin: function () {
+	onLogin: function ( user ) {
+
+		// Hide the login form
 		$( ".js_page_login_prompt" ).slideUp();
 		setTimeout( function () {
 			$( document ).trigger( "user/logged-in" );
 		}, 500 );
+
+		// Show a welcome back message
+		var leadImplicitNamePrefix = __OMEGA.settings[ "Lead Implicit Name Prefix" ];
+		var message = "Welcome back";
+		if ( user.name.startsWith( leadImplicitNamePrefix ) )
+			message += "!";
+		else
+			message += ", " + user.firstName + ".";
+
+		notify( message, {
+			level: "info",
+			context: "Login Prompt"
+		} );
+
 		// Pre-fill the Enquiry Form with the user's phone number
-		$( ".js_enquiry_form" ).find( "[ name = 'phone' ]" ).val( __OMEGA.user.phoneNumber );
+		$( ".js_enquiry_form" )
+			.find( "[ name = 'phone' ]" ).val( user.phoneNumber )
+			.end()
+			.find( "[ name = 'email' ]" ).val( user.email );
+		if ( ! user.name.startsWith( leadImplicitNamePrefix ) )
+			$( ".js_enquiry_form" ).find( "[ name = 'name' ]" ).val( user.name );
+
 	}
 } );
 
