@@ -273,6 +273,8 @@ function getComputedUnitData () {
 				return false;
 		if ( ! point.Content )
 			return false;
+		if ( point.Value === 0 )
+			return false;
 		// if ( point.Content == "Helper" )
 		// 	return true;
 		// if ( ! point.Name ) {
