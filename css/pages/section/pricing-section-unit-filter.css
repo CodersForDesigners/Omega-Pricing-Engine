@@ -64,12 +64,12 @@
 }
 
 .pricing-section .unit-filter .type-content .tab-group {
-	display: none;
+	visibility: hidden;
 	white-space: nowrap;
+	padding-top: 0;
+	height: 0;
 	font-size: 0;
 	line-height: 0;
-	padding: 10px;
-	padding-top: 0;
 	text-align: center;
 	overflow-x: scroll;
 	overflow-y: hidden;
@@ -78,7 +78,9 @@
 }
 
 .pricing-section .unit-filter .type-content .tab-group.selected {
-	display: block;
+	visibility: visible;
+	padding: 10px;
+	height: auto;
 }
 
 .pricing-section .unit-filter .type-content .tab-group .type-card {
@@ -92,6 +94,30 @@
 	border-radius: calc(var(--roundness)*1);
 	overflow: hidden;
 	box-shadow: 0px 2px 4px 1px rgba(45, 67, 81, .25);
+	opacity: 0;
+	transform: translateY(-100%);
+}
+
+.pricing-section .unit-filter .type-content .tab-group.selected .type-card {
+	opacity: 1;
+	transform: translateY(0);
+	transition: transform .4s .2s cubic-bezier(0.64, 1.36, 0.43, 1.29), opacity .2s .2s ease-out;
+}
+
+.pricing-section .unit-filter .type-content .tab-group.selected .type-card:nth-child(1) {
+	transition: transform .4s .2s cubic-bezier(0.64, 1.36, 0.43, 1.29), opacity .2s .2s ease-out;
+}
+.pricing-section .unit-filter .type-content .tab-group.selected .type-card:nth-child(2) {
+	transition: transform .4s .3s cubic-bezier(0.64, 1.36, 0.43, 1.29), opacity .2s .3s ease-out;
+}
+.pricing-section .unit-filter .type-content .tab-group.selected .type-card:nth-child(3) {
+	transition: transform .4s .4s cubic-bezier(0.64, 1.36, 0.43, 1.29), opacity .2s .4s ease-out;
+}
+.pricing-section .unit-filter .type-content .tab-group.selected .type-card:nth-child(4) {
+	transition: transform .4s .5s cubic-bezier(0.64, 1.36, 0.43, 1.29), opacity .2s .5s ease-out;
+}
+.pricing-section .unit-filter .type-content .tab-group.selected .type-card:nth-child(5) {
+	transition: transform .4s .6s cubic-bezier(0.64, 1.36, 0.43, 1.29), opacity .2s .6s ease-out;
 }
 
 .pricing-section .unit-filter .type-content .tab-group .type-card * {
