@@ -16,14 +16,14 @@
 	/*-webkit-transform: translateZ(0px);*/
 
 	background:
-				linear-gradient(to right, rgba(255,255,255,1), rgba(255,255,255,0)),
-				linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,1)) 100% 0,
+				linear-gradient(to right, rgba(214,214,214,1), rgba(214,214,214,0)),
+				linear-gradient(to right, rgba(214,214,214,0), rgba(214,214,214,1)) 100% 0,
 				radial-gradient(30% 50% at 0 50%, rgba(0,0,0,.3), rgba(0,0,0,0)),
 				radial-gradient(30% 50% at 100% 50%, rgba(0,0,0,.3), rgba(0,0,0,0)) 100% 0;
 
 	background-size: 40px 100%, 40px 100%, 35px 100%, 35px 100%;
 	background-repeat: no-repeat;
-	background-color: white;
+	background-color: transparent;
 	background-attachment: local, local, scroll, scroll;
 }
 
