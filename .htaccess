@@ -27,16 +27,16 @@ RewriteRule ^/?print-pricing-sheet/?$ index.php?_route=print-pricing-sheet [QSA,
 
 # The Login page that delegates to the Omega API
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-RewriteRule ^/?login$ http://lw.lazaro.in/omega/login [P]
-# RewriteRule ^/?login$ http://lw.lazaro.in/omega/login [R=301,QSA,L,NC]
+RewriteRule ^/?login$ http://%{HTTP_HOST}/omega/login?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
+# RewriteRule ^/?login$ http://%{HTTP_HOST}/omega/login [R=301,QSA,L,NC]
 
 # The Login callback route that delegates to the Omega API
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-RewriteRule ^/?login/callback/google$ http://lw.lazaro.in/omega/login/callback/google [P]
+RewriteRule ^/?login/callback/google$ http://%{HTTP_HOST}/omega/login/callback/google?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [QSA,P]
 
 # The Logout route that logs a user out
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-RewriteRule ^/?logout$ http://lw.lazaro.in/omega/logout?redirect=http://lw.lazaro.in/secret-soil/pricing [P]
+RewriteRule ^/?logout$ http://%{HTTP_HOST}/omega/logout?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
 
 
 # if the URI does not have a trailing slash,
