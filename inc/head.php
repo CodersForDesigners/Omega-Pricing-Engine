@@ -3,6 +3,7 @@
 	<?php
 		global $ver;
 		global $productionEnv;
+		global $projectFolderName;
 	?>
 
 	<!--
@@ -43,7 +44,7 @@
 	- -->
 	<!-- Set the base URL for all relative URLs within the document -->
 	<?php if ( $productionEnv == true ) : ?>
-		<base href="/secret-soil/"><!-- ( example : http://example.com/page.html ) -->
+		<base href="/<?php echo $projectFolderName ?>/"><!-- ( example : http://example.com/page.html ) -->
 	<?php else : ?>
 		<base href="/"><!-- ( example : http://example.com/page.html ) -->
 	<?php endif; ?>

@@ -8,6 +8,8 @@
 	// Get the environment
 	require __DIR__ . '/inc/env.php';
 
+	$projectFolderName = explode( '/', $_SERVER[ 'REQUEST_URI' ] )[ 1 ];
+
 	// get info on the request
 	// $view = require "server/pageless.php";
 	// $route = $view[ 0 ];
