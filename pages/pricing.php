@@ -135,7 +135,7 @@
 		<!-- END : Phone Trap (Login Prompt) -->
 	<?php endif; ?>
 
-	<div class="row hidden js_pricing_engine_content">
+	<div class="pricing row js_pricing_engine_content <?php if ( $page != 'quote' ) : ?>hidden<?php endif; ?>">
 		<div class="container">
 
 			<!-- Unit Filtration -->
@@ -150,7 +150,7 @@
 
 					<!-- Heading -->
 					<div class="heading columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2">
-						<?php if ( $page == 'quote' and $userIsLoggedIn ) : ?>
+						<?php if ( $page == 'quote' ) : ?>
 							<div class="h1 text-center thin text-light" style="margin-top: 7rem;">Generate a Quote</div>
 						<?php else : ?>
 							<div class="h1 text-center thin">77 unique <span class="text-uppercase">Houses</span> to choose from.</div>
