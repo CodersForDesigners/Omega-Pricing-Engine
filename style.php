@@ -1,4 +1,4 @@
-<!--
+<!-- 
 # BROWNIE FUDGE SUNDAE V2
 ===========================
  -->
@@ -28,6 +28,7 @@
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-toaster.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/page-phone-trap.css<?php echo $ver ?>">
+<link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-landing.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-heading.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-filter.css<?php echo $ver ?>">
 <link rel="stylesheet" type="text/css" href="css/pages/section/pricing-section-unit-filter-bubbles.css<?php echo $ver ?>">

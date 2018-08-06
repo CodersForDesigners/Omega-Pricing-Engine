@@ -79,8 +79,27 @@
 		</div>
 	</div>
 
+	<div class="landing row">
+		<div class="landing-bg">
+			<picture>
+				<source srcset="account/media/landing-large.jpg<?php echo $ver ?>" media="(min-width: 640px)">
+				<img class="block" src="account/media/landing-small.jpg<?php echo $ver ?>">
+			</picture>
+		</div>
+		<div class="landing-content">
+			<div class="container">
+				<div class="text-light text-center columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2">
+					<picture>
+						<source srcset="account/media/logo-color.svg<?php echo $ver ?>" media="(min-width: 640px)">
+						<img class="logo" src="account/media/logo-mobile.svg<?php echo $ver ?>">
+					</picture>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Pricing Engine Loading Stub -->
-	<div class="page-loading-stub js_pricing_engine_loading_stub">
+	<div class="page-loading-stub js_pricing_engine_loading_stub hidden">
 		<?php if ( ( $page == 'quote' or $page == 'pricing-individual' ) and ! $userIsLoggedIn ) : ?>
 			<div></div>
 		<?php else : ?>
@@ -153,7 +172,7 @@
 						<?php if ( $page == 'quote' ) : ?>
 							<div class="h1 text-center thin text-light" style="margin-top: 7rem;">Generate a Quote</div>
 						<?php else : ?>
-							<div class="h1 text-center thin">77 unique <span class="text-uppercase">Houses</span> to choose from.</div>
+							<div class="h1 text-center thin text-light">77 unique <span class="text-uppercase">Houses</span> to choose from.</div>
 						<?php endif; ?>
 					</div>
 
