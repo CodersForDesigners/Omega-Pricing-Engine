@@ -40,9 +40,27 @@ $( document ).on( "blur", ".js_unit_modification__manual", function ( event ) {
 	var modification = getModification( event );
 	var $modificationInput = $( event.target );
 
+	// If the modification is a number,
+	// clamp the values between the specified minimum and maximum
+	var min = __OMEGA.modifications[ modification.name ][ "Minimum value" ];
+	var max = __OMEGA.modifications[ modification.name ][ "Maximum value" ];
+	modification.value = parseStringToNumber( modification.value );
+	if ( typeof modification.value == "number" ) {
+		if ( typeof max == "number" && modification.value > max ) {
+			modification.value = max;
+			notify( "Please enter a number between <i><b>" + min + "</b></i> and <i><b>" + max + "</b></i>.", { context: "modification", escape: true } );
+		}
+		if ( typeof min == "number" && modification.value < min ) {
+			modification.value = min;
+			notify( "Please enter a number between <i><b>" + min + "</b></i> and <i><b>" + max + "</b></i>.", { context: "modification", escape: true } );
+		}
+	}
+
 	// If the value has not changed, then do nothing
-	if ( $modificationInput.data( "value" ) == modification.value )
+	if ( $modificationInput.data( "value" ) == modification.value ) {
+		$modificationInput.val( modification.value );
 		return;
+	}
 
 	$modificationInput.data( "value", modification.value );
 	$( document ).trigger( "modification/changed", modification );
