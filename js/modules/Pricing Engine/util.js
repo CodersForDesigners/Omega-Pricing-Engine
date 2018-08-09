@@ -149,6 +149,7 @@ function notify ( message, options ) {
 	options = options || { };
 	var level = options.level || "info";
 	var context = options.context || "";
+	var escape = options.escape || false;
 
 	if ( ! message ) {
 		if ( level == "error" )
@@ -175,6 +176,7 @@ function notify ( message, options ) {
 	// Get the mark for the notification
 	var notificationMarkup = __UI.templates.notification( {
 		message: message,
+		escape: escape,
 		context: context,
 		level: levelClassName
 	} );
