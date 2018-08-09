@@ -150,6 +150,7 @@ function formatNumberToIndianRupee ( number, options ) {
 	options = options || { };
 	var formattedNumber;
 
+	number = parseStringToNumber( number );
 	var roundedNumber = number.toFixed( 0 );
 	var integerAndFractionalParts = ( roundedNumber + "" ).split( "." );
 	var integerPart = integerAndFractionalParts[ 0 ];
@@ -195,6 +196,7 @@ function indianNumberingFormat ( number ) {
 
 	var formattedNumber;
 
+	number = parseStringToNumber( number );
 	var roundedNumber = number.toFixed( 0 );
 	var integerAndFractionalParts = ( roundedNumber + "" ).split( "." );
 	var integerPart = integerAndFractionalParts[ 0 ];
