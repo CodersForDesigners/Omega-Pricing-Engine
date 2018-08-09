@@ -260,6 +260,11 @@ function getComputedUnitData () {
 
 	// Pull the computed values
 	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output" ], { raw: true } );
+	var userRole = __OMEGA.user && __OMEGA.user.role;
+	if ( userRole ) {
+		var executivesPoints = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output (" + userRole + ")" ], { raw: true } );
+		points = points.concat( executivesPoints );
+	}
 	/*
 	 *
 	 * Filter out line items,

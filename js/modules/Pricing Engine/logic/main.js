@@ -34,6 +34,13 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 
 	// Get the units
 	var units = XLSX.utils.sheet_to_json( workbook.Sheets.Units, { raw: true } );
+	var userRole = __OMEGA.user && __OMEGA.user.role;
+	if ( userRole ) {
+		var unitsDiff = XLSX.utils.sheet_to_json( workbook.Sheets[ "Units (" + userRole + ")" ], { raw: true } );
+		units = units.map( function ( unit, _i ) {
+			return Object.assign( unit, unitsDiff[ _i ] );
+		} );
+	}
 
 	// Get the taxonomies for the units
 	var sheetNames = workbook.SheetNames;

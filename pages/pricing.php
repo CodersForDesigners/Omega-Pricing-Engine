@@ -593,6 +593,8 @@
 
 	$( function () {
 
+		// Build the user object
+		isUserLoggedIn();
 		$( document ).trigger( "spreadsheet/fetch" );
 
 	} );
