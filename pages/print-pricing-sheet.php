@@ -12,6 +12,7 @@
 
 <!-- Templates -->
 <?php require __DIR__ . '/templates.hbs' ?>
+<?php require __DIR__ . '/print-templates.hbs' ?>
 
 <script type="text/javascript" src="js/modules/util.js"></script>
 <script type="text/javascript" src="plugins/handlebars/handlebars-v4.0.11.min.js"></script>

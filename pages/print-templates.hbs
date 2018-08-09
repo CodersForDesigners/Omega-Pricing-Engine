@@ -1,0 +1,88 @@
+
+<!-- {{!-
+
+	This file contains templates exclusively used for creating PDFs.
+
+	The `unitDetails` templates is an override that omits partials ( that were being used for modifications ) because Puppeteer is spazzing for some reason.
+
+ -}} -->
+
+<!-- Unit Details section -->
+<textarea class="js_template" data-name="unitDetails" style="display: none">
+
+	{{#each points}}
+
+		{{#if (is Content "Sectioner")}}
+
+			{{!-- Section Demarcators: If it is not the first line, then we have to close the preceeding section --}}
+			{{#unless @first}}
+				</div>
+			{{/unless}}
+
+			<div class="
+					detail-section
+					{{#if (is Layout "Tabular")}}
+						table
+					{{/if}}
+					fill-{{ this.[Section Color] }}
+					{{this.[Section Gradient]}}
+					{{this.[Page Break] }}
+					{{this.[Prevent Page Break] }}
+			">
+
+		{{else if (is Content "Image")}}
+
+			<div class="
+					{{#unless (is Layout "Full-width")}}
+						image-row
+					{{/unless}}
+			">
+				<div class="image block" style="background-image: url( 'account/media/{{ Background }}' );">
+					{{#if Foreground }}
+						<img class="block" src="account/media/{{ Foreground }}">
+					{{/if}}
+				</div>
+			</div>
+
+		{{else if (is Content "Space")}}
+
+			<div class="detail-row row clearfix {{this.[Font Size] }}">
+				<div>&nbsp;</div>
+			</div>
+
+		{{else}}
+
+			<div class="
+					{{#unless (is Layout "Full-width")}}
+						detail-row row clearfix
+					{{/unless}}
+					text-{{ Color }}
+			">
+				{{#if (is Layout "Tabular")}}
+					<div class="title columns small-8 {{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{ Name }}</div>
+					<div class="value columns small-4 text-right {{this.[Font Size] }} {{this.[Font Weight] }} {{#if Strikethrough}}strike{{/if}}">{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+				{{else if (is Layout "Floating")}}
+					<div class="title float-left {{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{ Name }}</div>
+					<div class="value float-right {{this.[Font Size] }} {{this.[Font Weight] }} {{#if Strikethrough}}strike{{/if}}">{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+				{{else}}
+					<div class="text-{{ Align }} {{this.[Font Size] }} {{this.[Font Weight] }} {{this.[Preserve Whitespace] }}">{{Name}} {{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+				{{/if}}
+			</div>
+
+		{{/if}}
+
+		{{!-- If the line has a horizontal rule --}}
+		{{#if this.[Horizontal Rule]}}
+			<div class="detail-row row clearfix">
+				<hr class="{{this.[Horizontal Rule]}}">
+			</div>
+		{{/if}}
+
+		{{!-- Section Demarcators – Implicitly close the last section --}}
+		{{#if @last}}
+			</div>
+		{{/if}}
+
+	{{/each}}
+
+</textarea>
