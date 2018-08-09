@@ -126,11 +126,11 @@ __UTIL.groupListBy = function groupListBy ( list, by ) {
 function parseStringToNumber ( value ) {
 
 	// If the value is not a string, return it back
-	if ( typeof value != "string" )
+	if ( typeof value != "string" || value.trim() == "" )
 		return value;
 
 	// If the value contains any character other than a digit, comma or a decimal point, return it back
-	if ( /[^\d\.,]/.test( value ) )
+	if ( /[^\d\-\.,]/.test( value ) )
 		return value;
 
 	return parseFloat( value.replace( /,/g, "" ) );
