@@ -35,7 +35,28 @@ $( document ).on( "change", ".js_unit_modification__binary", function ( event ) 
 
 } );
 // For manual input modifications
-$( document ).on( "blur", ".js_unit_modification__manual", function ( event ) {
+
+/*
+ *
+ * On hitting the "ENTER" or "RETURN" key, commit the modification value
+ *
+ */
+$( document ).on( "keyup", ".js_unit_modification__manual", function ( event ) {
+
+	var keyAlias = ( event.key || String.fromCharCode( event.which ) ).toLowerCase();
+	var keyCode = parseInt( event.which || event.keyCode );
+
+	if ( ! ( keyAlias == "enter" || keyAlias == "return" || keyCode == 13 ) ) {
+		return;
+	}
+
+	setModificationValue( event );
+
+} );
+
+$( document ).on( "blur", ".js_unit_modification__manual", setModificationValue );
+
+function setModificationValue ( event ) {
 
 	var modification = getModification( event );
 	var $modificationInput = $( event.target );
@@ -65,7 +86,8 @@ $( document ).on( "blur", ".js_unit_modification__manual", function ( event ) {
 	$modificationInput.data( "value", modification.value );
 	$( document ).trigger( "modification/changed", modification );
 
-} );
+}
+
 // For multi-choice modifications
 $( document ).on( "change", ".js_unit_modification__multiple", function ( event ) {
 
