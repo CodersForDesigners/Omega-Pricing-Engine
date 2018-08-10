@@ -124,16 +124,23 @@ var unstickGrandTotalLineItem = function () {
 
 	var $window = $( window );
 	var $grandTotalLineItem;
-	var $preceedingLineItem;
-	var $followingLineItem;
+	var $grandTotalLineItemSticky;
 
+	// When a unit is viewed
 	$( document ).on( "unit/view/done", function () {
+
 		$grandTotalLineItem = $( ".js_grand_total_line_item" );
-		$preceedingLineItem = $grandTotalLineItem.prev();
-		$followingLineItem = $grandTotalLineItem.next();
-		if ( ! $followingLineItem.length ) {
-			$followingLineItem = $grandTotalLineItem.parent().next();
-		}
+
+		// Clone the "Grand Total" line ( this one will be sticky floating )
+		$grandTotalLineItemSticky = $grandTotalLineItem.clone();
+		$grandTotalLineItemSticky
+			.removeClass( "js_grand_total_line_item" )
+			.addClass( "fixed js_grand_total_line_item_sticky" );
+		__UI.$unitDetailsSection.find( ".js_content" ).prepend( $grandTotalLineItemSticky );
+
+		// Statically position the original "Grand Total" line
+			// for Safari
+		$grandTotalLineItem.css( { position: "static" } );
 	} );
 
 	return function unstickGrandTotalLineItem ( event ) {
@@ -148,20 +155,18 @@ var unstickGrandTotalLineItem = function () {
 		var scrollBottom = scrollTop + viewportHeight;
 
 		var grandTotalLineItemHeight = $grandTotalLineItem.outerHeight();
-		var followingLineItemTop = $followingLineItem.position().top - parseFloat( $followingLineItem.css( "margin-top" ) );
 
-		// console.log( "Scroll bottom: " + scrollBottom );
-		// console.log( "Grand Total Line Item Hieght: " + grandTotalLineItemHeight );
-		// console.log( "Bottom Position of preceeding line item line item: " + ( $preceedingLineItem.offset().top + $preceedingLineItem.height() ) );
-		// console.log( "Top Position of following line item: " + $followingLineItem.offset().top );
-		// console.log()
-		// console.log( "–––––––––––––––––––––––––––––––––––––––––––––––––––––––" )
-		// console.log()
-		if ( scrollBottom >= followingLineItemTop + grandTotalLineItemHeight ) {
-			$grandTotalLineItem.removeClass( "fixed" );
+		if (
+			// When the top of the screen goes past the top of the Unit Details
+			scrollTop < __UI.$unitDetailsSection.offset().top
+				||
+			// When the bottom of the screen goes past the static position of the grand total
+			scrollBottom >= $grandTotalLineItem.offset().top - grandTotalLineItemHeight * 4
+			) {
+			$grandTotalLineItemSticky.removeClass( "show" );
 		}
 		else {
-			$grandTotalLineItem.addClass( "fixed" );
+			$grandTotalLineItemSticky.addClass( "show" );
 		}
 
 	};

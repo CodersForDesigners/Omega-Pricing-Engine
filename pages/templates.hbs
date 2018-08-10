@@ -122,6 +122,25 @@
 				<div>&nbsp;</div>
 			</div>
 
+		{{else if (is Content "Grand Total")}}
+			{{!-- This one is an exception. It is a self-contained section. --}}
+			</div>{{!-- The current section is closed, and a new one is opened. --}}
+			<div class="
+				detail-section total
+				fill-{{ this.[Section Color] }}
+				{{this.[Section Gradient]}}
+				{{this.[Prevent Page Break] }}
+				js_grand_total_line_item
+			">{{!-- NOTE: add class "fixed" to make it stick --}}
+				<div class="detail-row clearfix">
+					<div class="title float-left">
+						<span class="unit-number regular fill-yellow hide-for-mobile">{{ Unit }}</span>
+						<span class="{{this.[Font Size] }} {{this.[Font Weight] }}text-{{ Color }} {{this.[Preserve Whitespace] }}">{{ Name }}</span>
+					</div>
+					<div class="value float-right {{this.[Font Size] }} {{this.[Font Weight] }} text-{{ Color }}">{{ Prefix }}{{#if (is Format "number")}}{{ INF Value }}{{else}}{{ Value }}{{/if}} {{ Suffix }}</div>
+				</div>
+			</div>{{!-- Close the section; this being the final one --}}
+
 		{{else}}
 
 			<div class="
@@ -147,11 +166,6 @@
 		{{#if this.[Horizontal Rule]}}
 			<div class="detail-row row clearfix">
 				<hr class="{{this.[Horizontal Rule]}}">
-			</div>
-		{{/if}}
-
-		{{!-- Section Demarcators – Implicitly close the last section --}}
-		{{#if @last}}
 			</div>
 		{{/if}}
 

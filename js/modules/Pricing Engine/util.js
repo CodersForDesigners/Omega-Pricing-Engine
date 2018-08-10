@@ -265,6 +265,13 @@ function getComputedUnitData () {
 		var executivesPoints = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output (" + userRole + ")" ], { raw: true } );
 		points = points.concat( executivesPoints );
 	}
+
+	// Extract the Grand Total line and give it special treatment
+	var grandTotalLine = points.find( function ( point ) { return point.Name == "Grand Total" } );
+	grandTotalLine.Name = __OMEGA.settings[ "\"Grand Total\" Label" ];
+	grandTotalLine.Content = "Grand Total";
+	grandTotalLine.Unit = __OMEGA.userInput.unitData.Unit;
+
 	/*
 	 *
 	 * Filter out line items,
@@ -274,9 +281,9 @@ function getComputedUnitData () {
 	*/
 	points = points.filter( function ( point ) {
 		if ( point.Hide )
-			if ( point.Name == "Grand Total" )
-				return true;
-			else
+			// if ( point.Name == "Grand Total" )
+			// 	return true;
+			// else
 				return false;
 		if ( ! point.Content )
 			return false;
@@ -297,6 +304,11 @@ function getComputedUnitData () {
 		return true;
 		// return point.Modifiable || ( ( ! point.Hide ) && point.Value );
 	} );
+
+	// Append back the "Grand Total" line ( un-hide it first )
+	grandTotalLine.Hide = false;
+	points.push( grandTotalLine );
+
 	return points;
 
 }

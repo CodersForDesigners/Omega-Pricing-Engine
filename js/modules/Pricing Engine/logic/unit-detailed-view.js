@@ -63,7 +63,7 @@ $( document ).on( "unit/view", function ( event, data ) {
 		// 4. Store the grand total value on the global state
 		var grandTotal;
 		points.some( function ( point ) {
-			if ( point.Name == "Grand Total" ) {
+			if ( point.Content == "Grand Total" ) {
 				grandTotal = parseFloat( point.Value );
 				return true;
 			}

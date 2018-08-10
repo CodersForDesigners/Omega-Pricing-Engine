@@ -147,8 +147,12 @@
 
 @media ( max-width: 640px ) {
 	/* For small screens, preserve the whitespace ( and text-wrapping ), as expressed in the spreadsheet, so that the text does not overflow */
+	/* but not the "Grand Total" line */
 	.pricing-section .unit-details .detail-section .detail-row .title {
 		white-space: pre-wrap;
+	}
+	.pricing-section .unit-details .detail-section.total .detail-row .title {
+		white-space: normal;
 	}
 }
 @media( min-width: 640px )  {
@@ -209,8 +213,6 @@
 /* -- Total -- */
 
 .pricing-section .unit-details .total {
-	position: absolute;
-	pointer-events: none;
 	z-index: 8;
 	display: block;
 	top: auto;
@@ -218,16 +220,19 @@
 	height: 60px;
 	padding: 15px 0;
 	overflow: hidden;
-	transform: translateY(0);
 	box-shadow: none;
 }
 
 .pricing-section .unit-details .total.fixed {
+	pointer-events: none;
 	position: fixed;
 	top: 100%;
+	box-shadow: 0px -1px 8px 1px rgba(45, 67, 81, .2);
+	transform: translateY(0);
+}
+.pricing-section .unit-details .total.show {
 	transform: translateY(-100%);
 	transition: box-shadow .2s ease-out, transform .3s .2s ease-out;
-	box-shadow: 0px -1px 8px 1px rgba(45, 67, 81, .2);
 }
 
 .pricing-section .unit-details .total .title .unit-number {
