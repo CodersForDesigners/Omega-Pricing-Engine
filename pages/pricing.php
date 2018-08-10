@@ -542,7 +542,7 @@
 	$( function () {
 		var OMEGA = window.__OMEGA;
 		OMEGA.unitFiltersSelected = [ { taxonomy: "Availability", type: "Available", attribute: "Availability", comparison: "is equal to", value: true } ];
-		OMEGA.unitSortingBasis = "Relevance";
+		OMEGA.unitSortingBasis = "Unit";
 	} );
 	$( document ).on( "pricing-engine/ready", function () {
 		$( document ).trigger( "pricing-engine/render" );
