@@ -14,9 +14,14 @@ $( document ).on( "unit-listing/build", function ( event, data ) {
 		unitsInListing = __OMEGA.unitsInListing;
 	}
 	else if ( context == "search" ) {
-		var query = data.query;
+		var specialCharsRegex = /[^a-z0-9]/g;
+		var query = data.query.toLowerCase();
 		unitsInListing = allUnits.filter( function ( unit ) {
-			return String( unit.Unit ).indexOf( query ) != -1;
+			return (
+				String( unit.Unit ).toLowerCase().indexOf( query ) != -1
+					||
+				String( unit.Unit ).toLowerCase().replace( specialCharsRegex, "" ).indexOf( query ) != -1
+			);
 		} );
 	}
 	else {
