@@ -118,6 +118,16 @@ $( document ).on( "unit-details/render", function ( event, data ) {
 	__UI.$unitDetailsSection.css( "height", "" );
 	__UI.$unitDetailsSection.removeClass( "loading" );
 
+	// And last but not the least, scroll down to the Unit Details
+	if ( data.context != "modification" ) {
+		setTimeout( function () {
+			window.scrollTo( {
+				top: __UI.$unitDetailsSection.offset().top - 10,
+				behavior: "smooth"
+			} );
+		}, 500 );
+	}
+
 } );
 
 var unstickGrandTotalLineItem = function () {

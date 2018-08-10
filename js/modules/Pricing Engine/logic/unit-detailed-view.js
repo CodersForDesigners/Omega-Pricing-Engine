@@ -71,10 +71,15 @@ $( document ).on( "unit/view", function ( event, data ) {
 		__OMEGA.unitData.grandTotal = grandTotal;
 
 		// 5. Render the Unit Details UI
-		$( document ).trigger( "unit-details/render", {
+		var eventData = {
 			unitNumber: inputParameters.Unit,
 			points: points
-		} );
+		};
+		// If something other than the unit number changed,
+			// it must be a modification
+		if ( newUnitData && newUnitData.Unit == void 0 )
+			eventData.context = "modification";
+		$( document ).trigger( "unit-details/render", eventData );
 
 		// 6. Render the EMI Calculator UI
 		$( document ).trigger( "emi-calculator/render", { total: grandTotal } );
