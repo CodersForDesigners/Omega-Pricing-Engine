@@ -28,3 +28,18 @@ $( function () {
 	}
 
 } );
+
+/*
+ *
+ * When the spreadsheet has been loaded,
+ * 	Extract and plug in the relevant data on the UI.
+ *
+ */
+$( document ).on( "spreadsheet/load", function ( event, workbook ) {
+
+	// Plug in the page title
+	document.title = __OMEGA.settings[ "Page Title" ] + " | " + document.title;
+	// Plug in the page heading
+	$( ".js_page_heading" ).text( __OMEGA.settings[ "Page Heading" ] );
+
+} );

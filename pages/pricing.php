@@ -172,7 +172,7 @@
 						<?php if ( $page == 'quote' ) : ?>
 							<div class="h1 text-center thin text-light" style="margin-top: 7rem;">Generate a Quote</div>
 						<?php else : ?>
-							<div class="h1 text-center thin text-light">77 unique <span class="text-uppercase">Houses</span> to choose from.</div>
+							<div class="h1 text-center thin text-light js_page_heading"></div>
 						<?php endif; ?>
 					</div>
 
@@ -500,7 +500,6 @@
 <!-- <script type="text/javascript" src="plugins/handlebars/handlebars-v5.0.0a1.min.js"></script> -->
 <script type="text/javascript" src="plugins/handlebars/handlebars-v4.0.11.min.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/util.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/main.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/notifications.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-filtration.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-search.js"></script>
@@ -515,6 +514,7 @@
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/quote-form.js"></script>
 <?php endif; ?>
 <script type="text/javascript" src="js/modules/Pricing Engine/logic/main.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/main.js"></script>
 <?php if ( ! $singleUnitIsBeingViewed ) : ?>
 <script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-listing.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-search.js"></script>

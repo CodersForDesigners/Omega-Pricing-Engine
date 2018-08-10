@@ -48,7 +48,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- Page Title | Page Name -->
-	<title>LivingWalls | Secret Soil | <?php echo $viewName ?></title>
+	<title><?php echo $viewName ?></title>
 
 	<?php echo gethead(); ?>
 
