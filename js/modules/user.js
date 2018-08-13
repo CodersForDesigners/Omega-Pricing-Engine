@@ -421,7 +421,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 				// Then, log in the user
 				.then( function ( user ) {
 					// Log the user in
-					loginUser( user._id );
+					loginUser( user );
 					// Then, close the login prompt
 					Loginner.prompts[ context ].onLogin( user );
 				} )
