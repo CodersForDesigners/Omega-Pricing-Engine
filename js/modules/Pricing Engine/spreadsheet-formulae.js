@@ -116,6 +116,10 @@
 	var formulae = { };
 
 
+	formulae.NOT = function ( logical ) {
+		return ! logical;
+	};
+
 	formulae.AND = function () {
 		var args = utils.flatten( arguments );
 		var result = true;
