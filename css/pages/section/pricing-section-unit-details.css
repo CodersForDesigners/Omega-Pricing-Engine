@@ -88,6 +88,10 @@
 	vertical-align: middle;
 }
 
+.pricing-section .unit-details .detail-section .detail-row.modification .value {
+	width: 100%;
+}
+
 /* -- Checkbox -- */
 .pricing-section .unit-details .detail-section .detail-row.modification .check-label {
 	position: relative;
@@ -147,10 +151,11 @@
 
 @media ( max-width: 640px ) {
 	/* For small screens, preserve the whitespace ( and text-wrapping ), as expressed in the spreadsheet, so that the text does not overflow */
-	/* but not the "Grand Total" line */
+	/* but not for the "Grand Total" line, or the modification lines */
 	.pricing-section .unit-details .detail-section .detail-row .title {
 		white-space: pre-wrap;
 	}
+	.pricing-section .unit-details .detail-section .detail-row.modification .title,
 	.pricing-section .unit-details .detail-section.total .detail-row .title {
 		white-space: normal;
 	}
@@ -162,6 +167,9 @@
 
 	.pricing-section .unit-details .detail-section .detail-row {
 		padding: 2px 60px;
+	}
+	.pricing-section .unit-details .detail-section .detail-row.modification .value {
+		width: auto;
 	}
 }
 @media( min-width: 1040px ) {
