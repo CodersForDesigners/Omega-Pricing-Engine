@@ -524,9 +524,10 @@ function createUser ( phoneNumber, context ) {
 	var timestamp = +( new Date() );
 
 	// Build the payload
+	var userImplicitNamePrefix = __OMEGA.settings.userImplicitNamePrefix;
 	var requestPayload = {
 		phoneNumber: phoneNumber,
-		firstName: context,
+		firstName: userImplicitNamePrefix + " " + context,
 		lastName: timestamp
 	};
 
