@@ -42,4 +42,7 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	// Plug in the page heading
 	$( ".js_page_heading" ).text( __OMEGA.settings[ "Page Heading" ] );
 
+	// Set the privacy disclaimers
+	$( ".js_privacy_disclaimer" ).text( __OMEGA.settings[ "Privacy Disclaimer" ] );
+
 } );

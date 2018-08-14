@@ -140,9 +140,7 @@
 										<span class="link float-left text-green js_reenter_phone" tabindex="-1">Enter Different Number</span>
 										<span class="link float-right text-green hidden" tabindex="-1">Resend OTP</span>
 									</div>
-									<div class="disclaimer small text-dark">
-										By Submitting this OTP, I hereby authorise LivingWalls to contact me on this mobile number.
-									</div>
+									<div class="disclaimer small text-dark js_privacy_disclaimer"></div>
 								</form>
 							</div>
 						</div>
@@ -266,9 +264,7 @@
 									<span class="link float-left text-green js_reenter_phone" tabindex="-1">Enter Different Number</span>
 									<span class="link float-right text-green hidden" tabindex="-1">Resend OTP</span>
 								</div>
-								<div class="disclaimer small text-dark">
-									By Submitting this OTP, I hereby authorise LivingWalls to contact me on this mobile number.
-								</div>
+								<div class="disclaimer small text-dark js_privacy_disclaimer"></div>
 							</form>
 						</div>
 					</div>
