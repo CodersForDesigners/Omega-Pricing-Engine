@@ -16,9 +16,14 @@
 	font-size: 0;
 	line-height: 0;
 	background-color: #FFFFFF;
-	background-image: -moz-linear-gradient(left, var(--off-dark) 0%, var(--off-dark) 50%, transparent 50%, transparent 100%);
+	/* -- Safari BUG : transition ( background-position-x ), Variable Color in Gradient not getting painted -- */
+	/*background-image: -moz-linear-gradient(left, var(--off-dark) 0%, var(--off-dark) 50%, transparent 50%, transparent 100%);
 	background-image: -webkit-linear-gradient(left, var(--off-dark) 0%, var(--off-dark) 50%, transparent 50%, transparent 100%);
-	background-image: linear-gradient(to right, var(--off-dark) 0%, var(--off-dark) 50%, transparent 50%, transparent 100%);
+	background-image: linear-gradient(to right, var(--off-dark) 0%, var(--off-dark) 50%, transparent 50%, transparent 100%);*/
+	/* -- Work Around: Hard-coded colors -- */
+	background-image: -moz-linear-gradient(left, #2d4351 0%, #2d4351 50%, transparent 50%, transparent 100%);
+	background-image: -webkit-linear-gradient(left, #2d4351 0%, #2d4351 50%, transparent 50%, transparent 100%);
+	background-image: linear-gradient(to right, #2d4351 0%, #2d4351 50%, transparent 50%, transparent 100%);
 	background-size: 202%;
 	background-position-x: 101%;
 	background-repeat: no-repeat;
