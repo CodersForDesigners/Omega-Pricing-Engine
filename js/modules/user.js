@@ -24,8 +24,8 @@ var docCookies={getItem:function(e){return e?decodeURIComponent(document.cookie.
  */
 var Loginner = window.Loginner = { };
 Loginner.prompts = { };
-Loginner.registerLoginPrompt = function registerLoginPrompt ( context, handlers ) {
-	Loginner.prompts[ context ] = handlers;
+Loginner.registerLoginPrompt = function registerLoginPrompt ( name, handlers ) {
+	Loginner.prompts[ name ] = handlers;
 };
 
 /*
@@ -89,8 +89,8 @@ $( "body" ).on( "click", ".js_user_required", function ( event ) {
 	event.stopImmediatePropagation();
 
 	// Prompt the user to "log in"
-	var context = $( event.target ).closest( "[ data-loginner ]" ).data( "loginner" );
-	Loginner.prompts[ context ].onTrigger( event );
+	var loginPrompt = $( event.target ).closest( "[ data-loginner ]" ).data( "loginner" );
+	Loginner.prompts[ loginPrompt ].onTrigger( event );
 	$( document ).trigger( "user/login/prompt", { domLoginPromptTrigger: event.target } );
 
 } );
@@ -148,8 +148,8 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	var $form = $( event.target );
 	var domForm = $form.get( 0 );
 
-	// Get the context
-	var context = $form.closest( "[ data-loginner ]" ).data( "loginner" );
+	// Get the login prompt
+	var loginPrompt = $form.closest( "[ data-loginner ]" ).data( "loginner" );
 
 	/* -----
 	 * Disable the form
@@ -176,7 +176,7 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	if ( $phoneNumber.val().length < 10 ) {
 		$phoneNumber.addClass( "js_error" );
 		// alert( "Please enter a valid phone number." );
-		Loginner.prompts[ context ].onPhoneValidationError.call( $form.get( 0 ), "Please enter a valid phone number." );
+		Loginner.prompts[ loginPrompt ].onPhoneValidationError.call( $form.get( 0 ), "Please enter a valid phone number." );
 	}
 	// If the form has even one error ( i.e. validation issue )
 	// do not proceed
@@ -202,13 +202,13 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	 * Process the data
 	 ----- */
 	// Authenticate the user
-	Loginner.prompts[ context ].onPhoneSend.call( domForm );
+	Loginner.prompts[ loginPrompt ].onPhoneSend.call( domForm );
 	authenticateUserPhone( phoneNumber )
 		.then( function ( user ) {
 			// If the user exists, log the user in
 			loginUser( user );
 			// Then, close the login prompt
-			Loginner.prompts[ context ].onLogin( user );
+			Loginner.prompts[ loginPrompt ].onLogin( user );
 		} )
 		.catch( function ( { code, message } ) {
 			// If no user was found, send an OTP
@@ -216,7 +216,7 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 				return sendOTP( phoneNumber )
 			}
 			else { // code == -1
-				Loginner.prompts[ context ].onPhoneError.call( domForm, code, message );
+				Loginner.prompts[ loginPrompt ].onPhoneError.call( domForm, code, message );
 			}
 		} )
 		.then( function ( otpSessionId ) {
@@ -224,11 +224,11 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 			__OMEGA.user = __OMEGA.user || { };
 			__OMEGA.user.otpSessionId = otpSessionId;
 			var domOTPForm = $form.closest( "[ data-loginner ]" ).find( ".loginner_form_otp" ).get( 0 );
-			Loginner.prompts[ context ].onShowOTP( domForm, domOTPForm );
+			Loginner.prompts[ loginPrompt ].onShowOTP( domForm, domOTPForm );
 		} )
 		.catch( function ( { code, message } ) {
 			if ( code == 1 ) {
-				Loginner.prompts[ context ].onPhoneError.call( domForm, code, message );
+				Loginner.prompts[ loginPrompt ].onPhoneError.call( domForm, code, message );
 				$form.find( "input, select, button" ).prop( "disabled", false );
 			}
 		} );
@@ -362,8 +362,8 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 	var $form = $( event.target );
 	var domForm = $form.get( 0 );
 
-	// Get the context
-	var context = $form.closest( "[ data-loginner ]" ).data( "loginner" );
+	// Get the login prompt
+	var loginPrompt = $form.closest( "[ data-loginner ]" ).data( "loginner" );
 
 	// Confirm with the user if they're okay with us collecting their personal info
 	// var userIsOkayWithOurTerms = window.confirm( "By saying \"OK\", you agree to our terms, of which there are many." );
@@ -393,7 +393,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 	if ( ! $otp.val().trim() ) {
 		$otp.addClass( "js_error" );
 		// alert( "Please enter the OTP." );
-		Loginner.prompts[ context ].onOTPValidationError.call( $form.get( 0 ), "Please enter the OTP." );
+		Loginner.prompts[ loginPrompt ].onOTPValidationError.call( $form.get( 0 ), "Please enter the OTP." );
 	}
 	// If the form has even one error ( i.e. validation issue )
 	// do not proceed
@@ -411,7 +411,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 	 * Process the data
 	 ----- */
 	// Verify the OTP
-	Loginner.prompts[ context ].onOTPSend.call( domForm );
+	Loginner.prompts[ loginPrompt ].onOTPSend.call( domForm );
 	verifyOTP( otp )
 		.then( function ( response ) {
 			// If the OTP matched,
@@ -424,7 +424,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 					// Log the user in
 					loginUser( user );
 					// Then, close the login prompt
-					Loginner.prompts[ context ].onLogin( user );
+					Loginner.prompts[ loginPrompt ].onLogin( user );
 				} )
 				.catch( function ( { code, message } ) {
 					if ( code == 1 ) {
@@ -434,11 +434,11 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 			// Register a conversion
 			// registerConversion( context );
 			// Close the login prompt
-			closeLoginPrompt( context );
+			// closeLoginPrompt( loginPrompt );
 		} )
 		.catch( function ( { code, message } ) {
 			if ( code == 1 ) {
-				Loginner.prompts[ context ].onOTPError.call( domForm, code, message );
+				Loginner.prompts[ loginPrompt ].onOTPError.call( domForm, code, message );
 				$form.find( "input, select, button" ).prop( "disabled", false );
 			}
 		} );
