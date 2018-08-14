@@ -5,6 +5,9 @@
 # the media directory
 /media
 
+# the favicon directory
+/favicon
+
 # the data directory
 /data
 
