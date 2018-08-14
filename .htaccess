@@ -38,6 +38,14 @@ RewriteRule ^/?login/callback/google$ http://%{HTTP_HOST}/omega/login/callback/g
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
 RewriteRule ^/?logout$ http://%{HTTP_HOST}/omega/logout?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
 
+# The Registration page that delegates to the Omega API
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?register$ http://%{HTTP_HOST}/omega/register?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
+
+# The Registration callback route that delegates to the Omega API
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ^/?register/callback/google$ http://%{HTTP_HOST}/omega/register/callback/google?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [QSA,P]
+
 
 # if the URI does not have a trailing slash,
 # and if it is a GET request,
