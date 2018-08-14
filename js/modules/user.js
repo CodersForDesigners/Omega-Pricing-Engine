@@ -521,7 +521,7 @@ function verifyOTP ( otp ) {
 function createUser ( phoneNumber, context ) {
 
 	// Get the current timestamp
-	var timestamp = +( new Date() );
+	var timestamp = getDateAndTimeStamp();
 
 	// Build the payload
 	var userImplicitNamePrefix = __OMEGA.settings.userImplicitNamePrefix;
@@ -579,7 +579,7 @@ function createUser ( phoneNumber, context ) {
 function updateUser ( id, project, data ) {
 
 	// Get the current timestamp
-	var timestamp = +( new Date() );
+	var timestamp = getDateAndTimeStamp();
 
 	// Build the payload
 	var requestPayload = { fields: data };
