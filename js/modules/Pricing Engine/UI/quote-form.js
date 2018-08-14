@@ -21,9 +21,56 @@ $( function () {
  */
 $( document ).on( "unit/view", function () {
 
+	__OMEGA.customer = null;
 	__UI.$quoteFormSection.find( "form" ).get( 0 ).reset();
 	__UI.$customersNames.text( "" );
 	__UI.$createQuoteButton.prop( "disabled", true );
+
+} );
+
+
+/*
+ *
+ * When a unit is viewed,
+ *	Issue a request to enable the quote form
+ *
+ */
+$( document ).on( "unit/view/done", function () {
+
+	$( document ).trigger( "quote-form/enable" );
+
+} );
+
+
+/*
+ *
+ * When the quote form is to enabled,
+ *	enable it only if all the conditions are met
+ *
+ */
+$( document ).on( "quote-form/enable", function () {
+
+	/*
+	 *
+	 * If,
+	 *	1. A prospect is selected,
+	 *	2. There's no error caused by the executive with the modifications
+	 *
+	 * 	Then, enable the quote form.
+	 */
+	if ( __OMEGA.unitData.error ) {
+		__UI.$createQuoteButton.prop( "disabled", true );
+		__UI.$createQuoteButton.text( "Please fix the error(s)." );
+		return;
+	}
+	if ( ! __OMEGA.customer ) {
+		__UI.$createQuoteButton.prop( "disabled", true );
+		__UI.$createQuoteButton.text( "Please select a prospect." );
+		return;
+	}
+
+	__UI.$createQuoteButton.prop( "disabled", false );
+	__UI.$createQuoteButton.text( "Generate PDF" );
 
 } );
 
@@ -92,7 +139,9 @@ $( document ).on( "submit", ".js_user_search_form", function ( event ) {
 	getUser( userId, { by: 'uid' } )
 		.then( function ( user ) {
 
-			__UI.$quoteFormSection.find( ".js_create_quote" ).prop( "disabled", false );
+			// Issue a request to enable the quote form
+			$( document ).trigger( "quote-form/enable" );
+
 			var applicantsNames = user.name;
 			if ( user.coApplicantName )
 				applicantsNames += " and " + user.coApplicantName;

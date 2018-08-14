@@ -269,6 +269,11 @@ function getComputedUnitData ( options ) {
 		points = points.concat( executivesPoints );
 	}
 
+	// Extract a possible "Error" field ( if present )
+	var error = points.find( function ( point ) { return point.Name == "Error" } );
+	__OMEGA.unitData.error = error ? error.Value : false;
+
+
 	// Extract the Grand Total line and give it special treatment
 	var grandTotalLine = points.find( function ( point ) { return point.Name == "Grand Total" } );
 	grandTotalLine.Name = __OMEGA.settings[ "\"Grand Total\" Label" ];
