@@ -250,8 +250,9 @@ function countToAmount ( $el, amount ) {
 
 }
 
-function getDateAndTimeStamp () {
+function getDateAndTimeStamp ( options ) {
 
+	options = options || { };
 	var dateObject = new Date();
 
 	// Date components
@@ -288,6 +289,9 @@ function getDateAndTimeStamp () {
 				+ ":" + minutes
 				+ ":" + seconds
 				+ "." + milliseconds
+
+	if ( options.separator )
+		datetimestamp = datetimestamp.replace( /[\/:\.]/g, options.separator );
 
 	return datetimestamp;
 
