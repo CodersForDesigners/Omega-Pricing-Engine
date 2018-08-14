@@ -3,15 +3,14 @@
  */
 
 .pricing-section {
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: top center;
+	position: relative;
+	/*background-color: #D6D6D6;*/
 }
 
 .pricing-section .pricing {
 	position: relative;
 	z-index: 3;
-	margin-top: -150px;
+	margin-top: -300px;
 }
 
 .pricing-section .loading {
