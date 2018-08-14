@@ -56,9 +56,9 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 		$( ".js_unit_listing_login_prompt" ).removeClass( "show" );
 
 		// Show a welcome back message
-		var leadImplicitNamePrefix = __OMEGA.settings[ "Lead Implicit Name Prefix" ];
+		var userImplicitNamePrefix = __OMEGA.settings[ "User Implicit Name Prefix" ];
 		var message = "Welcome back";
-		if ( user.name.startsWith( leadImplicitNamePrefix ) )
+		if ( user.name.startsWith( userImplicitNamePrefix ) )
 			message += "!";
 		else
 			message += ", " + user.firstName + ".";
@@ -73,7 +73,7 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 			.find( "[ name = 'phone' ]" ).val( user.phoneNumber )
 			.end()
 			.find( "[ name = 'email' ]" ).val( user.email );
-		if ( ! user.name.startsWith( leadImplicitNamePrefix ) )
+		if ( ! user.name.startsWith( userImplicitNamePrefix ) )
 			$( ".js_enquiry_form" ).find( "[ name = 'name' ]" ).val( user.name );
 
 	},
@@ -156,9 +156,9 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 		}, 500 );
 
 		// Show a welcome back message
-		var leadImplicitNamePrefix = __OMEGA.settings[ "Lead Implicit Name Prefix" ];
+		var userImplicitNamePrefix = __OMEGA.settings[ "User Implicit Name Prefix" ];
 		var message = "Welcome back";
-		if ( user.name.startsWith( leadImplicitNamePrefix ) )
+		if ( user.name.startsWith( userImplicitNamePrefix ) )
 			message += "!";
 		else
 			message += ", " + user.firstName + ".";
@@ -173,7 +173,7 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 			.find( "[ name = 'phone' ]" ).val( user.phoneNumber )
 			.end()
 			.find( "[ name = 'email' ]" ).val( user.email );
-		if ( ! user.name.startsWith( leadImplicitNamePrefix ) )
+		if ( ! user.name.startsWith( userImplicitNamePrefix ) )
 			$( ".js_enquiry_form" ).find( "[ name = 'name' ]" ).val( user.name );
 
 	}
