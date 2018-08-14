@@ -8,11 +8,6 @@
  *
  */
 
-var apiEndpoint = "http://lw.lazaro.in/omega";
-if ( ! __envProduction ) {
-	apiEndpoint = "http://omega.api.192.168.0.109.xip.io";
-}
-
 /*
  *
  * Cookie library
@@ -46,12 +41,13 @@ function getUser ( identifyingAttribute, options ) {
 		return;
 	}
 
+	var apiEndpoint = __OMEGA.settings.apiEndpoint;
+
 	options = options || { };
 	options.by = options.by || 'id';
 
 	var ajaxRequest = $.ajax( {
 		url: apiEndpoint + "/users?" + options.by + "=" + identifyingAttribute,
-		// url: __OMEGA.settings[ "API Endpoint" ] + "/users?id=" + id,
 		method: "GET",
 		dataType: "json"
 	} );
@@ -242,8 +238,10 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 
 function authenticateUserPhone ( phoneNumber ) {
 
+	var apiEndpoint = __OMEGA.settings.apiEndpoint;
+
 	var ajaxRequest = $.ajax( {
-		url: __OMEGA.settings[ "API Endpoint" ] + "/users?phoneNumber=" + phoneNumber,
+		url: apiEndpoint + "/users?phoneNumber=" + phoneNumber,
 		method: "GET",
 		dataType: "json"
 	} );
@@ -298,8 +296,11 @@ function authenticateUserPhone ( phoneNumber ) {
  */
 function sendOTP ( phoneNumber ) {
 
+	var apiEndpoint = __OMEGA.settings.apiEndpoint;
+	var OTPTemplate = __OMEGA.settings.OTPTemplate;
+
 	var ajaxRequest = $.ajax( {
-		url: __OMEGA.settings[ "API Endpoint" ] + "/otp?phoneNumber=" + phoneNumber,
+		url: apiEndpoint + "/otp?phoneNumber=" + phoneNumber + "&template=" + OTPTemplate,
 		method: "GET",
 		dataType: "json"
 	} );
@@ -452,8 +453,10 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
  */
 function verifyOTP ( otp ) {
 
+	var apiEndpoint = __OMEGA.settings.apiEndpoint;
+
 	var verificationFlow = $.ajax( {
-		url: __OMEGA.settings[ "API Endpoint" ] + "/otp",
+		url: apiEndpoint + "/otp",
 		method: "POST",
 		data: {
 			otp: otp,
@@ -528,8 +531,9 @@ function createUser ( phoneNumber, context ) {
 	};
 
 	// Fetch the lead based on the phone number
+	var apiEndpoint = __OMEGA.settings.apiEndpoint;
 	var createUser__AjaxRequest = $.ajax( {
-		url: __OMEGA.settings[ "API Endpoint" ] + "/users",
+		url: apiEndpoint + "/users",
 		method: "POST",
 		data: requestPayload
 	} );
@@ -582,8 +586,9 @@ function updateUser ( id, project, data ) {
 	return new Promise( function ( resolve, reject ) {
 
 		// Fetch the lead based on the phone number
+		var apiEndpoint = __OMEGA.settings.apiEndpoint;
 		var updateUser__AjaxRequest = $.ajax( {
-			url: __OMEGA.settings[ "API Endpoint" ] + "/users/" + id,
+			url: apiEndpoint + "/users/" + id,
 			method: "POST",
 			data: requestPayload
 		} );

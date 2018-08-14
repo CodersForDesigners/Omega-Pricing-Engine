@@ -480,9 +480,20 @@
 <?php require __DIR__ . '/templates.hbs' ?>
 
 
-<!-- Global vars -->
+<!-- Global state -->
 <script type="text/javascript">
+
+	// Establish global state
 	window.__OMEGA = window.__OMEGA || { };
+	__OMEGA.unitData = { };
+
+	// Initialize the API endpoint
+	__OMEGA.settings = __OMEGA.settings || { };
+	__OMEGA.settings.apiEndpoint = __OMEGA.settings.apiEndpoint || location.origin.replace( /\/+$/, "" ) + "/omega";
+	if ( ! __envProduction ) {
+		__OMEGA.settings.apiEndpoint = "http://omega.api.192.168.0.207.xip.io";
+	}
+
 </script>
 
 <!-- JS Modules -->
@@ -527,13 +538,6 @@
 <?php endif; ?>
 
 <script type="text/javascript">
-
-	// Establish global state
-	$( function () {
-		var OMEGA = window.__OMEGA = window.__OMEGA || { };
-		OMEGA.unitData = { };
-	} );
-
 
 <?php if ( ! $singleUnitIsBeingViewed ) : ?>
 // If it is the general Pricing Engine page

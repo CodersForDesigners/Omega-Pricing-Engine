@@ -27,9 +27,13 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	var settings = getDataFromSheet( workbook.Sheets[ "Settings" ] );
 	__OMEGA.settings = settings;
 
+	// Set some global values
+	__OMEGA.settings.apiEndpoint = __OMEGA.settings[ "API Endpoint" ]
+	__OMEGA.settings.OTPTemplate = __OMEGA.settings[ "OTP Template" ];
+
 	// Contextualize the API endpoint based on the environment
 	if ( ! __envProduction ) {
-		__OMEGA.settings[ "API Endpoint" ] = __OMEGA.settings[ "API Endpoint (dev)" ];
+		__OMEGA.settings.apiEndpoint = __OMEGA.settings[ "API Endpoint (dev)" ];
 	}
 
 	// Get the units
