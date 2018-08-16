@@ -116,6 +116,14 @@
 	var formulae = { };
 
 
+	formulae.TRUE = function () {
+		return true;
+	};
+
+	formulae.FALSE = function () {
+		return false;
+	};
+
 	formulae.NOT = function ( logical ) {
 		return ! logical;
 	};
