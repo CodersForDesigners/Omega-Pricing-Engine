@@ -192,6 +192,7 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 		timestamp: getDateAndTimeStamp(),
 		meta: meta,
 		user: __OMEGA.user,
+		customer: customer,
 		crm: crm,
 		unit: __OMEGA.unitData,
 		pdf: getComputedUnitData( { forPrint: true } )
