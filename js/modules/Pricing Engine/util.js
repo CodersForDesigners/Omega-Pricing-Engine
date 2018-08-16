@@ -256,23 +256,20 @@ function computeUnitData ( parameters ) {
  * This function returns the computed values from the spreadsheet
  *
  */
-function getComputedUnitData ( options ) {
-
-	options = options || { };
-	var outputSheetName = options.forPrint ? "Output (PDF)" : "Output";
+function getComputedUnitData () {
 
 	// Pull the computed values
-	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ outputSheetName ], { raw: true } );
+	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output" ], { raw: true } );
+	// Pull the executive-specific computed values
 	var userRole = __OMEGA.user && __OMEGA.user.role;
 	if ( userRole ) {
 		var executivesPoints = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output (" + userRole + ")" ], { raw: true } );
 		points = points.concat( executivesPoints );
+
+		// Extract a possible "Error" field ( if present )
+		var error = points.find( function ( point ) { return point.Name == "Error" } );
+		__OMEGA.unitData.error = error ? error.Value : false;
 	}
-
-	// Extract a possible "Error" field ( if present )
-	var error = points.find( function ( point ) { return point.Name == "Error" } );
-	__OMEGA.unitData.error = error ? error.Value : false;
-
 
 	// Extract the Grand Total line and give it special treatment
 	var grandTotalLine = points.find( function ( point ) { return point.Name == "Grand Total" } );
@@ -316,6 +313,37 @@ function getComputedUnitData ( options ) {
 	// Append back the "Grand Total" line ( un-hide it first )
 	grandTotalLine.Hide = false;
 	points.push( grandTotalLine );
+
+	return points;
+
+}
+
+function getComputedUnitDataForPrint () {
+
+	// Pull the computed values
+	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output (PDF)" ], { raw: true } );
+
+	/*
+	 *
+	 * Filter out line items,
+	 * - that are not to be displayed (i.e. hidden)
+	 * - whose values are empty (unless they're not "Text" content type)
+	 *
+	*/
+	points = points.filter( function ( point ) {
+
+		if ( point.Hide )
+				return false;
+
+		if ( ! point.Content )
+			return false;
+
+		if ( point.Value === 0 )
+			return false;
+
+		return true;
+
+	} );
 
 	return points;
 

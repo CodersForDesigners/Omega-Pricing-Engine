@@ -195,7 +195,7 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 		customer: customer,
 		crm: crm,
 		unit: __OMEGA.unitData,
-		pdf: getComputedUnitData( { forPrint: true } )
+		pdf: getComputedUnitDataForPrint()
 		// mail: mail,
 		// ...
 	};
