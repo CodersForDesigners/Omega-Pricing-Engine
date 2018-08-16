@@ -206,7 +206,10 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 				context: "Quote Form"
 			} );
 			// Re-enable the form
-			__UI.$quoteFormSection.find( "input, button" ).prop( "disabled", false );
+			__UI.$quoteFormSection.find( "input" ).prop( "disabled", false );
+				// But keep the "Generate Quote" button disabled
+			__UI.$createQuoteButton.prop( "disabled", true );
+			__UI.$createQuoteButton.text( "A quote is being made." );
 		} )
 		.catch( function () {
 			notify( "Something went wrong. Please try again after a while.", {
