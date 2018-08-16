@@ -78,7 +78,7 @@ unit-details/render
 [ ] images for mods
 
 ## bugs
-[ ] The login prompt's OTP form is overlayed by the phone form
+[ ] The login prompt's onLogin function break when a user has no name.
 [ ] An individual unit that **is not** available ( or blocked ) can be viewed by simply changing the URL to match that unit number.
 
 ## later
