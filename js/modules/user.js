@@ -55,8 +55,8 @@ function getUser ( identifyingAttribute, options ) {
 	return new Promise( function ( resolve, reject ) {
 
 		ajaxRequest.done( function ( response ) {
-			__OMEGA.user = response.data;
-			resolve( __OMEGA.user );
+			var user = response.data;
+			resolve( user );
 		} );
 		ajaxRequest.fail( function ( jqXHR, textStatus, e ) {
 			var statusCode = -1;

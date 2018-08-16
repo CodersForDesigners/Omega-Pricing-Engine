@@ -584,7 +584,8 @@
 <?php if ( $page != 'quote' and $userIsLoggedIn ) : ?>
 
 	getUser( isUserLoggedIn() )
-		.then( function () {
+		.then( function ( user ) {
+			__OMEGA.user = user;
 			// Pre-fill the Enquiry Form with the user's phone number
 			$( ".js_enquiry_form" ).find( "[ name = 'phone' ]" ).val( __OMEGA.user.phoneNumber );
 		} )
