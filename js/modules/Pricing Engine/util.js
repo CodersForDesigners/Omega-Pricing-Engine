@@ -256,10 +256,13 @@ function computeUnitData ( parameters ) {
  * This function returns the computed values from the spreadsheet
  *
  */
-function getComputedUnitData () {
+function getComputedUnitData ( options ) {
+
+	options = options || { };
+	var outputSheetName = options.forPrint ? "Output (PDF)" : "Output";
 
 	// Pull the computed values
-	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output" ], { raw: true } );
+	var points = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ outputSheetName ], { raw: true } );
 	var userRole = __OMEGA.user && __OMEGA.user.role;
 	if ( userRole ) {
 		var executivesPoints = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Output (" + userRole + ")" ], { raw: true } );
