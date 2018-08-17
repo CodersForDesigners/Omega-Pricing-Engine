@@ -205,6 +205,8 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	Loginner.prompts[ loginPrompt ].onPhoneSend.call( domForm );
 	getUser( phoneNumber, { by: "phoneNumber" } )
 		.then( function ( user ) {
+			// Store the user on the side
+			__OMEGA.user = user;
 			// If the user exists, log the user in
 			loginUser( user );
 			// Then, close the login prompt
