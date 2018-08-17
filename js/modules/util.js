@@ -250,10 +250,21 @@ function countToAmount ( $el, amount ) {
 
 }
 
+/*
+ *
+ *
+ * Get the current time and date stamp
+ *	in Indian Standard Time
+ *
+ *	reference
+ *		https://stackoverflow.com/questions/22134726/get-ist-time-in-javascript
+ *
+ */
 function getDateAndTimeStamp ( options ) {
 
 	options = options || { };
-	var dateObject = new Date();
+	var ISTOffset = 330 * 60 * 1000;
+	var dateObject = new Date( ( new Date() ).getTime() + ISTOffset );
 
 	// Date components
 		// Year
