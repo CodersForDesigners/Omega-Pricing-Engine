@@ -334,7 +334,7 @@
 									<div class="form-item columns small-12 medium-6">
 										<label>
 											<span class="label invisible">Submit</span>
-											<button class="block button primary" type="submit">Download PDF</button>
+											<button class="block button primary" type="submit" data-init="Download PDF" data-post="Enquiry sent">Download PDF</button>
 										</label>
 									</div>
 								</form>

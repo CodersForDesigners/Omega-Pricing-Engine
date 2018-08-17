@@ -1,4 +1,52 @@
 
+// Store references to places in the DOM
+$( function () {
+
+	window.__UI = window.__UI || { };
+
+	// Quote Widget
+	__UI.$enquiryForm = $( ".js_enquiry_form" );
+	__UI.$makeEnquiryButton = __UI.$enquiryForm.find( "[ type = 'submit' ]" );
+
+} );
+
+
+
+
+
+
+/*
+ *
+ * When a unit is viewed,
+ *	Issue a request to enable the quote form
+ *
+ */
+$( document ).on( "unit/view/done", function () {
+
+	$( document ).trigger( "enquiry-form/enable" );
+
+} );
+
+
+
+/*
+ *
+ * When the enquiry form is to enabled,
+ *	enable it only if all the conditions are met
+ *
+ */
+$( document ).on( "enquiry-form/enable", function () {
+
+	__UI.$makeEnquiryButton.prop( "disabled", false );
+	__UI.$makeEnquiryButton.text( function () { return $( this ).data( "init" ) } );
+	__UI.$enquiryForm.find( "input, select, button" ).prop( "disabled", false );
+	// Make sure to disable the phone field
+	__UI.$enquiryForm.find( "[ name = 'phone' ]" ).prop( "disabled", true );
+
+} );
+
+
+
 /*
  *
  * On submitting the action form ( i.e. user details )
@@ -19,8 +67,6 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 	 * Disable the form
 	 ----- */
 	$form.find( "input, select, button" ).prop( "disabled", true );
-	var initialTextOnSubmitButton = $form.find( "[ type = submit ]" ).text();
-	$form.find( "[ type = submit ]" ).text( "Processing" );
 
 	/* -----
 	 * Pull the data from the form
@@ -135,12 +181,8 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 				level: "info",
 				context: "Enquiry Form"
 			} );
-			/* -----
-			 * Re-enable the form
-			 ----- */
-			$form.find( "[ type = submit ]" ).text( initialTextOnSubmitButton );
-			$form.find( "input, select, button" ).prop( "disabled", false );
-			$form.find( "[ name = 'phone' ]" ).prop( "disabled", true );
+
+			__UI.$makeEnquiryButton.text( function () { return $( this ).data( "post" ) } );
 		} )
 		.catch( function ( e ) {
 			console.log( e.message );
