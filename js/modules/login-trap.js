@@ -68,14 +68,6 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 			context: "Login Prompt"
 		} );
 
-		// Pre-fill the Enquiry Form with the user's phone number
-		$( ".js_enquiry_form" )
-			.find( "[ name = 'phone' ]" ).val( user.phoneNumber )
-			.end()
-			.find( "[ name = 'email' ]" ).val( user.email );
-		if ( ! user.name.startsWith( userImplicitNamePrefix ) )
-			$( ".js_enquiry_form" ).find( "[ name = 'name' ]" ).val( user.name );
-
 	},
 	onRetry: function ( domForm ) {
 		$( domForm ).find( "input, select, button" ).prop( "disabled", false );
@@ -167,14 +159,6 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 			level: "info",
 			context: "Login Prompt"
 		} );
-
-		// Pre-fill the Enquiry Form with the user's phone number
-		$( ".js_enquiry_form" )
-			.find( "[ name = 'phone' ]" ).val( user.phoneNumber )
-			.end()
-			.find( "[ name = 'email' ]" ).val( user.email );
-		if ( ! user.name.startsWith( userImplicitNamePrefix ) )
-			$( ".js_enquiry_form" ).find( "[ name = 'name' ]" ).val( user.name );
 
 	}
 } );
