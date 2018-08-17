@@ -30,6 +30,10 @@ $( document ).on( "unit/view", function ( event, data ) {
 			Name: user.name,
 			Email: user.email
 		} );
+		for ( var _k in user ) {
+			if ( _k.startsWith( "_ " ) )
+				inputParameters[ _k.replace( "_ ", "" ) ] = user[ _k ];
+		}
 		// inputParameters[ "Timestamp" ] = +( new Date() );
 		inputParameters[ "Timestamp" ] = getDateAndTimeStamp();
 
