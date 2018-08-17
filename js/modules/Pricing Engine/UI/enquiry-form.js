@@ -124,7 +124,7 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 			inputParameters[ "Timestamp" ] = enquiry.timestamp;
 			// Run the computations through the pricing engine
 			computeUnitData( inputParameters );
-			return getComputedUnitData();
+			return getComputedUnitDataForPrint();
 		} )
 		.then( function ( points ) {
 			enquiry.pdf = points;
