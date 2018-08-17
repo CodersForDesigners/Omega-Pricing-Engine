@@ -203,7 +203,7 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	 ----- */
 	// Authenticate the user
 	Loginner.prompts[ loginPrompt ].onPhoneSend.call( domForm );
-	authenticateUserPhone( phoneNumber )
+	getUser( phoneNumber, { by: "phoneNumber" } )
 		.then( function ( user ) {
 			// If the user exists, log the user in
 			loginUser( user );
@@ -234,42 +234,6 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 		} );
 
 } );
-
-
-function authenticateUserPhone ( phoneNumber ) {
-
-	var apiEndpoint = __OMEGA.settings.apiEndpoint;
-
-	var ajaxRequest = $.ajax( {
-		url: apiEndpoint + "/users?phoneNumber=" + phoneNumber,
-		method: "GET",
-		dataType: "json"
-	} );
-
-	return new Promise( function ( resolve, reject ) {
-
-		ajaxRequest.done( function ( response ) {
-			resolve( response.data );
-		} );
-		ajaxRequest.fail( function ( jqXHR, textStatus, e ) {
-			var statusCode = -1;
-			var message;
-			if ( jqXHR.responseJSON ) {
-				statusCode = jqXHR.responseJSON.statusCode;
-				message = jqXHR.responseJSON.message;
-			}
-			else if ( typeof e == "object" ) {
-				message = e.stack;
-			}
-			else {
-				message = jqXHR.responseText;
-			}
-			reject( { code: statusCode, message: message } );
-		} );
-
-	} );
-
-};
 
 
 
