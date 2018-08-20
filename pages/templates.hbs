@@ -104,12 +104,19 @@
 
 		{{else if (is Content "Image")}}
 
+			{{!-- Zoom the image on hover --}}
+			<style type="text/css">
+				.zoom-on-hover-{{@index}}:hover {
+					transform: scale( {{this.[Scale Factor] }} );
+				}
+			</style>
+
 			<div class="
 					{{#unless (is Layout "Full-width")}}
 						image-row
 					{{/unless}}
 			">
-				<div class="image block" style="background-image: url( 'account/media/{{ Background }}' );">
+				<div class="image block zoom-on-hover-{{@index}}" style="background-image: url( 'account/media/{{ Background }}' );">
 					{{#if Foreground }}
 						<img class="block" src="account/media/{{ Foreground }}">
 					{{/if}}
