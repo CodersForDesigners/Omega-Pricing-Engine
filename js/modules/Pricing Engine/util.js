@@ -261,6 +261,8 @@ function computeUnitData () {
 
 	// Trigger a re-calculation on the spreadsheet
 	XLSX_CALC( workbook );
+		// Once more, for Safari
+	XLSX_CALC( workbook );
 
 	return workbook;
 
