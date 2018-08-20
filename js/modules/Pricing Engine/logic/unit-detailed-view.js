@@ -3,7 +3,7 @@
  *
  * When a unit is to be viewed,
  * 	1. Render stub UIs for the Unit Detailed View and EMI Calculator
- * 	2. Gather all the required input data.
+ * 	2. Save the user input data on the side.
  * 	3. Run the computations through the pricing engine.
  * 	4. Store the grand total value on the global state.
  * 	5. Render the Unit Details UI.
@@ -19,33 +19,20 @@ $( document ).on( "unit/view", function ( event, data ) {
 
 	waitFor( 0 ).then( function () {
 
+		// 2. Save the user input data on the side.
 		var newUnitData = data.unitData;
-
-		// 2. Gather all the required input data
-			// Save the user input data on the side
 		__OMEGA.userInput.unitData = Object.assign( __OMEGA.userInput.unitData, newUnitData );
-		var user = __OMEGA.user;
-		var inputParameters = Object.assign( { }, __OMEGA.userInput.unitData, {
-			Phone: user.phoneNumber,
-			Name: user.name,
-			Email: user.email
-		} );
-		for ( var _k in user ) {
-			if ( _k.startsWith( "_ " ) )
-				inputParameters[ _k.replace( "_ ", "" ) ] = user[ _k ];
-		}
-		// inputParameters[ "Timestamp" ] = +( new Date() );
-		inputParameters[ "Timestamp" ] = getDateAndTimeStamp();
 
 		// 3. Run the computations through the pricing engine
-		computeUnitData( inputParameters );
+		computeUnitData();
 		var points = getComputedUnitData();
 
 		// Filter out the modifications that aren't applicable for the unit
 		// 	and set the unit-specific values for them ( if present )
 		var modifications = __OMEGA.modifications;
+		var selectedUnitNumber = __OMEGA.userInput.unitData.Unit;
 		var selectedUnit = __OMEGA.units.find( function ( unit ) {
-			return unit.Unit == inputParameters.Unit;
+			return unit.Unit == selectedUnitNumber;
 		} );
 		points = points
 			.filter( function ( point ) {
@@ -76,7 +63,7 @@ $( document ).on( "unit/view", function ( event, data ) {
 
 		// 5. Render the Unit Details UI
 		var eventData = {
-			unitNumber: inputParameters.Unit,
+			unitNumber: selectedUnitNumber,
 			points: points
 		};
 		// If something other than the unit number changed,

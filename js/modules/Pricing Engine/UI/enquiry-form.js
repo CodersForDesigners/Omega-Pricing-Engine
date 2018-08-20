@@ -166,21 +166,14 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 		.catch( function ( e ) {
 			alert( e.message )
 		} )
-		// Then, make the enquiry
+		// Then, Run the computations through the pricing engine
 		.then( function () {
-			var user = __OMEGA.user;
-			var inputParameters = Object.assign( { }, __OMEGA.userInput.unitData, {
-				Phone: user.phoneNumber,
-				Name: user.name,
-				Email: user.email
-			} );
-			enquiry.timestamp = getDateAndTimeStamp();
-			inputParameters[ "Timestamp" ] = enquiry.timestamp;
-			// Run the computations through the pricing engine
-			computeUnitData( inputParameters );
+			computeUnitData();
 			return getComputedUnitDataForPrint();
 		} )
+		// Finally, make the enquiry
 		.then( function ( points ) {
+			enquiry.timestamp = getDateAndTimeStamp();
 			enquiry.pdf = points;
 			return makeAnEnquiry( enquiry );
 		} )

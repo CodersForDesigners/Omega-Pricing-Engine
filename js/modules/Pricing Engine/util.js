@@ -230,16 +230,30 @@ function getModification ( event ) {
  *	- performs a re-calculation
  *
  */
-function computeUnitData ( parameters ) {
+function computeUnitData () {
 
+	// 1. Gather all the required input data
+	var user = __OMEGA.user;
+	var inputParameters = Object.assign( { }, __OMEGA.userInput.unitData, {
+		Phone: user.phoneNumber,
+		Name: user.name,
+		Email: user.email
+	} );
+	for ( var _k in user ) {
+		if ( _k.startsWith( "_ " ) )
+			inputParameters[ _k.replace( "_ ", "" ) ] = user[ _k ];
+	}
+	inputParameters[ "Timestamp" ] = getDateAndTimeStamp();
+
+	// 2. Set the input data to the `Input` sheet
 	var workbook = __OMEGA.workbook;
 	var inputSheet = workbook.Sheets[ "Input" ];
-	var unit = parameters.Unit;
+	var unit = __OMEGA.userInput.unitData.Unit;
 
 	// Get input sheet structure
 	var inputFields = XLSX.utils.sheet_to_json( inputSheet, { raw: true } );
 	var inputDataStructure = inputFields.map( function ( field ) {
-		return [ parameters[ field.Field ] || "" ];
+		return [ inputParameters[ field.Field ] || "" ];
 	} );
 
 	// Inject the input into the input sheet
