@@ -45,4 +45,9 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	// Set the privacy disclaimers
 	$( ".js_privacy_disclaimer" ).text( __OMEGA.settings[ "Privacy Disclaimer" ] );
 
+	// Plonk in arbitrary markup in pre-designated spots
+	$( "head" ).append( __OMEGA.settings[ "Before Closing Head Tag" ] );
+	$( "body" ).prepend( __OMEGA.settings[ "After Opening Body Tag" ] );
+	$( "body" ).append( __OMEGA.settings[ "Before Closing Body Tag" ] );
+
 } );
