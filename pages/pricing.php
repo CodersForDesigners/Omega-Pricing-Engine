@@ -446,15 +446,15 @@
 					<div class="detail-row clearfix">
 						<hr class="dashed">
 					</div>
-					<div class="detail-row clearfix">
+					<div class="detail-row clearfix hidden">
 						<div class="title label regular text-neutral float-left">Loan Amount</div>
 						<div class="value label regular text-neutral float-right js_principal_amount"></div>
 					</div>
-					<div class="detail-row clearfix">
+					<div class="detail-row clearfix hidden">
 						<div class="title label regular text-neutral float-left">Interest Amount</div>
 						<div class="value label regular text-neutral float-right js_interest_amount"></div>
 					</div>
-					<div class="detail-row clearfix">
+					<div class="detail-row clearfix hidden">
 						<div class="title label regular text-light float-left">Total Amount Payable</div>
 						<div class="value label regular text-light float-right js_total_amount_payable"></div>
 					</div>
