@@ -143,10 +143,14 @@ $( document ).on( "unit-details/render", function ( event, data ) {
 	// And last but not the least, scroll down to the Unit Details
 	if ( data.context != "modification" ) {
 		setTimeout( function () {
-			window.scrollTo( {
-				top: __UI.$unitDetailsSection.offset().top - 10,
-				behavior: "smooth"
-			} );
+			var offsetPosition = __UI.$unitDetailsSection.offset().top - 10
+			var scrollTop = window.scrollY || document.body.scrollTop;
+			if ( scrollTop < offsetPosition ) {
+				window.scrollTo( {
+					top: offsetPosition,
+					behavior: "smooth"
+				} );
+			}
 		}, 500 );
 	}
 
