@@ -385,6 +385,10 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 			// Register the user
 			var phoneNumber = __OMEGA.user.phoneNumber;
 			var project = __OMEGA.settings.Project;
+				// Call the `onOTPVerified` hook
+			if ( Loginner.prompts[ loginPrompt ].onOTPVerified )
+				Loginner.prompts[ loginPrompt ].onOTPVerified( context, phoneNumber, project );
+
 			createUser( phoneNumber, context, project )
 				// Then, log in the user
 				.then( function ( user ) {
