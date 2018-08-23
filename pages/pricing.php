@@ -493,7 +493,7 @@
 </script>
 
 <!-- JS Modules -->
-<script type="text/javascript" src="js/modules/util.js"></script>
+<script type="text/javascript" src="js/modules/util.js<?= $ver ?>"></script>
 <?php if ( $page == 'quote' ) : ?>
 	<script type="text/javascript" src="js/modules/Pricing Engine/executive-user.js<?= $ver ?>"></script>
 <?php else : ?>
@@ -503,34 +503,34 @@
 
 <script type="text/javascript" src="plugins/SheetJS/xlsx-core-v0.13.0.min.js"></script>
 <script type="text/javascript" src="plugins/xlsx-calc/xlsx-calc-v0.4.1.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/spreadsheet-formulae.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/spreadsheet-formulae.js<?= $ver ?>"></script>
 <!-- <script type="text/javascript" src="plugins/handlebars/handlebars-v5.0.0a1.min.js"></script> -->
 <script type="text/javascript" src="plugins/handlebars/handlebars-v4.0.11.min.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/util.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/notifications.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-filtration.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-search.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-sort.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-listing.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/util.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/notifications.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-filtration.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-search.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-sort.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-listing.js<?= $ver ?>"></script>
 <script type="text/javascript" src="plugins/slick/slick.min.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-detailed-view.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/emi-calculator.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-detailed-view.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/emi-calculator.js<?= $ver ?>"></script>
 <?php if ( $page != 'quote' ) : ?>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/enquiry-form.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/enquiry-form.js<?= $ver ?>"></script>
 <?php else : ?>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/quote-form.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/quote-form.js<?= $ver ?>"></script>
 <?php endif; ?>
-<script type="text/javascript" src="js/modules/Pricing Engine/logic/main.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/UI/main.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/logic/main.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/main.js<?= $ver ?>"></script>
 <?php if ( ! $singleUnitIsBeingViewed ) : ?>
-<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-listing.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-search.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-sort.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-listing.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-search.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-sort.js<?= $ver ?>"></script>
 <?php endif; ?>
-<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-filters.js"></script>
-<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-detailed-view.js"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-filters.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-detailed-view.js<?= $ver ?>"></script>
 <?php if ( $page != 'quote' ) : ?>
-	<script type="text/javascript" src="js/modules/login-trap.js"></script>
+	<script type="text/javascript" src="js/modules/login-trap.js<?= $ver ?>"></script>
 <?php endif; ?>
 
 <script type="text/javascript">
