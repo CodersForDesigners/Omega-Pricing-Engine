@@ -139,6 +139,10 @@
 		return result;
 	};
 
+	formulae.NE = function ( operand1, operand2 ) {
+		return operand1 != operand2;
+	};
+
 	formulae.CONCATENATE = function () {
 		var args = utils.flatten( arguments );
 
