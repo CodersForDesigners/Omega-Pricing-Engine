@@ -50,6 +50,11 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 		$( this ).find( "[ type = submit ]" ).text( "Send" );
 		$( this ).find( "input, select, button" ).prop( "disabled", false );
 	},
+	onOTPVerified: function ( context, phoneNumber ) {
+		var url = location.origin.replace( /\/$/, "" ) + "/trac/" + __OMEGA.settings.projectBaseURL;
+		var name = "user/new/" + context.toLowerCase().replace( /[\s|]+/g, "-" );
+		openPage( url, name, { closeOnLoad: true } );
+	},
 	onLogin: function ( user ) {
 
 		// Hide the login form
@@ -138,6 +143,11 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 			context: "Login Prompt"
 		} );
 		$( this ).find( "[ type = submit ]" ).text( "Send" );
+	},
+	onOTPVerified: function ( context, phoneNumber ) {
+		var url = location.origin.replace( /\/$/, "" ) + "/trac/" + __OMEGA.settings.projectBaseURL;
+		var name = "user/new/" + context.toLowerCase().replace( /[\s|]+/g, "-" );
+		openPage( url, name, { closeOnLoad: true } );
 	},
 	onLogin: function ( user ) {
 
