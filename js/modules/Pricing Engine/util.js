@@ -233,15 +233,18 @@ function getModification ( event ) {
 function computeUnitData () {
 
 	// 1. Gather all the required input data
-	var user = __OMEGA.user;
+		// the customer is stored in the `customer` field on the Quote page
+		// 	and the `user` field on the Pricing page
+	var customer = __OMEGA.customer || __OMEGA.user;
 	var inputParameters = Object.assign( { }, __OMEGA.userInput.unitData, {
-		Phone: user.phoneNumber,
-		Name: user.name,
-		Email: user.email
+		Phone: customer.phoneNumber,
+		Name: customer.name,
+		Email: customer.email
 	} );
-	for ( var _k in user ) {
+	inputParameters[ "User ID" ] = customer.uid || "";
+	for ( var _k in customer ) {
 		if ( _k.startsWith( "_ " ) )
-			inputParameters[ _k.replace( "_ ", "" ) ] = user[ _k ];
+			inputParameters[ _k.replace( "_ ", "" ) ] = customer[ _k ];
 	}
 	inputParameters[ "Timestamp" ] = getDateAndTimeStamp();
 

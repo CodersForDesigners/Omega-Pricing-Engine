@@ -188,6 +188,9 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 	var crm = getDataFromSheet( __OMEGA.workbook.Sheets[ "Output (CRM)" ] );
 	// var mail = getDataFromSheet( __OMEGA.workbook.Sheets[ "Output (Mail)" ] );
 
+	// Re-compute the data, taking into account the prospect's details
+	computeUnitData();
+
 	var quote = {
 		timestamp: getDateAndTimeStamp(),
 		meta: meta,
