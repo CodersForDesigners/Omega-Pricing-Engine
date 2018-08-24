@@ -496,11 +496,13 @@ function createUser ( phoneNumber, context, project ) {
 
 	// Build the payload
 	var userImplicitNamePrefix = __OMEGA.settings.userImplicitNamePrefix;
+	var assignmentRuleId = __OMEGA.settings.assignmentRuleId;
 	var requestPayload = {
 		phoneNumber: phoneNumber,
 		firstName: userImplicitNamePrefix + " " + context,
 		lastName: timestamp,
-		project: project
+		project: project,
+		assignmentRuleId: assignmentRuleId
 	};
 
 	// Fetch the lead based on the phone number

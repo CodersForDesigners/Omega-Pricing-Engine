@@ -32,6 +32,7 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	__OMEGA.settings.OTPTemplate = __OMEGA.settings[ "OTP Template" ];
 	__OMEGA.settings.userImplicitNamePrefix = __OMEGA.settings[ "User Implicit Name Prefix" ];
 	__OMEGA.settings.projectBaseURL = __OMEGA.settings[ "Project Name Base URL" ] || "";
+	__OMEGA.settings.assignmentRuleId = __OMEGA.settings[ "Zoho Assignment Rule" ] || "";
 
 	// Contextualize the API endpoint based on the environment
 	if ( ! __envProduction ) {
