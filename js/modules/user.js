@@ -41,11 +41,10 @@ function getUser ( identifyingAttribute, options ) {
 		return;
 	}
 
-	var apiEndpoint = __OMEGA.settings.apiEndpoint;
-
 	options = options || { };
 	options.by = options.by || 'id';
 
+	var apiEndpoint = __OMEGA.settings.apiEndpoint;
 	var ajaxRequest = $.ajax( {
 		url: apiEndpoint + "/users?" + options.by + "=" + identifyingAttribute,
 		method: "GET",
@@ -210,7 +209,7 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 			// If the user exists, log the user in
 			loginUser( user );
 			// Then, close the login prompt
-			Loginner.prompts[ loginPrompt ].onLogin( user );
+			Loginner.prompts[ loginPrompt ].onLogin.call( domForm, user );
 		} )
 		.catch( function ( { code, message } ) {
 			// If no user was found, send an OTP
@@ -395,7 +394,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 					// Log the user in
 					loginUser( user );
 					// Then, close the login prompt
-					Loginner.prompts[ loginPrompt ].onLogin( user );
+					Loginner.prompts[ loginPrompt ].onLogin.call( domForm, user );
 				} )
 				.catch( function ( { code, message } ) {
 					if ( code == 1 ) {
