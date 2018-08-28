@@ -13,7 +13,7 @@ $( function () {
 	// Unit Search
 	__UI.$unitClassification = $( ".js_unit_classification" );
 
-	__UI.$unitFilters = $( ".js_selected_unit_filters" );
+	__UI.$selectedUnitFilters = $( ".js_selected_unit_filters" );
 
 } );
 
@@ -151,7 +151,7 @@ $( document ).on( "unit-filter/remove", function ( event, filter ) {
 function addFilterBubble ( filter ) {
 
 	var bubbleMarkup = __UI.templates.unitFiltrationTags( filter );
-	__UI.$unitFilters.append( bubbleMarkup );
+	__UI.$selectedUnitFilters.append( bubbleMarkup );
 
 }
 
@@ -162,7 +162,7 @@ function addFilterBubble ( filter ) {
  */
 function removeFilterBubble ( filter ) {
 
-	var $filterBubble = __UI.$unitFilters.find( ".js_unit_filter" ).filter( function ( _i, el ) {
+	var $filterBubble = __UI.$selectedUnitFilters.find( ".js_unit_filter" ).filter( function ( _i, el ) {
 		var $el = $( el );
 		return (
 			$el.data( "taxonomy" ) == filter.taxonomy
@@ -174,8 +174,8 @@ function removeFilterBubble ( filter ) {
 	// If there are **no** selected filters, clear the container element regardless.
 	// This is so the CSS for when the container is empty will kick in.
 	// By default, there is an HTML comment in it.
-	if ( ! __UI.$unitFilters.children().length ) {
-		__UI.$unitFilters.empty()
+	if ( ! __UI.$selectedUnitFilters.children().length ) {
+		__UI.$selectedUnitFilters.empty()
 	}
 
 }
