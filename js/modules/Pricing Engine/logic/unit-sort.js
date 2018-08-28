@@ -13,19 +13,15 @@ $( document ).on( "units/sort", function ( event, data ) {
 	// Render a stub Unit listing in the meantime
 	$( document ).trigger( "unit-listing/render", { context: "sort" } );
 
-	waitFor( 1 ).then( function () {
+	var sortedUnits = __OMEGA.unitsInListing.sort( function ( a, b ) {
+		return a[ sortingBasis ] - b[ sortingBasis ];
+	} );
 
-		var sortedUnits = __OMEGA.unitsInListing.sort( function ( a, b ) {
-			return a[ sortingBasis ] - b[ sortingBasis ];
-		} );
+	__OMEGA.unitsInListing = sortedUnits;
 
-		__OMEGA.unitsInListing = sortedUnits;
-
-		$( document ).trigger( "unit-listing/render", {
-			context: "sort",
-			units: sortedUnits
-		} );
-
+	$( document ).trigger( "unit-listing/render", {
+		context: "sort",
+		units: sortedUnits
 	} );
 
 } );

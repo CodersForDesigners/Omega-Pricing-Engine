@@ -30,28 +30,24 @@ $( document ).on( "unit-filter/add", function ( event, filterAdded ) {
 		filters: __OMEGA.unitFiltersSelected
 	} );
 
-	waitFor( 1 ).then( function () {
-
-		// // 4. Re-render the unit listing
-		// var filtersByTaxonomy = __UTIL.groupListBy( __OMEGA.unitFiltersSelected, "taxonomy" );
-		// var filteredUnits = __OMEGA.units;
-		// for ( var taxonomy in filtersByTaxonomy ) {
-		// 	filteredUnits = filterByAnyCriteria( filteredUnits, filtersByTaxonomy[ taxonomy ] );
-		// }
-		// var sortingBasis = __OMEGA.unitSortingBasis;
-		// if ( sortingBasis ) {
-		// 	filteredUnits = filteredUnits.sort( function ( a, b ) {
-		// 		return a[ sortingBasis ] - b[ sortingBasis ];
-		// 	} );
-		// }
-		// __OMEGA.unitsInListing = filteredUnits;
-		// $( document ).trigger( "unit-listing/render", {
-		// 	context: "filtration",
-		// 	units: filteredUnits
-		// } );
-		$( document ).trigger( "unit-listing/build", { context: "filtration" } );
-
-	} );
+	// // 4. Re-render the unit listing
+	// var filtersByTaxonomy = __UTIL.groupListBy( __OMEGA.unitFiltersSelected, "taxonomy" );
+	// var filteredUnits = __OMEGA.units;
+	// for ( var taxonomy in filtersByTaxonomy ) {
+	// 	filteredUnits = filterByAnyCriteria( filteredUnits, filtersByTaxonomy[ taxonomy ] );
+	// }
+	// var sortingBasis = __OMEGA.unitSortingBasis;
+	// if ( sortingBasis ) {
+	// 	filteredUnits = filteredUnits.sort( function ( a, b ) {
+	// 		return a[ sortingBasis ] - b[ sortingBasis ];
+	// 	} );
+	// }
+	// __OMEGA.unitsInListing = filteredUnits;
+	// $( document ).trigger( "unit-listing/render", {
+	// 	context: "filtration",
+	// 	units: filteredUnits
+	// } );
+	$( document ).trigger( "unit-listing/build", { context: "filtration" } );
 
 } );
 
@@ -92,27 +88,23 @@ $( document ).on( "unit-filter/remove", function ( event, filter ) {
 		filters: __OMEGA.unitFiltersSelected
 	} );
 
-	waitFor( 1 ).then( function () {
-
-		// // 4. Re-render the unit listing
-		// var filtersByTaxonomy = __UTIL.groupListBy( __OMEGA.unitFiltersSelected, "taxonomy" );
-		// var filteredUnits = __OMEGA.units;
-		// for ( var taxonomy in filtersByTaxonomy ) {
-		// 	filteredUnits = filterByAnyCriteria( filteredUnits, filtersByTaxonomy[ taxonomy ] );
-		// }
-		// var sortingBasis = __OMEGA.unitSortingBasis;
-		// if ( sortingBasis ) {
-		// 	filteredUnits = filteredUnits.sort( function ( a, b ) {
-		// 		return a[ sortingBasis ] - b[ sortingBasis ]
-		// 	} );
-		// }
-		// __OMEGA.unitsInListing = filteredUnits;
-		// $( document ).trigger( "unit-listing/render", {
-		// 	context: "filtration",
-		// 	units: filteredUnits
-		// } );
-		$( document ).trigger( "unit-listing/build", { context: "filtration" } );
-
-	} );
+	// // 4. Re-render the unit listing
+	// var filtersByTaxonomy = __UTIL.groupListBy( __OMEGA.unitFiltersSelected, "taxonomy" );
+	// var filteredUnits = __OMEGA.units;
+	// for ( var taxonomy in filtersByTaxonomy ) {
+	// 	filteredUnits = filterByAnyCriteria( filteredUnits, filtersByTaxonomy[ taxonomy ] );
+	// }
+	// var sortingBasis = __OMEGA.unitSortingBasis;
+	// if ( sortingBasis ) {
+	// 	filteredUnits = filteredUnits.sort( function ( a, b ) {
+	// 		return a[ sortingBasis ] - b[ sortingBasis ]
+	// 	} );
+	// }
+	// __OMEGA.unitsInListing = filteredUnits;
+	// $( document ).trigger( "unit-listing/render", {
+	// 	context: "filtration",
+	// 	units: filteredUnits
+	// } );
+	$( document ).trigger( "unit-listing/build", { context: "filtration" } );
 
 } );

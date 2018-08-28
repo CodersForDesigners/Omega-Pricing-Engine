@@ -210,33 +210,29 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
  */
 $( document ).on( "pricing-engine/render", function () {
 
-	waitFor( 1.5 ).then( function () {
-
-		// Render the unit filtration widget
-		$( document ).trigger( "unit-filtration/render", {
-			taxonomies: __OMEGA.taxonomies,
-			filters: __OMEGA.unitFiltersSelected
-		} );
-
-		// Render the units
-		var filtersByTaxonomy = __UTIL.groupListBy( __OMEGA.unitFiltersSelected, "taxonomy" );
-		var filteredUnits = __OMEGA.units;
-		for ( var taxonomy in filtersByTaxonomy ) {
-			filteredUnits = filterByAnyCriteria( filteredUnits, filtersByTaxonomy[ taxonomy ] );
-		}
-		__OMEGA.unitsInListing = filteredUnits;
-		$( document ).trigger( "unit-listing/render", { units: filteredUnits } );
-
-		// Unhide all the sections of the pricing engine
-		$( ".js_unit_classification" ).removeClass( "hidden" );
-		$( ".js_unit_filter_bubbles" ).removeClass( "hidden" );
-		$( ".js_unit_search" ).removeClass( "hidden" );
-		$( ".js_unit_sort_section" ).removeClass( "hidden" );
-		$( ".js_unit_listing_section" ).removeClass( "hidden" );
-
-		$( ".js_pricing_engine_content" ).removeClass( "hidden" );
-		$( ".js_pricing_engine_loading_stub" ).addClass( "hidden" );
-
+	// Render the unit filtration widget
+	$( document ).trigger( "unit-filtration/render", {
+		taxonomies: __OMEGA.taxonomies,
+		filters: __OMEGA.unitFiltersSelected
 	} );
+
+	// Render the units
+	var filtersByTaxonomy = __UTIL.groupListBy( __OMEGA.unitFiltersSelected, "taxonomy" );
+	var filteredUnits = __OMEGA.units;
+	for ( var taxonomy in filtersByTaxonomy ) {
+		filteredUnits = filterByAnyCriteria( filteredUnits, filtersByTaxonomy[ taxonomy ] );
+	}
+	__OMEGA.unitsInListing = filteredUnits;
+	$( document ).trigger( "unit-listing/render", { units: filteredUnits } );
+
+	// Unhide all the sections of the pricing engine
+	$( ".js_unit_classification" ).removeClass( "hidden" );
+	$( ".js_unit_filter_bubbles" ).removeClass( "hidden" );
+	$( ".js_unit_search" ).removeClass( "hidden" );
+	$( ".js_unit_sort_section" ).removeClass( "hidden" );
+	$( ".js_unit_listing_section" ).removeClass( "hidden" );
+
+	$( ".js_pricing_engine_content" ).removeClass( "hidden" );
+	$( ".js_pricing_engine_loading_stub" ).addClass( "hidden" );
 
 } );
