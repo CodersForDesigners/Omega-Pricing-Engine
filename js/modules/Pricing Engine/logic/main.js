@@ -70,7 +70,8 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 				type: type.Name,
 				description: type.Description,
 				attribute: type.Attribute,
-				comparison: type.Comparison
+				comparison: type.Comparison,
+				default: type.Default,
 			};
 			if ( type.Comparison == "is between" ) {
 				t.value = type.Value.split( /\s+and\s+/ ).map( function ( v ) {
@@ -84,6 +85,9 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 		} );
 	} ).reduce( function ( acc, el ) { return acc.concat( el ) }, [] );
 	__OMEGA.unitFilters = unitFilters;
+
+	// The implicit filter that is set by default, i.e. "Availability"
+	__OMEGA.unitFiltersSelected = [ { taxonomy: "Availability", type: "Available", attribute: "Availability", comparison: "is equal to", value: true } ];
 
 	// Get the modifications for the units
 	var modificationSheetNames = sheetNames.filter( function ( sheet ) {
@@ -234,5 +238,7 @@ $( document ).on( "pricing-engine/render", function () {
 
 	$( ".js_pricing_engine_content" ).removeClass( "hidden" );
 	$( ".js_pricing_engine_loading_stub" ).addClass( "hidden" );
+
+	$( document ).trigger( "pricing-engine/render/after" );
 
 } );

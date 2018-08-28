@@ -108,3 +108,37 @@ $( document ).on( "unit-filter/remove", function ( event, filter ) {
 	$( document ).trigger( "unit-listing/build", { context: "filtration" } );
 
 } );
+
+
+
+/*
+ *
+ * After the pricing engine has done it's initial render,
+ *	set the default filration.
+ *
+ */
+$( document ).on( "pricing-engine/render/after", function () {
+
+	waitFor( 0.1 ).then( function () {
+
+		__OMEGA.unitFiltersSelected = __OMEGA.unitFiltersSelected.concat( __OMEGA.unitFilters.filter( function ( filter ) {
+				return filter.default;
+			} ) );
+
+		// Add the filter bubbles
+		__OMEGA.unitFiltersSelected.slice( 1 ).forEach( function ( filter ) {
+			addFilterBubble( filter );
+		} );
+
+		// Mark the filters as selected
+		$( document ).trigger( "unit-filtration/render/change", {
+			taxonomies: __OMEGA.taxonomies,
+			filters: __OMEGA.unitFiltersSelected
+		} );
+
+		// Actually process the filters
+		$( document ).trigger( "unit-listing/build", { context: "filtration" } );
+
+	} );
+
+} );

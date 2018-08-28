@@ -541,7 +541,6 @@
 	// Further establish global state
 	$( function () {
 		var OMEGA = window.__OMEGA;
-		OMEGA.unitFiltersSelected = [ { taxonomy: "Availability", type: "Available", attribute: "Availability", comparison: "is equal to", value: true } ];
 		OMEGA.unitSortingBasis = "Unit";
 	} );
 	$( document ).on( "pricing-engine/ready", function () {
