@@ -119,7 +119,7 @@ $( document ).on( "unit-filter/remove", function ( event, filter ) {
  */
 $( document ).on( "pricing-engine/render/after", function () {
 
-	waitFor( 0.1 ).then( function () {
+	// waitFor( 0.1 ).then( function () {
 
 		__OMEGA.unitFiltersSelected = __OMEGA.unitFiltersSelected.concat( __OMEGA.unitFilters.filter( function ( filter ) {
 				return filter.default;
@@ -139,6 +139,6 @@ $( document ).on( "pricing-engine/render/after", function () {
 		// Actually process the filters
 		$( document ).trigger( "unit-listing/build", { context: "filtration" } );
 
-	} );
+	// } );
 
 } );

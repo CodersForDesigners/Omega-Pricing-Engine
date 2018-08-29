@@ -89,6 +89,14 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	// The implicit filter that is set by default, i.e. "Availability"
 	__OMEGA.unitFiltersSelected = [ { taxonomy: "Availability", type: "Available", attribute: "Availability", comparison: "is equal to", value: true } ];
 
+	// Get the unit sorting criterias
+	__OMEGA.unitSortingCriteria = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Unit Sorting" ], { raw: true } );
+	var defaultSortingCriterion = __OMEGA.unitSortingCriteria.find( function ( criterion ) { return criterion.Default } );
+	__OMEGA.unitSortOptions = {
+		basis: defaultSortingCriterion.Attribute,
+		direction: defaultSortingCriterion.Direction.toLowerCase()
+	};
+
 	// Get the modifications for the units
 	var modificationSheetNames = sheetNames.filter( function ( sheet ) {
 		return sheet.indexOf( "M. " ) === 0;

@@ -11,6 +11,17 @@
 
 
 
+<!-- Unit Sorting Criteria -->
+<textarea class="js_template" data-name="unitSortingCriteria" style="display: none">
+
+	{{#each criteria }}
+		<option value="{{ @index }}" data-attr="{{ Attribute }}" data-dir="{{ Direction }}" {{#if Default}}selected="true"{{/if}} {{#if Disabled}}disabled{{/if}}>{{ Name }}</option>
+	{{/each}}
+
+</textarea>
+
+
+
 <!-- Unit Filtration section -->
 <textarea class="js_template" data-name="unitFiltration" style="display: none">
 

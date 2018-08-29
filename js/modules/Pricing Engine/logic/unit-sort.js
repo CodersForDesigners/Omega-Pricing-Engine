@@ -6,22 +6,31 @@
  */
 $( document ).on( "units/sort", function ( event, data ) {
 
-	var sortingBasis = data.sortingBasis;
+	var sortingBasis = data.basis;
+	var sortingDirection = data.direction.toLowerCase();
+	var sortedUnits;
+	var unitsInListing = __OMEGA.unitsInListing;
 
-	__OMEGA.unitSortingBasis = sortingBasis;
+	__OMEGA.unitSortOptions = {
+		basis: sortingBasis,
+		direction: sortingDirection
+	}
 
 	// Render a stub Unit listing in the meantime
 	$( document ).trigger( "unit-listing/render", { context: "sort" } );
 
-	var sortedUnits = __OMEGA.unitsInListing.sort( function ( a, b ) {
-		return a[ sortingBasis ] - b[ sortingBasis ];
-	} );
+	if ( sortingDirection == "random" )
+		sortedUnits = _.sampleSize( unitsInListing, unitsInListing.length );
+	else if ( sortingDirection == "descending" )
+		sortedUnits = _.orderBy( unitsInListing, sortingBasis, "desc" );
+	else
+		sortedUnits = _.orderBy( unitsInListing, sortingBasis );
 
 	__OMEGA.unitsInListing = sortedUnits;
 
 	$( document ).trigger( "unit-listing/render", {
 		context: "sort",
-		units: sortedUnits
+		units: __OMEGA.unitsInListing
 	} );
 
 } );

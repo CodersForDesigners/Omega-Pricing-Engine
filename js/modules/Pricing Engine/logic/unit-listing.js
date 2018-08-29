@@ -34,28 +34,16 @@ $( document ).on( "unit-listing/build", function ( event, data ) {
 	}
 
 	// Sort the units based on the "sorting basis"
-	var sortingBasis = __OMEGA.unitSortingBasis;
-	if ( sortingBasis && unitsInListing.length ) {
-		// Depending on the sortingBasis ( whether it's numeric or a string ),
-			// sort accordingly
-		if ( typeof unitsInListing[ 0 ][ sortingBasis ] == "number" ) {
-			unitsInListing = unitsInListing.sort( function ( a, b ) {
-				return a[ sortingBasis ] - b[ sortingBasis ]
-			} );
-		}
-		else {
-			unitsInListing = unitsInListing.sort( function ( a, b ) {
-				var A = a[ sortingBasis ].toLowerCase();
-				var B = b[ sortingBasis ].toLowerCase();
-				if ( A.length != B.length )
-					return A.length - B.length;
-				if ( A < B )
-					return -1;
-				if ( A > B )
-					return 1;
-				return 0;
-			} );
-		}
+	var sortingOptions = __OMEGA.unitSortOptions || { };
+	var sortingBasis = sortingOptions.basis;
+	var sortingDirection = sortingOptions.direction;
+	if ( sortingDirection && unitsInListing.length ) {
+		if ( sortingDirection == "random" )
+			unitsInListing = _.sampleSize( unitsInListing, unitsInListing.length );
+		else if ( sortingDirection == "descending" )
+			unitsInListing = _.orderBy( unitsInListing, sortingBasis, "desc" );
+		else
+			unitsInListing = _.orderBy( unitsInListing, sortingBasis );
 	}
 
 	__OMEGA.unitsInListing = unitsInListing;

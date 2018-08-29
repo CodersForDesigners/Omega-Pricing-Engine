@@ -50,4 +50,10 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	$( "body" ).prepend( __OMEGA.settings[ "After Opening Body Tag" ] );
 	$( "body" ).append( __OMEGA.settings[ "Before Closing Body Tag" ] );
 
+	// Set up all the sorting criteria
+	var unitSortingMarkup = __UI.templates.unitSortingCriteria( {
+		criteria: __OMEGA.unitSortingCriteria
+	} );
+	$( ".js_sort_by" ).html( unitSortingMarkup );
+
 } );

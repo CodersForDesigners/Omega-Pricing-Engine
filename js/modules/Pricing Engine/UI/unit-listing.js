@@ -122,7 +122,7 @@ $( document ).on( "unit-listing/render", function ( event, data ) {
 	}
 	__UI.$unitListing.html( unitListingMarkup );
 
-	waitFor( 0 ).then( function () {
+	// waitFor( 0.5 ).then( function () {
 
 		__UI.$unitListing.slick( {
 			centerMode: true,
@@ -141,6 +141,6 @@ $( document ).on( "unit-listing/render", function ( event, data ) {
 		__UI.$unitListingSection.find( ".js_content" ).removeClass( "invisible" );
 		__UI.$unitListingSection.removeClass( "loading" );
 
-	} );
+	// } );
 
 } );

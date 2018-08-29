@@ -215,15 +215,7 @@
 					<!-- Unit Order -->
 					<div class="unit-order columns small-12 medium-6 large-5 xlarge-4 js_unit_sort_section hidden">
 						<span class="title label bold text-uppercase text-neutral">Order By :</span>
-						<button class="button js_sort_by selected" data-attr="Unit">Unit</button>
-						<button class="button js_sort_by" data-attr="Basic Price">Price</button>
-						<!-- <select class="select label js_sort_by">
-							<option data-attr="Relevance" data-dir="random">Relevance</option>
-							<option data-attr="Basic Price" data-dir="desc">Price : High to Low</option>
-							<option data-attr="Basic Price" data-dir="asc">Price : Low to High</option>
-							<option data-attr="Unit" data-dir="asc">Unit Number : Ascending</option>
-							<option data-attr="Unit" data-dir="desc">Unit Number : Descending</option>
-						</select> -->
+						<select class="select label js_sort_by"></select>
 					</div>
 
 				</div>
@@ -506,6 +498,7 @@
 <script type="text/javascript" src="js/modules/Pricing Engine/spreadsheet-formulae.js<?= $ver ?>"></script>
 <!-- <script type="text/javascript" src="plugins/handlebars/handlebars-v5.0.0a1.min.js"></script> -->
 <script type="text/javascript" src="plugins/handlebars/handlebars-v4.0.11.min.js"></script>
+<script type="text/javascript" src="plugins/lodash/lodash-v4.17.5.custom.min.js"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/util.js<?= $ver ?>"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/notifications.js<?= $ver ?>"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-filtration.js<?= $ver ?>"></script>
@@ -541,7 +534,6 @@
 	// Further establish global state
 	$( function () {
 		var OMEGA = window.__OMEGA;
-		OMEGA.unitSortingBasis = "Unit";
 	} );
 	$( document ).on( "pricing-engine/ready", function () {
 		$( document ).trigger( "pricing-engine/render" );

@@ -15,18 +15,17 @@ $( function () {
 
 } );
 
-$( document ).on( "click", ".js_sort_by", function ( event ) {
+$( document ).on( "change", ".js_sort_by", function ( event ) {
 
-	var $sortButton = $( event.target ).closest( ".js_sort_by" );
+	var $sortCriteria = $( event.target );
+	var $sortCriterion = $sortCriteria.children().eq( $sortCriteria.val() );
 
-	if ( $sortButton.hasClass( "selected" ) ) {
-		return;
-	}
+	var basis = $sortCriterion.data( "attr" );
+	var direction = $sortCriterion.data( "dir" );
 
-	__UI.$unitSortSection.find( ".js_sort_by" ).removeClass( "selected" );
-	$sortButton.addClass( "selected" );
-	var sortingBasis = $sortButton.data( "attr" );
-
-	$( document ).trigger( "units/sort", { sortingBasis: sortingBasis } );
+	$( document ).trigger( "units/sort", {
+		basis: basis,
+		direction: direction
+	} );
 
 } );
