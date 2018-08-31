@@ -235,12 +235,15 @@ function computeUnitData () {
 	// 1. Gather all the required input data
 		// the customer is stored in the `customer` field on the Quote page
 		// 	and the `user` field on the Pricing page
-	var customer = __OMEGA.customer || __OMEGA.user;
-	var inputParameters = Object.assign( { }, __OMEGA.userInput.unitData, {
-		Phone: customer.phoneNumber,
-		Name: customer.name,
-		Email: customer.email
-	} );
+	var customer = __OMEGA.customer || __OMEGA.user || { };
+	var inputParameters = Object.assign( { }, __OMEGA.userInput.unitData );
+	// Not assuming that this is gonna run **only** when a user is authenticated
+	if ( customer.phoneNumber )
+		inputParameters = Object.assign( inputParameters, {
+			Phone: customer.phoneNumber,
+			Name: customer.name,
+			Email: customer.email
+		} );
 	inputParameters[ "User ID" ] = customer.uid || "";
 	for ( var _k in customer ) {
 		if ( _k.startsWith( "_ " ) )
