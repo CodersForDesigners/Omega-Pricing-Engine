@@ -144,7 +144,7 @@
 								</form>
 							</div>
 						</div>
-						<div class="trap-bg" style="background-image: url( media/pricing/phone-trap-bg.png )"></div>
+						<div class="trap-bg" style="background-image: url( account/media/phone-trap-bg.png )"></div>
 					</div>
 				</div>
 			</div>
@@ -260,7 +260,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="trap-bg" style="background-image: url( media/pricing/phone-trap-bg.png )"></div>
+					<div class="trap-bg" style="background-image: url( account/media/phone-trap-bg.png )"></div>
 					<div class="trap-close h3 fill-dark js_close_unit_listing_login_prompt" tabindex="-1">&times;</div>
 				</div>
 				<!-- END : Phone Trap (Login Prompt) -->
