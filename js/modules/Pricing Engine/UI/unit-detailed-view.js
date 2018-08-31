@@ -140,6 +140,8 @@ $( document ).on( "unit-details/render", function ( event, data ) {
 	__UI.$unitDetailsSection.css( "height", "" );
 	__UI.$unitDetailsSection.removeClass( "loading" );
 
+	$( document ).trigger( "enquiry-form/show" );
+
 	// And last but not the least, scroll down to the Unit Details
 	if ( data.context != "modification" ) {
 		waitFor( 0.5 ).then( function () {

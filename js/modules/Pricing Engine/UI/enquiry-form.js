@@ -4,8 +4,9 @@ $( function () {
 
 	window.__UI = window.__UI || { };
 
-	// Quote Widget
-	__UI.$enquiryForm = $( ".js_enquiry_form" );
+	// Enquiry form Widget
+	__UI.$enquiryFormSection = $( ".js_enquiry_form_section" );
+	__UI.$enquiryForm = __UI.$enquiryFormSection.find( ".js_enquiry_form" );
 	__UI.$makeEnquiryButton = __UI.$enquiryForm.find( "[ type = 'submit' ]" );
 
 } );
@@ -18,12 +19,29 @@ $( function () {
 /*
  *
  * When a unit is viewed,
- *	Issue a request to enable the quote form
+ *	"Show" the quote form ( different from "enable" ) if,
+ *		1. The user is logged in.
+ *
+ */
+$( document ).on( "enquiry-form/show", function () {
+
+	if ( isUserLoggedIn() )
+		__UI.$enquiryFormSection.removeClass( "hidden" );
+
+} );
+
+
+
+/*
+ *
+ * When a unit is viewed,
+ *	Issue a request to enable the quote form **if** the user is logged in
  *
  */
 $( document ).on( "unit/view/done", function () {
 
-	$( document ).trigger( "enquiry-form/enable" );
+	if ( isUserLoggedIn() )
+		$( document ).trigger( "enquiry-form/enable" );
 
 } );
 

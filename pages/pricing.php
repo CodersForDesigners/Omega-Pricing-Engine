@@ -232,7 +232,7 @@
 				<!-- Phone Trap (Login Prompt) -->
 				<div class="phone-trap row js_unit_listing_login_prompt">
 					<div class="trap-content columns small-12 medium-6">
-						<div class="title h3 text-light bold">Get Full Price</div>
+						<div class="title h3 text-light bold">Unlock Full Access</div>
 						<div class="phone js_phone_form_section">
 							<form class="loginner_form_phone">
 								<div class="title h6 text-light block">Enter Mobile Number</div>
@@ -293,7 +293,7 @@
 					<?php if ( $page != 'quote' ) : ?>
 
 						<!-- Standard Enquiry Form -->
-						<div class="standard-enquiry-form">
+						<div class="standard-enquiry-form hidden js_enquiry_form_section">
 							<div class="detail-row clearfix">
 								<div class="title h3 bold text-center">Get Detailed Price</div>
 							</div>
