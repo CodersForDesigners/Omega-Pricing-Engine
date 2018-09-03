@@ -16,6 +16,9 @@
 		value: new Error( "#VALUE!" ),
 		number: new Error( "#NUM!" ),
 	}
+	var daysOfTheWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
+	var monthsOfTheYear = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
+	var dayOrdinals = [ "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "st" ];
 
 	/*
 	 * Utility functions
@@ -38,6 +41,31 @@
 		}
 		if ( ! isNaN( string ) ) {
 			return parseFloat( string );
+		}
+		return errors.value;
+	};
+
+		// January 1st, 1900
+	var date__01_01_1900 = new Date( Date.UTC( 1900, 0, 1 ) );
+	utils.parseDate = function ( date ) {
+		if ( ! isNaN( date ) ) {
+			if ( date instanceof Date ) {
+				return new Date( date );
+			}
+			var d = parseInt( date, 10 );
+			if ( d < 0 ) {
+				return errors.number;
+			}
+			if ( d <= 60 ) {
+				return new Date( date__01_01_1900.getTime() + ( d - 1 ) * 86400000 );
+			}
+			return new Date( date__01_01_1900.getTime() + ( d - 2 ) * 86400000 );
+		}
+		if ( typeof date === 'string' ) {
+			date = new Date( date );
+			if ( ! isNaN( date ) ) {
+				return date;
+			}
 		}
 		return errors.value;
 	};
@@ -112,6 +140,24 @@
 		return result;
 	};
 
+	function dateToString () {
+
+		var dayOfTheWeek = daysOfTheWeek[ this.getDay() ];
+		var month = monthsOfTheYear[ this.getMonth() ];
+		var year = this.getFullYear();
+		var dayOfTheMonth = this.getDate();
+		var dayOfTheMonthOrdinal = dayOrdinals[ dayOfTheMonth ];
+
+		var string = dayOfTheWeek + ", "
+					+ month + " "
+					+ dayOfTheMonth
+					+ dayOfTheMonthOrdinal + ", "
+					+ year;
+
+		return string;
+
+	}
+
 
 
 	/*
@@ -182,6 +228,72 @@
 		}
 		var sign = ( number > 0 ) ? 1 : -1;
 		return sign * ( Math.floor( Math.abs( number ) * Math.pow( 10, digits ) ) ) / Math.pow( 10, digits );
+	};
+
+		/*
+		 * Dates and Times
+		 */
+	formulae.TODAY = function () {
+		return new Date();
+	};
+
+	formulae.YEAR = function ( date ) {
+
+		date = utils.parseDate( date );
+
+		if ( date instanceof Error ) {
+			return date;
+		}
+
+		return date.getFullYear();
+
+	};
+
+	formulae.MONTH = function ( date ) {
+
+		date = utils.parseDate( date );
+
+		if ( date instanceof Error ) {
+			return date;
+		}
+
+		return date.getMonth() + 1;
+
+	}
+
+	formulae.DAY = function ( date ) {
+
+		date = utils.parseDate( date );
+
+		if ( date instanceof Error ) {
+			return date;
+		}
+
+		return date.getDate();
+
+	};
+
+	formulae.DATE = function ( year, month, day ) {
+
+		var result;
+
+		var year = utils.parseNumber( year );
+		var month = utils.parseNumber( month );
+		var day = utils.parseNumber( day );
+
+		if ( utils.anyIsError( year, month, day ) ) {
+			result = errors.value;
+		}
+		else if ( year < 0 || month < 0 || day < 0 ) {
+			result = errors.number;
+		}
+		else {
+			result = new Date( year, month - 1, day );
+			result.toString = dateToString;
+		}
+
+		return result;
+
 	};
 
 	// stub
