@@ -184,7 +184,7 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 	var customer = __OMEGA.customer;
 
 
-	var meta = __OMEGA.settings;
+	var meta = getDataFromSheet( __OMEGA.workbook.Sheets[ "Settings" ] );
 	var crm = getDataFromSheet( __OMEGA.workbook.Sheets[ "Output (CRM)" ] );
 	// var mail = getDataFromSheet( __OMEGA.workbook.Sheets[ "Output (Mail)" ] );
 
