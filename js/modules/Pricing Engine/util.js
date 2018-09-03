@@ -258,7 +258,7 @@ function computeUnitData () {
 
 	// Get input sheet structure
 	var inputFields = XLSX.utils.sheet_to_json( inputSheet, { raw: true } );
-	var inputDataStructure = inputFields.map( function ( field ) {
+	var inputDataStructure = inputFields.slice( 1 ).map( function ( field ) {
 		return [ inputParameters[ field.Field ] || "" ];
 	} );
 
