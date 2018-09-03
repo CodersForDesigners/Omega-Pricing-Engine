@@ -11,7 +11,11 @@
 	/*
 	 * Utility constants
 	 */
-	var error = new Error( '#ERROR!' );
+	var errors = {
+		error: new Error( "#ERROR!" ),
+		value: new Error( "#VALUE!" ),
+		number: new Error( "#NUM!" ),
+	}
 
 	/*
 	 * Utility functions
@@ -30,12 +34,12 @@
 
 	utils.parseNumber = function parseNumber ( string ) {
 		if ( string === undefined || string === "" ) {
-			return error.value;
+			return errors.value;
 		}
 		if ( ! isNaN( string ) ) {
 			return parseFloat( string );
 		}
-		return error.value;
+		return errors.value;
 	};
 
 	utils.argsToArray = function argsToArray ( args ) {
@@ -163,7 +167,7 @@
 		number = utils.parseNumber( number );
 		digits = utils.parseNumber( digits );
 		if ( utils.anyIsError( number, digits ) ) {
-			return error.value;
+			return errors.value;
 		}
 		var sign = ( number > 0 ) ? 1 : -1;
 		return sign * ( Math.ceil( Math.abs( number ) * Math.pow( 10, digits ) ) ) / Math.pow( 10, digits );
@@ -174,7 +178,7 @@
 		if ( digits === void 0 ) digits = 0;
 		digits = utils.parseNumber( digits );
 		if ( utils.anyIsError( number, digits ) ) {
-			return error.value;
+			return errors.value;
 		}
 		var sign = ( number > 0 ) ? 1 : -1;
 		return sign * ( Math.floor( Math.abs( number ) * Math.pow( 10, digits ) ) ) / Math.pow( 10, digits );
