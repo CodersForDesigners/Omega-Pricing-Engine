@@ -374,7 +374,7 @@ function openPage ( baseURL, name, options ) {
 				return;
 			var message = event.originalEvent.data;
 			if ( message.status == "ready" )
-				$iframe.remove();
+				setTimeout( function () { $iframe.remove() }, 27 * 1000 );
 		} );
 	}
 
