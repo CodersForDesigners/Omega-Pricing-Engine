@@ -44,10 +44,18 @@ function getUser ( identifyingAttribute, options ) {
 	options = options || { };
 	options.by = options.by || 'id';
 
+	var project = __OMEGA.settings.Project;
 	var apiEndpoint = __OMEGA.settings.apiEndpoint;
+	var url = apiEndpoint + "/users";
+
+	var data = { }
+	data[ options.by ] = identifyingAttribute;
+	data.project = project;
+
 	var ajaxRequest = $.ajax( {
-		url: apiEndpoint + "/users?" + options.by + "=" + identifyingAttribute,
+		url: url,
 		method: "GET",
+		data: data,
 		dataType: "json"
 	} );
 
