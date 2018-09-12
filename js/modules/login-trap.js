@@ -6,6 +6,10 @@
  */
 Loginner.registerLoginPrompt( "Unit Listing", {
 	onTrigger: function ( event ) {
+		// Set the heading
+		var loginPromptHeading = __OMEGA.settings[ "Login Prompt Heading" ];
+		$( ".js_login_prompt_heading" ).text( loginPromptHeading );
+
 		$( ".js_unit_listing_login_prompt .js_phone_form_section" )
 			.addClass( "show" )
 			.find( "input, button" ).prop( "disabled", false )

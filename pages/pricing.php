@@ -116,7 +116,9 @@
 				<div class="columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2" style="position: relative">
 					<div class="page-phone-trap row js_page_login_prompt show" data-loginner="Individual Unit View" data-context="Pricing Engine | Individual Unit View">
 						<div class="trap-content columns small-12 medium-6">
-							<div class="title h3 text-light bold">See the Full Price for #<?php echo $unit ?></div>
+							<div class="title h3 text-light bold pre-wrap js_login_prompt_heading">
+								<!-- Content will be managed in JavaScript -->
+							</div>
 							<div class="phone show">
 								<form class="loginner_form_phone">
 									<div class="title h6 text-light block">Enter Mobile Number</div>
@@ -232,7 +234,9 @@
 				<!-- Phone Trap (Login Prompt) -->
 				<div class="phone-trap row js_unit_listing_login_prompt">
 					<div class="trap-content columns small-12 medium-6">
-						<div class="title h3 text-light bold">Unlock Full Access</div>
+						<div class="title h3 text-light bold pre-wrap js_login_prompt_heading">
+							<!-- Content will be managed in JavaScript -->
+						</div>
 						<div class="phone js_phone_form_section">
 							<form class="loginner_form_phone">
 								<div class="title h6 text-light block">Enter Mobile Number</div>
