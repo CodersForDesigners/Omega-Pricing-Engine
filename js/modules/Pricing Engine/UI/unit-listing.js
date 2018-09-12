@@ -98,6 +98,7 @@ $( document ).on( "unit-listing/render", function ( event, data ) {
 	}
 
 	var units = data.units;
+	var freePreviews = __OMEGA.settings[ "Free Previews" ] || 0;
 
 	// Plonk in the message that tells how many units were found
 	var numberOfUnitsInListing = units.length;
@@ -114,6 +115,7 @@ $( document ).on( "unit-listing/render", function ( event, data ) {
 	// Build the actual unit listing markup
 	var unitListingMarkup = __UI.templates.unitListing( {
 		units: units,
+		freePreviews: freePreviews,
 		rootPath: location.pathname.replace( /\/$/, "" )
 	} );
 
