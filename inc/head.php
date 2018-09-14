@@ -12,12 +12,12 @@
 	*
 	- -->
 	<!-- Short description of your document's subject -->
-	<meta name="subject" content="your document's subject">
+	<!-- <meta name="subject" content="your document's subject"> -->
 	<!-- Short description of the document (limit to 150 characters) -->
 	<!-- This content *may* be used as a part of search engine results. -->
-	<meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod. Excepteur sint occaecat cupidatat non proident.">
+	<!-- <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod. Excepteur sint occaecat cupidatat non proident."> -->
 	<!-- Key Words -->
-	<meta name="keywords" content="Keyword_A, Keyword_B, Keyword_C, Keyword_D, Keyword_E">
+	<meta name="keywords" content="Pricing, Costs">
 
 
 
@@ -28,12 +28,12 @@
 	- -->
 	<!-- Links to information about the author(s) of the document -->
 	<meta name="author" content="Lazaro Advertising">
-	<link rel="author" href="humans.txt">
+	<!-- <link rel="author" href="humans.txt"> -->
 
 	<!-- Provides information about an author or another person -->
-	<link rel="me" href="https://google.com/profiles/thenextweb" type="text/html">
-	<link rel="me" href="mailto:name@example.com">
-	<link rel="me" href="sms:+15035550125">
+	<link rel="me" href="http://lazaro.in" type="text/html">
+	<link rel="me" href="mailto:sonia@lazaro.in">
+	<!-- <link rel="me" href="sms:+15035550125"> -->
 
 
 
@@ -49,17 +49,10 @@
 		<base href="/"><!-- ( example : http://example.com/page.html ) -->
 	<?php endif; ?>
 	<!-- Links to top level resource in an hierarchical structure -->
-	<link rel="index" href="http://example.com/article/">
+	<!-- <link rel="index" href="http://example.com/article/"> -->
 	<!-- Helps prevent duplicate content issues -->
-	<link rel="canonical" href="https://example.com/">
+	<!-- <link rel="canonical" href="https://example.com/"> -->
 	<!-- Control the behavior of search engine crawling and indexing -->
-	<meta name="robots" content="index,follow"><!-- All Search Engines -->
-	<meta name="googlebot" content="index,follow"><!-- Google Specific -->
-	<!-- Verify website ownership -->
-	<meta name="google-site-verification" content="verification_token"><!-- Google Search Console -->
-	<meta name="alexaVerifyID" content="verification_token"><!-- Alexa Console -->
-	<!-- Links to an AMP HTML version of the current document -->
-	<link rel="amphtml" href="http://example.com/path/to/amp-version.html">
 
 
 
@@ -69,26 +62,26 @@
 	*
 	- -->
 	<!-- Name of web application (only should be used if the website is used as an app) -->
-	<meta name="application-name" content="Application Name">
+	<!-- <meta name="application-name" content="Application Name"> -->
 
 	<!-- Links to a JSON file that specifies "installation" credentials for the web applications -->
-	<link rel="manifest" href="manifest.json">
+	<!-- <link rel="manifest" href="manifest.json"> -->
 
 	<!-- ~ iOS ~ -->
 	<!-- Disable automatic detection and formatting of possible phone numbers -->
-	<meta name="format-detection" content="telephone=no">
+	<!-- <meta name="format-detection" content="telephone=no"> -->
 	<!-- Launch Screen Image -->
-	<link rel="apple-touch-startup-image" href="/path/to/launch.png">
+	<!-- <link rel="apple-touch-startup-image" href="/path/to/launch.png"> -->
 	<!-- Launch Icon Title -->
-	<meta name="apple-mobile-web-app-title" content="App Title">
+	<!-- <meta name="apple-mobile-web-app-title" content="App Title"> -->
 	<!-- Enable standalone (full-screen) mode -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
 	<!-- Status bar appearance (has no effect unless standalone mode is enabled) -->
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<!-- <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
 
 	<!-- ~ Android ~ -->
 	<!-- Add to home screen -->
-	<meta name="mobile-web-app-capable" content="yes">
+	<!-- <meta name="mobile-web-app-capable" content="yes"> -->
 	<!-- More info: https://developer.chrome.com/multidevice/android/installtohomescreen -->
 
 
@@ -99,41 +92,41 @@
 	*
 	- -->
 	<!-- Facebook Open Graph -->
-	<meta property="fb:app_id" content="123456789">
-	<meta property="og:url" content="http://example.com/page.html">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="Content Title">
-	<meta property="og:image" content="http://example.com/image.jpg">
-	<meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod. Excepteur sint occaecat cupidatat non proident.">
-	<meta property="og:site_name" content="Site Name">
-	<meta property="og:locale" content="en_US">
-	<meta property="article:author" content="">
+	<!-- <meta property="fb:app_id" content="123456789"> -->
+	<!-- <meta property="og:url" content="http://example.com/page.html"> -->
+	<!-- <meta property="og:type" content="website"> -->
+	<!-- <meta property="og:title" content="Content Title"> -->
+	<!-- <meta property="og:image" content="http://example.com/image.jpg"> -->
+	<!-- <meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod. Excepteur sint occaecat cupidatat non proident."> -->
+	<!-- <meta property="og:site_name" content="Site Name"> -->
+	<!-- <meta property="og:locale" content="en_US"> -->
+	<!-- <meta property="article:author" content=""> -->
 
 
 
 	<!-- ~ Facebook Instant Article ~ -->
 	<!-- (sample : https://developers.facebook.com/docs/instant-articles/reference) -->
 	<!-- (source : https://developers.facebook.com/docs/instant-articles/guides/articlecreate) -->
-	<meta property="op:markup_version" content="v1.0">
+	<!-- <meta property="op:markup_version" content="v1.0"> -->
 	<!-- The URL of the web version of your article -->
-	<link rel="canonical" href="http://example.com/article.html">
+	<!-- <link rel="canonical" href="http://example.com/article.html"> -->
 	<!-- The style to be used for this article -->
-	<meta property="fb:article_style" content="myarticlestyle">
+	<!-- <meta property="fb:article_style" content="myarticlestyle"> -->
 
 	<!-- Twitter Card -->
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="@site_handle">
-	<meta name="twitter:creator" content="@publisher_handle">
-	<meta name="twitter:url" content="http://example.com/page.html">
-	<meta name="twitter:title" content="Post Title">
-	<meta name="twitter:description" content="Content description less than 200 characters">
-	<meta name="twitter:image" content="http://example.com/image.jpg">
+	<!-- <meta name="twitter:card" content="summary"> -->
+	<!-- <meta name="twitter:site" content="@site_handle"> -->
+	<!-- <meta name="twitter:creator" content="@publisher_handle"> -->
+	<!-- <meta name="twitter:url" content="http://example.com/page.html"> -->
+	<!-- <meta name="twitter:title" content="Post Title"> -->
+	<!-- <meta name="twitter:description" content="Content description less than 200 characters"> -->
+	<!-- <meta name="twitter:image" content="http://example.com/image.jpg"> -->
 
 	<!-- Google+ / Schema.org -->
-	<link href="https://plus.google.com/+YourPage" rel="publisher">
-	<meta itemprop="name" content="Content Title">
-	<meta itemprop="description" content="Content description less than 200 characters">
-	<meta itemprop="image" content="http://example.com/image.jpg">
+	<!-- <link href="https://plus.google.com/+YourPage" rel="publisher"> -->
+	<!-- <meta itemprop="name" content="Content Title"> -->
+	<!-- <meta itemprop="description" content="Content description less than 200 characters"> -->
+	<!-- <meta itemprop="image" content="http://example.com/image.jpg"> -->
 
 
 
@@ -161,7 +154,7 @@
 	<meta name="theme-color" content="#444444">
 
 	<!-- Safari Pinned Tab Icon -->
-	<link rel="mask-icon" href="/path/to/icon.svg" color="blue">
+	<!-- <link rel="mask-icon" href="/path/to/icon.svg" color="blue"> -->
 
 
 
