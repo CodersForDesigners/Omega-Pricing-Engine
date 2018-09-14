@@ -16,13 +16,19 @@ $( document ).on( "unit-listing/build", function ( event, data ) {
 	else if ( context == "search" ) {
 		var specialCharsRegex = /[^a-z0-9]/g;
 		var query = data.query.toLowerCase();
-		unitsInListing = allUnits.filter( function ( unit ) {
-			return (
-				String( unit.Unit ).toLowerCase().indexOf( query ) != -1
-					||
-				String( unit.Unit ).toLowerCase().replace( specialCharsRegex, "" ).indexOf( query ) != -1
-			);
-		} );
+		unitsInListing = allUnits
+							// cannot forget to filter out ones that aren't available
+						.filter( function ( unit ) {
+							return unit.Availability;
+						} )
+							// keep ones that that (even partially) match
+						.filter( function ( unit ) {
+							return (
+								String( unit.Unit ).toLowerCase().indexOf( query ) != -1
+									||
+								String( unit.Unit ).toLowerCase().replace( specialCharsRegex, "" ).indexOf( query ) != -1
+							);
+						} );
 	}
 	else {
 		unitsInListing = allUnits;
