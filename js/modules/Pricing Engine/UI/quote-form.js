@@ -13,20 +13,31 @@ $( function () {
 
 
 
-
 /*
  *
- * When a unit is view, reset the quote form
+ * Clear the quote form and disable the Create Quote button
  *
  */
-$( document ).on( "unit/view", function () {
-
+function resetQuoteForm () {
 	__OMEGA.customer = null;
 	__UI.$quoteFormSection.find( "form" ).get( 0 ).reset();
 	__UI.$customersNames.text( "" );
+	// Re-enable the form
+	__UI.$quoteFormSection.find( "input, button" ).prop( "disabled", false );
+	// But the Create Quote button disabled
 	__UI.$createQuoteButton.prop( "disabled", true );
+	$( document ).trigger( "quote-form/enable" );
+}
 
-} );
+
+
+/*
+ *
+ * When a unit is view, clear and reset the quote form
+ *
+ */
+$( document ).on( "unit/view", resetQuoteForm );
+
 
 
 /*
@@ -159,7 +170,7 @@ $( document ).on( "submit", ".js_user_search_form", function ( event ) {
 				level: "error",
 				context: "Quote Form"
 			} );
-			$form.find( "input, select, button" ).prop( "disabled", false );
+			resetQuoteForm();
 			$form.find( "[ type = 'submit' ]" ).text( "Search" );
 		} );
 
@@ -207,11 +218,13 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 				level: "info",
 				context: "Quote Form"
 			} );
-			// Re-enable the form
-			__UI.$quoteFormSection.find( "input" ).prop( "disabled", false );
-				// But keep the "Generate Quote" button disabled
+			// Keep the "Generate Quote" button disabled, but with a message
 			__UI.$createQuoteButton.prop( "disabled", true );
 			__UI.$createQuoteButton.text( "A quote is being made." );
+			// Reset the form
+			setTimeout( function () {
+				resetQuoteForm();
+			}, 1000 );
 		} )
 		.catch( function () {
 			notify( "Something went wrong. Please try again after a while.", {
