@@ -372,6 +372,32 @@ function getComputedUnitDataForPrint () {
 }
 
 
+function getDefaultModificationValues () {
+
+	var defaults = { };
+	var modifications = __OMEGA.modifications;
+
+	for ( var name in modifications ) {
+
+		var modification = modifications[ name ];
+		var type = modification[ "Input type" ];
+
+		if ( [ null, void 0 ].indexOf( modification[ "Default value" ] ) === -1 )
+			defaults[ name ] = modification[ "Default value" ];
+		else if ( type == "Manual" && modification[ "Minimum value" ] )
+			defaults[ name ] = modification[ "Minimum value" ];
+		else if ( type == "Multiple" )
+			defaults[ name ] = modification.Options[ 0 ].value;
+		else
+			defaults[ name ] = "";
+
+	}
+
+	return defaults;
+
+}
+
+
 
 /*
  *

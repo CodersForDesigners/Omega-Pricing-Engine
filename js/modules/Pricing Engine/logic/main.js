@@ -203,7 +203,9 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 
 
 	// Initialise the user input object
-	__OMEGA.userInput = { unitData: { } };
+		// Also, set the default values for the modifications
+			// If no defaults have been set, default to the first option
+	__OMEGA.userInput = { unitData: getDefaultModificationValues() };
 
 	// Trigger a render of the pricing engine UI
 	$( document ).trigger( "pricing-engine/ready" );
