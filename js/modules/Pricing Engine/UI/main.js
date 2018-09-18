@@ -42,6 +42,13 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	// Plug in the page heading
 	$( ".js_page_heading" ).text( __OMEGA.settings[ "Page Heading" ] );
 
+	// The Text for the Default Filter Applied
+	var termForUnit = __OMEGA.settings[ "Term for \"Unit\"" ];
+	$( ".js_default_filter_text" ).text( "All available " + termForUnit + "s" );
+
+	// The Text for Unit Search Field Placeholder
+	$( ".js_search_query" ).attr( "placeholder", "Search by " + termForUnit + " number" );
+
 	// Set the privacy disclaimers
 	$( ".js_privacy_disclaimer" ).text( __OMEGA.settings[ "Privacy Disclaimer" ] );
 

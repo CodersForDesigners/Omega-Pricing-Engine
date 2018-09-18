@@ -199,7 +199,9 @@
 						<div class="bubbles js_selected_unit_filters"><!--
 							Markup will be managed by JavaScript
 						 --></div>
-						<span class="empty label bold text-uppercase text-neutral">All Available Apartments</span>
+						<span class="empty label bold text-uppercase text-neutral js_default_filter_text"><!--
+							Markup will be managed in JavaScript
+						 --></span>
 					</div>
 
 					<!-- Unit Direct Search -->
