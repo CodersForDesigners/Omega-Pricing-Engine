@@ -1,6 +1,19 @@
 
 /*
  *
+ * On changing the country code on the Login Forms
+ *
+ */
+$( document ).on( "change", ".loginner_form_phone .js_phone_country_code", function ( event ) {
+	var $phoneCountryCode = $( event.target );
+	var phoneCountryCode = $phoneCountryCode.val();
+	var $phoneCountryCodeLabel = $phoneCountryCode.closest( "form" ).find( ".js_phone_country_code_label" );
+	$phoneCountryCodeLabel.text( phoneCountryCode );
+} );
+
+
+/*
+ *
  * Login form ( on the Unit Listing section )
  *
  */

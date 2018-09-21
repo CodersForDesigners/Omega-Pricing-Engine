@@ -147,17 +147,6 @@ $( document ).on( "user/login/prompt", function ( event, data ) {
 } );
 
 
-/*
- *
- * On dismissing a login prompt.
- *
- */
-$( document ).on( "change", ".loginner_form_phone .js_phone_country_code", function ( event ) {
-	var $phoneCountryCode = $( event.target );
-	var phoneCountryCode = $phoneCountryCode.val();
-	var $phoneCountryCodeLabel = $phoneCountryCode.closest( "form" ).find( ".js_phone_country_code_label" );
-	$phoneCountryCodeLabel.text( phoneCountryCode );
-} );
 
 /*
  *
