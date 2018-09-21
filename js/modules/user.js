@@ -189,25 +189,12 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	$phoneNumber = $form.find( "[ name = 'phone-number' ]" );
 
 	/* -----
-	 * Sanitize and Validate the data
+	 * Sanitize the data
 	 ----- */
-	// Remove any prior "error"s
-	$form.find( ".js_error" ).removeClass( "js_error" );
 	// phone number
 	$phoneNumber.val( function ( _i, value ) {
 		return value.replace( /\D/g, "" );
 	} );
-	if ( $phoneNumber.val().length < 10 ) {
-		$phoneNumber.addClass( "js_error" );
-		// alert( "Please enter a valid phone number." );
-		Loginner.prompts[ loginPrompt ].onPhoneValidationError.call( $form.get( 0 ), "Please enter a valid phone number." );
-	}
-	// If the form has even one error ( i.e. validation issue )
-	// do not proceed
-	if ( $form.find( ".js_error" ).length ) {
-		$form.find( "input, select, button" ).prop( "disabled", false );
-		return;
-	}
 
 	/* -----
 	 * Assemble the data
