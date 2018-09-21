@@ -33,6 +33,9 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	__OMEGA.settings.userImplicitNamePrefix = __OMEGA.settings[ "User Implicit Name Prefix" ];
 	__OMEGA.settings.projectBaseURL = __OMEGA.settings[ "Project Name Base URL" ] || "";
 	__OMEGA.settings.assignmentRuleId = __OMEGA.settings[ "Zoho Assignment Rule" ] || "";
+	__OMEGA.settings.beforeClosingHeadTag = __OMEGA.settings[ "Before Closing Head Tag" ]
+	__OMEGA.settings.afterOpeningBodyTag = __OMEGA.settings[ "After Opening Body Tag" ]
+	__OMEGA.settings.beforeClosingBodyTag = __OMEGA.settings[ "Before Closing Body Tag" ]
 
 	// Contextualize the API endpoint based on the environment
 	if ( ! __envProduction ) {

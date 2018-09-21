@@ -46,15 +46,13 @@ RewriteRule ^/?logout$ http://%{HTTP_HOST}/omega/logout?HTTP_HOST=%{HTTP_HOST}&R
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
 RewriteRule ^/?register/callback/google$ http://%{HTTP_HOST}/omega/register/callback/google?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [QSA,P]
 
+# An empty page
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ((^/?)|/)blank/(.*)$ pages/virtually-empty.php [QSA,L]
 
-# if the URI does not have a trailing slash,
-# and if it is a GET request,
-# but if it does not have a query string,
-# then append a trailing slash, and trigger a re-direct
-# RewriteCond %{REQUEST_URI} !/$
-# RewriteCond %{REQUEST_METHOD} GET [NC]
-# RewriteCond %{QUERY_STRING} ^\??$
-# RewriteRule .? %{REQUEST_URI}/ [QSA,R=301,L]
+# A page for Tracking and Analytics
+RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
+RewriteRule ((^/?)|/)trac/(.*)$ pages/virtually-empty.php [QSA,L]
 
 # the catch-all "else" block
 # forward the request to index.php; it will do the heavy-lifting
