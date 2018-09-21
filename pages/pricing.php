@@ -323,7 +323,7 @@
 				<!-- END : Content -->
 
 				<!-- Action -->
-				<div class="action detail-section">
+				<div class="action detail-section <?php if ( $page != 'quote' ) echo 'hidden' ?>">
 
 					<?php if ( $page != 'quote' ) : ?>
 
