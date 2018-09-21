@@ -85,7 +85,7 @@ function getUser ( identifyingAttribute, options ) {
 
 }
 
-$( "body" ).on( "click", ".js_user_required", function ( event ) {
+function triggerAuthFlowIfRequired ( event ) {
 
 	// If the user is logged in, let the user through
 	if ( isUserLoggedIn() )
@@ -117,7 +117,10 @@ $( "body" ).on( "click", ".js_user_required", function ( event ) {
 		Loginner.prompts[ loginPrompt ].onTrigger( event );
 	$( document ).trigger( "user/login/prompt", { domLoginPromptTrigger: event.target } );
 
-} );
+}
+
+$( "body" ).on( "click", ".js_user_required:not( form )", triggerAuthFlowIfRequired );
+$( "body" ).on( "submit", "form.js_user_required", triggerAuthFlowIfRequired );
 
 // function getLoginPrompt ( domLoginPromptInitiator ) {
 
