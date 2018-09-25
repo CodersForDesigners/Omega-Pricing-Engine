@@ -18,5 +18,5 @@ function isUserLoggedIn () {
 	// Store the parsed cookie data in the application state
 	__OMEGA.user = __OMEGA.user || { };
 	__OMEGA.user = Object.assign( __OMEGA.user, cookieData );
-	return cookieData.uid;
+	return atob( cookieData.uid );
 }

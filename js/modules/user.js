@@ -636,7 +636,7 @@ function loginUser ( user ) {
 	var cookieName = "omega-user";
 	var cookie = {
 		_id: user._id,
-		uid: user.uid,
+		uid: btoa( user.uid ),
 		phoneNumber: user.phoneNumber,
 		project: user.project,
 	}
