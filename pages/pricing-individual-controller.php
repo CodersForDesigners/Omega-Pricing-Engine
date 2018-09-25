@@ -25,6 +25,14 @@ if ( $_COOKIE[ $cookieName ] ) {
 	}
 }
 
+// Has a User ID been provided?
+try {
+	if ( ! empty( $_GET[ 'uid' ] ) )
+		$userId = base64_decode( $_GET[ 'uid' ] );
+	else
+		$userId = null;
+} catch ( \Exception $e ) {}
+
 // The unit being viewed
 if ( ! empty( $_GET[ '_unit' ] ) ) {
 	$unit = $_GET[ '_unit' ];

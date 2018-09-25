@@ -114,7 +114,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2" style="position: relative">
-					<div class="page-phone-trap row js_page_login_prompt show" data-loginner="Individual Unit View" data-context="Pricing Engine | Individual Unit View">
+					<div class="page-phone-trap row js_page_login_prompt" data-loginner="Individual Unit View" data-context="Pricing Engine | Individual Unit View">
 						<div class="trap-content columns small-12 medium-6">
 							<div class="title h3 text-light bold pre-wrap js_login_prompt_heading">
 								<!-- Content will be managed in JavaScript -->
@@ -559,6 +559,26 @@
 		$( ".js_pricing_engine_content" ).removeClass( "hidden" );
 		$( ".js_pricing_engine_loading_stub" ).addClass( "hidden" );
 	} );
+
+	<?php if ( empty( $userId ) ) : ?>
+
+		// If no user ID has been provided, then show the Login Prompt
+		$( ".js_page_login_prompt" ).addClass( "show" );
+
+	<?php else : ?>
+
+		// If a user id has been provided, attempt to log in the user
+		getUser( "<?php echo $userId ?>" )
+			.then( function ( user ) {
+				// Store the user on the side
+				__OMEGA.user = user;
+				// If the user exists, log the user in
+				loginUser( user );
+				// Then, close the login prompt
+				Loginner.prompts[ "Individual Unit View" ].onLogin( user );
+			} );
+
+	<?php endif; ?>
 
 <?php else : ?>
 // If it is the Individual Unit View, but the user **is** logged in
