@@ -32,7 +32,9 @@ Loginner.registerLoginPrompt = function registerLoginPrompt ( name, handlers ) {
  *
  * Gets a user from the database, given an id.
  *
- * Returns a promise
+ * Returns a promise with,
+ * @params
+ * 	user -> an object containing data on the user
  *
  */
 function getUser ( identifyingAttribute, options ) {
@@ -42,7 +44,7 @@ function getUser ( identifyingAttribute, options ) {
 	}
 
 	options = options || { };
-	options.by = options.by || 'id';
+	options.by = options.by || 'uid';
 
 	var project = __OMEGA.settings.Project;
 	var apiEndpoint = __OMEGA.settings.apiEndpoint;
@@ -634,6 +636,7 @@ function loginUser ( user ) {
 	var cookieName = "omega-user";
 	var cookie = {
 		_id: user._id,
+		uid: user.uid,
 		phoneNumber: user.phoneNumber,
 		project: user.project,
 	}

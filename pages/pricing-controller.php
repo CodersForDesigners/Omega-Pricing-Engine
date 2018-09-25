@@ -10,7 +10,7 @@ if ( $_COOKIE[ $cookieName ] ) {
 	try {
 		$token = json_decode( base64_decode( $_COOKIE[ $cookieName ] ), true );
 	} catch ( Exception $e ) {}
-	if ( isset( $token[ '_id' ] ) ) {
+	if ( isset( $token[ 'uid' ] ) ) {
 		$userIsLoggedIn = true;
 	}
 }

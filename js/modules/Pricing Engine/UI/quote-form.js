@@ -147,7 +147,7 @@ $( document ).on( "submit", ".js_user_search_form", function ( event ) {
 	 * Process the data
 	 ----- */
 	// Update the user
-	getUser( userId, { by: 'uid' } )
+	getUser( userId )
 		.then( function ( user ) {
 
 			// Issue a request to enable the quote form
