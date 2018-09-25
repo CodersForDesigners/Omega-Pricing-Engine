@@ -61,15 +61,26 @@ $( document ).on( "enquiry-form/enable", function () {
 	// Make sure to disable the phone field
 	__UI.$enquiryForm.find( "[ name = 'phone' ]" ).prop( "disabled", true );
 
-	// Pre-fill the Enquiry Form with the user's phone number
-	var user = __OMEGA.user;
-	var userImplicitNamePrefix = __OMEGA.settings[ "User Implicit Name Prefix" ];
-	__UI.$enquiryForm.find( "[ name = 'phone' ]" ).val( user.phoneNumber );
-	__UI.$enquiryForm.find( "[ name = 'email' ]" ).val( user.email );
-	if ( ! user.name.startsWith( userImplicitNamePrefix ) )
-		__UI.$enquiryForm.find( "[ name = 'name' ]" ).val( user.name );
+	// Pre-fill the Enquiry Form with the user's phone number ( and name if applicable )
+	if ( __OMEGA.user.lastName )
+		setUserInformationToForm( __OMEGA.user, __UI.$enquiryForm );
+	else
+		getUser( isUserLoggedIn() )
+			.then( function ( user ) {
+				setUserInformationToForm( user, __UI.$enquiryForm );
+			} );
 
 } );
+
+function setUserInformationToForm ( user, $form ) {
+	// Phone number
+	$form.find( "[ name = 'phone' ]" ).val( user.phoneNumber );
+	// Email
+	$form.find( "[ name = 'email' ]" ).val( user.email );
+	// Name ( if applicable )
+	if ( ! user.name.startsWith( __OMEGA.settings.userImplicitNamePrefix ) )
+		$form.find( "[ name = 'name' ]" ).val( user.name );
+}
 
 
 

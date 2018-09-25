@@ -15,7 +15,7 @@ RewriteRule ^/?pricing/?$ index.php?_route=pricing [QSA,L,NC]
 
 # Pricing Engine | Customer – Individual Unit
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-RewriteRule ^/?pricing/([^/]+)/?$ index.php?_route=pricing-individual&_unit=$1 [QSA,L,NC]
+RewriteRule ^/?pricing/([^/]+)$ index.php?_route=pricing-individual&_unit=$1 [QSA,L,NC]
 
 # Pricing Engine | Quote
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f

@@ -564,6 +564,19 @@
 // If it is the Individual Unit View, but the user **is** logged in
 
 	$( document ).on( "pricing-engine/ready", function () {
+
+		var unit = "<?php echo $unit ?>";
+		var unitIndex = __OMEGA.units
+			.filter( function ( unit ) {
+				return unit.Availability;
+			} )
+			.findIndex( function ( currentUnit ) {
+				return currentUnit.Unit == unit;
+			} );
+
+		if ( unitIndex == -1 )
+			window.location.href = window.location.href.replace( /\/[^/]+$/, "" );
+
 		$( document ).trigger( "unit/view", {
 			unitData: {
 				Unit: "<?php echo $unit ?>"
@@ -574,18 +587,6 @@
 		$( ".js_pricing_engine_content" ).removeClass( "hidden" );
 		$( ".js_pricing_engine_loading_stub" ).addClass( "hidden" );
 	} );
-
-<?php endif; ?>
-
-// If the user is logged in, store the user's details in the application state
-<?php if ( $page != 'quote' and $userIsLoggedIn ) : ?>
-
-	getUser( isUserLoggedIn() )
-		.then( function ( user ) {
-			__OMEGA.user = user;
-			// Pre-fill the Enquiry Form with the user's phone number
-			$( ".js_enquiry_form" ).find( "[ name = 'phone' ]" ).val( __OMEGA.user.phoneNumber );
-		} )
 
 <?php endif; ?>
 
