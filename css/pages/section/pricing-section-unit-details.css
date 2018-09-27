@@ -345,6 +345,28 @@
 	padding: 0 10px;
 }
 
+.pricing-section .unit-details .emi .form .form-item label + .search-button {
+	position: absolute;
+	z-index: 2;
+	bottom: 15px;
+	right: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	color: var(--off-dark);
+	background-color: rgba(0,0,0,0.15);
+}
+
+.pricing-section .unit-details .emi .form .form-item .unit-link {
+	font-weight: 200;
+	text-overflow: ellipsis;
+	text-transform: none;
+	color: var(--text-light);
+}
+.pricing-section .unit-details .emi .form .form-item .unit-link:empty {
+	background-color: transparent;
+}
+
+
 @media( min-width: 640px )  {
 	.pricing-section .unit-details .emi {}
 
@@ -358,6 +380,10 @@
 
 	.pricing-section .unit-details .emi .form .form-item:nth-child(2n+2) {
 		padding-left: 15px;
+	}
+
+	.pricing-section .unit-details .emi .form .form-item:nth-child(2n+1) label + .search-button {
+		right: 15px;
 	}
 }
 
@@ -421,6 +447,14 @@
 	.pricing-section .unit-details .emi .form .form-item label .suffix {
 		line-height: 42px;
 		padding: 0 17px;
+	}
+
+	.pricing-section .unit-details .emi .form .form-item label + .search-button {
+		bottom: 20px;
+	}
+
+	.pricing-section .unit-details .emi .form .form-item:nth-child(2n+1) label + .search-button {
+		right: 20px;
 	}
 }
 

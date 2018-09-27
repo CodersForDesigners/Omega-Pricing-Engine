@@ -4,10 +4,10 @@ $( function () {
 
 	window.__UI = window.__UI || { };
 
-	// Quote Widget
-	__UI.$quoteFormSection = $( ".js_quote_form_section" );
-	__UI.$customersNames = __UI.$quoteFormSection.find( ".js_customers_names" );
-	__UI.$createQuoteButton = __UI.$quoteFormSection.find( ".js_create_quote" );
+	// Create Quote Widget
+	__UI.$userSearchForQuoteForm = $( ".js_user_search_for_quote_form" );
+	__UI.$customersNamesForQuote = __UI.$userSearchForQuoteForm.find( ".js_customers_names" );
+	__UI.$createQuoteButton = __UI.$userSearchForQuoteForm.closest( ".js_section" ).find( ".js_create_quote" );
 
 } );
 
@@ -20,10 +20,11 @@ $( function () {
  */
 function resetQuoteForm () {
 	__OMEGA.customer = null;
-	__UI.$quoteFormSection.find( "form" ).get( 0 ).reset();
-	__UI.$customersNames.text( "" );
+	__UI.$userSearchForQuoteForm.get( 0 ).reset();
+	__UI.$customersNamesForQuote.text( "" );
+	__UI.$userSearchForQuoteForm.find( "[ type = 'submit' ]" ).text( "Search" );
 	// Re-enable the form
-	__UI.$quoteFormSection.find( "input, button" ).prop( "disabled", false );
+	__UI.$userSearchForQuoteForm.find( "input, button" ).prop( "disabled", false );
 	// But the Create Quote button disabled
 	__UI.$createQuoteButton.prop( "disabled", true );
 	$( document ).trigger( "quote-form/enable" );
@@ -81,7 +82,7 @@ $( document ).on( "quote-form/enable", function () {
 	}
 
 	__UI.$createQuoteButton.prop( "disabled", false );
-	__UI.$createQuoteButton.text( "Generate PDF" );
+	__UI.$createQuoteButton.text( __UI.$createQuoteButton.data( "text-actionable" ) );
 
 } );
 
@@ -91,7 +92,7 @@ $( document ).on( "quote-form/enable", function () {
  * On submitting the user search form
  *
  */
-$( document ).on( "submit", ".js_user_search_form", function ( event ) {
+$( document ).on( "submit", ".js_user_search_for_quote_form", function ( event ) {
 
 	/* -----
 	 * Prevent the default form submission behaviour
@@ -119,7 +120,7 @@ $( document ).on( "submit", ".js_user_search_form", function ( event ) {
 	 ----- */
 	// Remove any prior "error"s
 	$form.find( ".js_error" ).removeClass( "js_error" );
-	// Name
+	// User ID
 	if ( ! $userId.val().trim() ) {
 		$name.addClass( "js_error" );
 		$name.parent().addClass( "validation-error" );
@@ -146,9 +147,20 @@ $( document ).on( "submit", ".js_user_search_form", function ( event ) {
 	/* -----
 	 * Process the data
 	 ----- */
-	// Update the user
+	// Fetch the user
 	getUser( userId )
 		.then( function ( user ) {
+
+			if ( ! user.isProspect ) {
+				var message = "The user <b>" + user.firstName + "</b> is not a <i><b>prospect</b></i>.";
+				notify( message, {
+					level: "info",
+					context: "Quote Form",
+					escape: true
+				} );
+				resetQuoteForm();
+				return;
+			}
 
 			// Issue a request to enable the quote form
 			$( document ).trigger( "quote-form/enable" );
@@ -157,7 +169,7 @@ $( document ).on( "submit", ".js_user_search_form", function ( event ) {
 			if ( user.coApplicantName )
 				applicantsNames += " and " + user.coApplicantName;
 
-			__UI.$customersNames.text( applicantsNames );
+			__UI.$customersNamesForQuote.text( applicantsNames );
 
 			$form.find( "input, select, button" ).prop( "disabled", false );
 			$form.find( "[ type = 'submit' ]" ).text( "Search" );
@@ -187,7 +199,7 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 	/* -----
 	 * Disable the form
 	 ----- */
-	__UI.$quoteFormSection.find( "input, button" ).prop( "disabled", true );
+	__UI.$userSearchForQuoteForm.find( "input, button" ).prop( "disabled", true );
 
 	/* -----
 	 * Assemble the data
@@ -232,7 +244,7 @@ $( document ).on( "click", ".js_create_quote", function ( event ) {
 				context: "Quote Form"
 			} );
 			// Re-enable the form
-			__UI.$quoteFormSection.find( "input, button" ).prop( "disabled", false );
+			__UI.$userSearchForQuoteForm.find( "input, button" ).prop( "disabled", false );
 		} )
 
 } );

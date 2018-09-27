@@ -31,7 +31,7 @@
 
 </script>
 
-<?php if ( $page == 'quote' ) : ?>
+<?php if ( $page == 'quote' or $page == 'pricing-individual' ) : ?>
 
 	<script type="text/javascript">
 
@@ -67,14 +67,17 @@
 						</span>
 					</div>
 				<?php endif; ?>
-				<!-- <div class="toast row fill-blue gradient">
-					<span class="h6 columns small-11">Welcome back, Mr. Poe-tay-toe Po-taa-toe</span>
-					<span class="close columns small-1 text-right"><img src="media/pricing/close-light.svg"></span>
-				</div> -->
-				<!-- <div class="toast row fill-red gradient">
-					<span class="label columns small-11">Invalid OTP</span>
-					<span class="close columns small-1 text-right"><img src="media/pricing/close-light.svg"></span>
-				</div> -->
+				<?php if ( $page == 'pricing-individual' ) : ?>
+					<!-- If users aren't logged in yet, they'll have to wait a while -->
+					<div class="toast row fill-dark gradient js_user_bar">
+						<span class="welcome inline-middle h6 columns small-12 medium-6 large-8 js_message">Loading #<?php echo $unit ?> .....</span>
+						<span class="login inline-middle columns small-12 medium-offset-3 medium-3 large-offset-2 large-2 hidden">
+							<a class="button block fill-off-blue" href="pricing">
+								<span>Click here</span>
+							 </a>
+						</span>
+					</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
@@ -287,6 +290,32 @@
 			<!-- Unit Detailed View -->
 			<div class="unit-details columns small-12 large-10 large-offset-1 xlarge-8 xlarge-offset-2 js_section_unit_details_and_mods" style="display: none">
 
+				<?php if ( $page == 'quote' ) : ?>
+					<!-- Unit Link Form -->
+					<div class="emi detail-section fill-off-dark js_section">
+						<div class="customer-id-form">
+							<div class="detail-row clearfix form row">
+								<div class="form-item columns small-12 medium-6">
+									<form class="js_unit_link_form">
+										<label>
+											<span class="label">Generate Unit Link for</span>
+											<input class="block" type="text" name="user-id" required>
+											<span class="symbol fill-off-dark">UID</span>
+										</label>
+										<button class="button search-button" type="submit">Create</button>
+									</form>
+								</div>
+								<div class="form-item columns small-12 medium-6">
+									<label>
+										<span class="label js_unit_and_customers_names"></span>
+										<a class="block button secondary no-overflow unit-link js_unit_link"></a>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div><!-- End: Unit Link Form -->
+				<?php endif; ?>
+
 				<!-- Content -->
 				<div class="content js_content hidden">
 					<!-- Markup will be managed by JavaScript -->
@@ -341,24 +370,18 @@
 
 					<?php else: ?>
 
-						<!-- Customer ID Form -->
-						<div class="customer-id-form js_quote_form_section">
-							<div class="detail-row clearfix">
-								<div class="title h3 bold text-center">Create Quote</div>
-								<div class="title h5 light text-neutral text-center js_customers_names">
-									Mr. Potato Head & Mrs. Potato Head
-								</div>
-							</div>
-							<div class="detail-row clearfix">
-								&nbsp;
-							</div>
+						<!-- Create Quote Form -->
+						<div class="customer-id-form js_section">
 							<div class="detail-row clearfix form row">
 								<div class="form-item columns small-12 medium-6">
-									<form class="js_user_search_form">
+									<form class="js_user_search_for_quote_form">
 										<label>
-											<span class="label">Customer ID</span>
+											<span class="label">Create a Quote for</span>
+											<span class="label light text-neutral js_customers_names">
+												<!-- Markup will be managed in JavaScript -->
+											</span>
 											<input class="block" type="text" name="user-id" required>
-											<span class="symbol">#</span>
+											<span class="symbol">UID</span>
 										</label>
 										<button class="button search-button" type="submit">Search</button>
 									</form>
@@ -366,11 +389,11 @@
 								<div class="form-item columns small-12 medium-6">
 									<label>
 										<span class="label invisible">Submit</span>
-										<button class="block button primary js_create_quote" disabled>Generate PDF</button>
+										<button class="block button primary js_create_quote" data-text-actionable="Send Deal to Zoho" disabled>Send Deal to Zoho</button>
 									</label>
 								</div>
 							</div>
-						</div><!-- End: Customer UID Form -->
+						</div><!-- End: Create Quote Form -->
 					<?php endif; ?>
 
 				</div><!-- END: Action -->
@@ -518,6 +541,7 @@
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/enquiry-form.js<?= $ver ?>"></script>
 <?php else : ?>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/quote-form.js<?= $ver ?>"></script>
+<script type="text/javascript" src="js/modules/Pricing Engine/UI/unit-link-form.js<?= $ver ?>"></script>
 <?php endif; ?>
 <script type="text/javascript" src="js/modules/Pricing Engine/logic/main.js<?= $ver ?>"></script>
 <script type="text/javascript" src="js/modules/Pricing Engine/UI/main.js<?= $ver ?>"></script>
@@ -577,6 +601,16 @@
 				// Then, close the login prompt
 				Loginner.prompts[ "Individual Unit View" ].onLogin( user );
 			} );
+
+	<?php endif; ?>
+
+	// Once the Individual Unit View page has loaded ( i.e. the Unit Details are shown ), load in the navigation bar content
+	<?php if ( $page == 'pricing-individual' ) : ?>
+
+		$( document ).on( "unit/view", function () {
+			$( ".js_user_bar" ).find( ".js_message" ).text( "To see all available " + __OMEGA.settings[ "Term for \"Unit\"" ] + "s" );
+			$( ".js_user_bar" ).find( ".hidden" ).removeClass( "hidden" );
+		} );
 
 	<?php endif; ?>
 
