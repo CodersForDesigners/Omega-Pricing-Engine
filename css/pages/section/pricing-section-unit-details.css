@@ -429,9 +429,6 @@
 
 /* -- Action -- */
 
-.pricing-section .unit-details .action {
-	margin-top: 60px;
-}
 
 .pricing-section .unit-details .action .form .form-item {
 	position: relative;
@@ -496,9 +493,6 @@
 }
 
 @media( min-width: 640px )  {
-	.pricing-section .unit-details .action {
-		margin-top: 60px;
-	}
 
 	.pricing-section .unit-details .action .form .form-item .label {
 		margin-bottom: 7px;
@@ -518,9 +512,6 @@
 }
 
 @media( min-width: 1040px ) {
-	.pricing-section .unit-details .action {
-		margin-top: 72px;
-	}
 
 	.pricing-section .unit-details .action .form .form-item label input[type="tel"],
 	.pricing-section .unit-details .action .form .form-item label input[type="email"],
@@ -538,9 +529,6 @@
 }
 
 @media( min-width: 1380px ) {
-	.pricing-section .unit-details .action {
-		margin-top: 90px;
-	}
 
 	.pricing-section .unit-details .action .form .form-item {
 		padding-bottom: 20px;
