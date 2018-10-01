@@ -44,7 +44,7 @@ function getUser ( identifyingAttribute, options ) {
 	}
 
 	options = options || { };
-	options.by = options.by || 'uid';
+	options.by = options.by || 'uidv2';
 
 	var project = __OMEGA.settings.Project;
 	var apiEndpoint = __OMEGA.settings.apiEndpoint;
