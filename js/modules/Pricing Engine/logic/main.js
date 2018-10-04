@@ -51,11 +51,12 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 						.map( function ( unit ) {
 							return {
 								Unit: unit.Unit,
-								Availability: unit.Availability
+								Availability: unit.Availability,
+								Sold: unit.Sold
 							};
 						} )
 						.filter( function ( unit ) {
-							return unit.Availability;
+							return unit.Sold ? false : unit.Availability;
 						} );
 		__OMEGA.unitsForRegularUsers = unitsForRegularUsers;
 		var unitsDiff = XLSX.utils.sheet_to_json( workbook.Sheets[ "Units (" + userRole + ")" ], { raw: true } );
@@ -102,7 +103,7 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	__OMEGA.unitFilters = unitFilters;
 
 	// The implicit filter that is set by default, i.e. "Availability"
-	__OMEGA.unitFiltersSelected = [ { taxonomy: "Availability", type: "Available", attribute: "Availability", comparison: "is equal to", value: true } ];
+	__OMEGA.unitFiltersSelected = [ { taxonomy: "Availability", type: "Available", attribute: "Availability", comparison: "is equal to", value: true }, { taxonomy: "Availability", type: "Sold", attribute: "Sold", comparison: "is equal to", value: false } ];
 
 	// Get the unit sorting criterias
 	__OMEGA.unitSortingCriteria = XLSX.utils.sheet_to_json( __OMEGA.workbook.Sheets[ "Unit Sorting" ], { raw: true } );

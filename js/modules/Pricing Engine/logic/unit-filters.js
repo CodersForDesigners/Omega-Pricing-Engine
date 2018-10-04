@@ -126,7 +126,8 @@ $( document ).on( "pricing-engine/render/after", function () {
 			} ) );
 
 		// Add the filter bubbles
-		__OMEGA.unitFiltersSelected.slice( 1 ).forEach( function ( filter ) {
+			// We slice by `2` because they're two default filters
+		__OMEGA.unitFiltersSelected.slice( 2 ).forEach( function ( filter ) {
 			addFilterBubble( filter );
 		} );
 
