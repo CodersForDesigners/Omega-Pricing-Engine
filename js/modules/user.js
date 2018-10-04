@@ -52,7 +52,15 @@ function getUser ( identifyingAttribute, options ) {
 
 	var data = { }
 	data[ options.by ] = identifyingAttribute;
-	data.project = project;
+	// If we're getting the user by UID
+		// Only send the project through if an executive is using the system
+	if ( options.by.startsWith( "uid" ) ) {
+		if ( __OMEGA.user && __OMEGA.user.role )
+			data.project = project;
+	}
+	else {
+		data.project = project;
+	}
 
 	var ajaxRequest = $.ajax( {
 		url: url,
