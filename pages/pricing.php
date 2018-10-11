@@ -604,16 +604,6 @@
 
 	<?php endif; ?>
 
-	// Once the Individual Unit View page has loaded ( i.e. the Unit Details are shown ), load in the navigation bar content
-	<?php if ( $page == 'pricing-individual' ) : ?>
-
-		$( document ).on( "unit/view", function () {
-			$( ".js_user_bar" ).find( ".js_message" ).text( "To see all available " + __OMEGA.settings[ "Term for \"Unit\"" ] + "s" );
-			$( ".js_user_bar" ).find( ".hidden" ).removeClass( "hidden" );
-		} );
-
-	<?php endif; ?>
-
 <?php else : ?>
 // If it is the Individual Unit View, but the user **is** logged in
 
@@ -640,6 +630,16 @@
 		$( ".js_section_unit_details_and_mods" ).removeClass( "hidden" );
 		$( ".js_pricing_engine_content" ).removeClass( "hidden" );
 		$( ".js_pricing_engine_loading_stub" ).addClass( "hidden" );
+	} );
+
+<?php endif; ?>
+
+<?php if ( $page == 'pricing-individual' ) : ?>
+
+	// Once the Individual Unit View page has loaded ( i.e. the Unit Details are shown ), load in the navigation bar content
+	$( document ).on( "unit/view", function () {
+		$( ".js_user_bar" ).find( ".js_message" ).text( "To see all available " + __OMEGA.settings[ "Term for \"Unit\"" ] + "s" );
+		$( ".js_user_bar" ).find( ".hidden" ).removeClass( "hidden" );
 	} );
 
 <?php endif; ?>
