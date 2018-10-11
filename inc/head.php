@@ -4,6 +4,7 @@
 		global $ver;
 		global $productionEnv;
 		global $projectFolderName;
+		global $meta;
 	?>
 
 	<!--
@@ -91,16 +92,15 @@
 	*	Social
 	*
 	- -->
-	<!-- Facebook Open Graph -->
-	<!-- <meta property="fb:app_id" content="123456789"> -->
-	<!-- <meta property="og:url" content="http://example.com/page.html"> -->
-	<!-- <meta property="og:type" content="website"> -->
-	<!-- <meta property="og:title" content="Content Title"> -->
-	<!-- <meta property="og:image" content="http://example.com/image.jpg"> -->
-	<!-- <meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod. Excepteur sint occaecat cupidatat non proident."> -->
-	<!-- <meta property="og:site_name" content="Site Name"> -->
-	<!-- <meta property="og:locale" content="en_US"> -->
-	<!-- <meta property="article:author" content=""> -->
+	<!-- ~ OpenGraph ~ -->
+		<!-- ~ For use in Facebook, WhatsApp, Twitter, etc. ; any service that understands OpenGraph ~ -->
+	<meta property="og:url" content="http://<?php echo $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ] ?>">
+	<?php
+	foreach ( $meta[ 'tags' ] as $property => $content ) {
+		?><meta property="<?php echo $property ?>" content="<?php echo $content ?>"><?php
+	}
+	?>
+
 
 
 
@@ -169,7 +169,6 @@
 	<link rel="prefetch" href="https://www.example.com/">
 	<link rel="prerender" href="http://example.com/">
 	<link rel="preload" href="image.png" as="image"> -->
-
 
 
 	<!--

@@ -41,7 +41,16 @@ if ( $singleUnitIsBeingViewed and empty( $unit ) ) {
 	// Show 404 page
 }
 
-$viewName = "Pricing for #" . $unit;
+$viewName = 'Pricing for #' . $unit;
 $viewPath = __DIR__ . '/pricing.php';
+$meta = json_decode( file_get_contents( __DIR__ . '/../account/data/meta.json' ), true );
+
+// Conditionally add the Unit-specific text
+$unitSpecificText = 'Pricing for ';
+if ( ! empty( $meta[ 'data' ][ 'Term for "Unit"' ] ) )
+	$unitSpecificText .= $meta[ 'data' ][ 'Term for "Unit"' ] . ' ';
+$unitSpecificText .= $unit . ' | ';
+$meta[ 'tags' ][ 'og:title' ] = $unitSpecificText . $meta[ 'tags' ][ 'og:title' ];
+
 // Return the path of the template to be rendered
-return [ $viewName, $viewPath ];
+return [ $viewName, $viewPath, $meta ];

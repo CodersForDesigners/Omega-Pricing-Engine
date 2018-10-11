@@ -18,7 +18,7 @@
 
 	// The controller returns the name (path) of the template to be rendered.
 	// If not, then we search for the template in the "pages" folder.
-	list( $viewName, $viewPath ) = include_once $controllerPath;
+	list( $viewName, $viewPath, $metaAttributes ) = include_once $controllerPath;
 	if ( empty( $viewName ) ) {
 		$viewName = $route;
 	}
