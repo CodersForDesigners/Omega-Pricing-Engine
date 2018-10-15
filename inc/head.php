@@ -32,7 +32,7 @@
 	<!-- <link rel="author" href="humans.txt"> -->
 
 	<!-- Provides information about an author or another person -->
-	<link rel="me" href="http://lazaro.in" type="text/html">
+	<link rel="me" href="https://lazaro.in" type="text/html">
 	<link rel="me" href="mailto:sonia@lazaro.in">
 	<!-- <link rel="me" href="sms:+15035550125"> -->
 
@@ -94,7 +94,7 @@
 	- -->
 	<!-- ~ OpenGraph ~ -->
 		<!-- ~ For use in Facebook, WhatsApp, Twitter, etc. ; any service that understands OpenGraph ~ -->
-	<meta property="og:url" content="http://<?php echo $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ] ?>">
+	<meta property="og:url" content="https://<?php echo $_SERVER[ 'HTTP_HOST' ] . $_SERVER[ 'REQUEST_URI' ] ?>">
 	<?php
 	foreach ( $meta[ 'tags' ] as $property => $content ) {
 		?><meta property="<?php echo $property ?>" content="<?php echo $content ?>"><?php

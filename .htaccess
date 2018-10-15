@@ -3,7 +3,7 @@
 
 RewriteEngine On
 
-# RewriteRule .? http://example.com/?dr=%{DOCUMENT_ROOT}&ru=%{REQUEST_URI}
+# RewriteRule .? https://example.com/?dr=%{DOCUMENT_ROOT}&ru=%{REQUEST_URI}
 
 # if the URI maps to an existing file on the server, just return it
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" -f
@@ -27,24 +27,24 @@ RewriteRule ^/?print-pricing-sheet/?$ index.php?_route=print-pricing-sheet [QSA,
 
 # The Login page that delegates to the Omega API
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-RewriteRule ^/?login$ http://%{HTTP_HOST}/omega/login?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
-# RewriteRule ^/?login$ http://%{HTTP_HOST}/omega/login [R=301,QSA,L,NC]
+RewriteRule ^/?login$ https://%{HTTP_HOST}/omega/login?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
+# RewriteRule ^/?login$ https://%{HTTP_HOST}/omega/login [R=301,QSA,L,NC]
 
 # The Login callback route that delegates to the Omega API
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-RewriteRule ^/?login/callback/google$ http://%{HTTP_HOST}/omega/login/callback/google?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [QSA,P]
+RewriteRule ^/?login/callback/google$ https://%{HTTP_HOST}/omega/login/callback/google?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [QSA,P]
 
 # The Logout route that logs a user out
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-RewriteRule ^/?logout$ http://%{HTTP_HOST}/omega/logout?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
+RewriteRule ^/?logout$ https://%{HTTP_HOST}/omega/logout?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
 
 # The Registration page that delegates to the Omega API ( disabled by default )
 # RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-# RewriteRule ^/?register$ http://%{HTTP_HOST}/omega/register?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
+# RewriteRule ^/?register$ https://%{HTTP_HOST}/omega/register?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [P]
 
 # The Registration callback route that delegates to the Omega API
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
-RewriteRule ^/?register/callback/google$ http://%{HTTP_HOST}/omega/register/callback/google?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [QSA,P]
+RewriteRule ^/?register/callback/google$ https://%{HTTP_HOST}/omega/register/callback/google?HTTP_HOST=%{HTTP_HOST}&REQUEST_URI=%{REQUEST_URI} [QSA,P]
 
 # An empty page
 RewriteCond "%{DOCUMENT_ROOT}%{REQUEST_URI}" !-f
