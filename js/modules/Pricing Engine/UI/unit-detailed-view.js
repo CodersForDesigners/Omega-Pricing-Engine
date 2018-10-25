@@ -143,7 +143,7 @@ $( document ).on( "unit-details/render", function ( event, data ) {
 	$( document ).trigger( "enquiry-form/show" );
 
 	// And last but not the least, scroll down to the Unit Details
-	if ( data.context != "modification" ) {
+	if ( ! [ "modification", "single-view" ].includes( data.context ) ) {
 		waitFor( 0.5 ).then( function () {
 			var offsetPosition = __UI.$unitDetailsSection.offset().top - 10
 			var scrollTop = window.scrollY || document.body.scrollTop;

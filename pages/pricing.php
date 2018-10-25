@@ -624,6 +624,7 @@
 			window.location.href = window.location.href.replace( /\/[^/]+$/, "" );
 
 		$( document ).trigger( "unit/view", {
+			context: "single-view",
 			unitData: {
 				Unit: "<?php echo $unit ?>"
 			}
