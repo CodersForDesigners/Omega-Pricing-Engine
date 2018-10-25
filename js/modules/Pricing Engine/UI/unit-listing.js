@@ -25,21 +25,31 @@ $( function () {
  */
 $( document ).on( "click", ".js_unit_list_item", function ( event ) {
 
-	if ( $( "html" ).hasClass( "js_embedded" ) ) {
-		if ( $( document ).width() > 640 ) {
-			return;
-		}
-	}
-	event.preventDefault();
+	// if ( $( "html" ).hasClass( "js_embedded" ) ) {
+	// 	if ( $( document ).width() > 640 ) {
+	// 		return;
+	// 	}
+	// }
 
+	/*
+	 * Mark the selected unit
+	 */
+	// Get the unit list item
 	var $unitListItem = $( event.target ).closest( ".js_unit_list_item" );
-	// If the unit is already selected, do nothing
-	if ( $unitListItem.hasClass( "selected" ) )
-		return;
 
 	// Mark it as "selected"
 	__UI.$unitListing.find( ".js_unit_list_item" ).removeClass( "selected" );
 	$unitListItem.addClass( "selected" );
+
+	/*
+	 * If on a mobile device, continue to show the unit details on the same page
+	 * 	otherwise open the unit on a new tab
+	 */
+	if ( $( document ).width() > 640 ) {
+		return;
+	}
+
+	event.preventDefault();
 
 	// Get the unit number
 	var unitNumber = $unitListItem.data( "unit" );
