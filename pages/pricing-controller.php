@@ -19,4 +19,4 @@ $viewName = "Pricing";
 $viewPath = __DIR__ . '/pricing.php';
 $metaAttributes = json_decode( file_get_contents( __DIR__ . '/../account/data/meta.json' ), true );
 // Return the path of the template to be rendered
-return [ $viewName, $viewPath, $metaAttributes ];
+return [ $viewName, $viewPath, '', $metaAttributes ];

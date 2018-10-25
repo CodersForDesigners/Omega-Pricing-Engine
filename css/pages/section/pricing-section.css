@@ -49,3 +49,7 @@
 		margin-top: -480px;
 	}
 }
+/* No negative margin offset if we're on the Individual Unit Details page */
+.page-pricing-individual .pricing-section .pricing {
+	margin-top: 0;
+}

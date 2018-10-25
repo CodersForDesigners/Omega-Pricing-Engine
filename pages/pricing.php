@@ -82,6 +82,7 @@
 		</div>
 	</div>
 
+<?php if ( $page != 'pricing-individual' ) : ?>
 	<div class="landing row">
 		<div class="landing-bg">
 			<picture>
@@ -100,6 +101,7 @@
 			</div>
 		</div>
 	</div>
+<?php endif; ?>
 
 	<!-- Pricing Engine Loading Stub -->
 	<div class="page-loading-stub js_pricing_engine_loading_stub hidden">

@@ -1,6 +1,7 @@
 <?php
 
 $page = 'pricing-individual';
+$viewSlug = 'page-pricing-individual';
 
 $cookieName = 'omega-user';
 
@@ -53,4 +54,4 @@ $unitSpecificText .= $unit . ' | ';
 $meta[ 'tags' ][ 'og:title' ] = $unitSpecificText . $meta[ 'tags' ][ 'og:title' ];
 
 // Return the path of the template to be rendered
-return [ $viewName, $viewPath, $meta ];
+return [ $viewName, $viewPath, $viewSlug, $meta ];

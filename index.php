@@ -18,7 +18,7 @@
 
 	// The controller returns the name (path) of the template to be rendered.
 	// If not, then we search for the template in the "pages" folder.
-	list( $viewName, $viewPath, $metaAttributes ) = include_once $controllerPath;
+	list( $viewName, $viewPath, $viewSlug, $metaAttributes ) = include_once $controllerPath;
 	if ( empty( $viewName ) ) {
 		$viewName = $route;
 	}
@@ -37,7 +37,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" class="<?php echo $viewSlug ?? '' ?>" xmlns="http://www.w3.org/1999/xhtml"
 	prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
 
 <head>
