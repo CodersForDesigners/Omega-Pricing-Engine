@@ -165,7 +165,10 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 
 		var modifications = modificationList
 			.filter( function ( modification ) {
-				return unit[ "[M] " + modification.Name + " ( applicable )" ];
+				return (
+					unit[ "[M] " + modification.Name + " ( applicable )" ]
+					|| unit[ "[M] " + modification.Name + " ( display )" ]
+				);
 			} )
 			.map( function ( modification ) {
 				var key = "[M] " + modification.Name + " ";
@@ -180,6 +183,7 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 				defaultValue = defaultValue || modification[ "Default value" ];
 				var minimumValue = unit[ key + "( minimum )" ] || modification[ "Minimum value" ];
 				var maximumValue = unit[ key + "( maximum )" ] || modification[ "Maximum value" ];
+				var isApplicable = unit[ "[M] " + modification.Name + " ( applicable )" ];
 				var object = {
 					name: modification.Name,
 					type: modification[ "Input type" ],
@@ -190,6 +194,7 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 				if ( options ) object.options = options;
 				if ( minimumValue ) object.minimum = minimumValue;
 				if ( maximumValue ) object.maximum = maximumValue;
+				object.disabled = ! isApplicable;
 				return object;
 			} )
 			// If the value is a number but is formatted as a string, convert it to a valid JavaScript number

@@ -197,9 +197,9 @@
 <textarea class="js_template" data-name="modificationPoint__TypeMultiple" style="display: none">
 
 	<div class="detail-row modification clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
-		<div class="title float-left">{{ modification.label }}</div>
+		<div class="title float-left {{#if (or this.Disabled modification.disabled) }}strike{{/if}}">{{ modification.label }}</div>
 		<div class="value float-right">
-			<select class="js_unit_modification__multiple" name="{{ modification.name }}">
+			<select class="js_unit_modification__multiple" name="{{ modification.name }}" {{#if (or this.Disabled modification.disabled) }} disabled {{/if}}>
 				{{#each modification.options}}
 					<option value="{{ value }}" {{#if (is value ../currentValue) }} selected="true" {{/if}}>{{ label }}</option>
 				{{/each}}
@@ -213,9 +213,9 @@
 <textarea class="js_template" data-name="modificationPoint__TypeBinary" style="display: none">
 
 	<div class="detail-row clearfix modification {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
-		<div class="title float-left">{{ modification.label }}</div>
+		<div class="title float-left {{#if (or this.Disabled modification.disabled) }}strike{{/if}}">{{ modification.label }}</div>
 		<div class="value float-right">
-			<input class="check-box hidden js_unit_modification__binary" id="mod-{{slugify modification.name }}" data-value-when-checked="{{ modification.value }}" type="checkbox" name="{{ modification.name }}" {{#if (is modification.value currentValue) }} checked="true" {{/if}}>
+			<input class="check-box hidden js_unit_modification__binary" id="mod-{{slugify modification.name }}" data-value-when-checked="{{ modification.value }}" type="checkbox" name="{{ modification.name }}" {{#if (is modification.value currentValue) }} checked="true" {{/if}} {{#if (or this.Disabled modification.disabled) }} disabled {{/if}}>
 			<label class="check-label" for="mod-{{slugify modification.name }}"></label>
 		</div>
 	</div>
@@ -226,11 +226,11 @@
 <textarea class="js_template" data-name="modificationPoint__TypeManual" style="display: none">
 
 	<div class="detail-row clearfix modification {{ this.[Font Size] }} {{ this.[Font Weight] }} {{this.[Preserve Whitespace] }} text-{{ Color }}">
-		<div class="title float-left">
+		<div class="title float-left {{#if (or this.Disabled modification.disabled) }}strike{{/if}}">
 			<span>{{ modification.label }}</span>
 		</div>
 		<div class="value float-right">
-			<input class="js_unit_modification__manual" type="text" name="{{ modification.name }}" value="{{ currentValue }}" data-value="{{ currentValue }}">
+			<input class="js_unit_modification__manual" type="text" name="{{ modification.name }}" value="{{ currentValue }}" data-value="{{ currentValue }}" {{#if (or this.Disabled modification.disabled) }} disabled {{/if}}>
 		</div>
 	</div>
 

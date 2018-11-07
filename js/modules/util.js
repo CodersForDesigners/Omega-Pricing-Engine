@@ -27,6 +27,9 @@ __UTIL.comparators = {
 		var lowerLimit = lowerAndUpperLimit[ 0 ];
 		var upperLimit = lowerAndUpperLimit[ 1 ];
 		return ( value > lowerLimit ) && ( value < upperLimit );
+	},
+	"or": function ( operand1, operand2 ) {
+		return operand1 || operand2;
 	}
 };
 __UTIL.comparators[ "is" ] = __UTIL.comparators[ "is equal to" ];
