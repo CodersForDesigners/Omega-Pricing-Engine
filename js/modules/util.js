@@ -341,6 +341,7 @@ function slugify ( string, options ) {
 	return slug.toLowerCase();
 
 }
+__UTIL.template.slugify = slugify;
 
 /*
  *

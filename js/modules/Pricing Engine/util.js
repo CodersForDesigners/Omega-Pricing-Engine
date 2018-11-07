@@ -210,7 +210,14 @@ function getModification ( event ) {
 	var $unitModification = $( event.target );
 	// var name = $unitModification.data( "modification" );
 	var name = $unitModification.attr( "name" );
-	var value = $unitModification.val();
+	var value;
+	if ( $unitModification.attr( "type" ) == "checkbox" )
+		if ( $unitModification.prop( "checked" ) )
+			value = $unitModification.data( "value-when-checked" );
+		else
+			value = "";
+	else
+		value = $unitModification.val();
 
 	return {
 		name: name,

@@ -26,10 +26,6 @@ $( function () {
 $( document ).on( "change", ".js_unit_modification__binary", function ( event ) {
 
 	var modification = getModification( event );
-	var $modificationInput = $( event.target );
-
-	if ( ! $modificationInput.prop( "checked" ) )
-		modification.value = 0;
 
 	$( document ).trigger( "modification/changed", modification );
 

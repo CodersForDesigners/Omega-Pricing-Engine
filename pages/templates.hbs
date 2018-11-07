@@ -215,7 +215,8 @@
 	<div class="detail-row clearfix modification {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
 		<div class="title float-left">{{ modification.label }}</div>
 		<div class="value float-right">
-			<input class="js_unit_modification__binary" type="checkbox" name="{{ modification.name }}" value="{{ modification.value }}" {{#if (is modification.value currentValue) }} checked="true" {{/if}}>
+			<input class="check-box hidden js_unit_modification__binary" id="mod-{{slugify modification.name }}" data-value-when-checked="{{ modification.value }}" type="checkbox" name="{{ modification.name }}" {{#if (is modification.value currentValue) }} checked="true" {{/if}}>
+			<label class="check-label" for="mod-{{slugify modification.name }}"></label>
 		</div>
 	</div>
 
