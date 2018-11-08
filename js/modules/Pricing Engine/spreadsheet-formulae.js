@@ -178,6 +178,18 @@
 		return ! logical;
 	};
 
+	formulae.OR = function () {
+		var args = utils.flatten( arguments );
+		var result = false;
+		for ( var i = 0; i < args.length; i +=1 ) {
+			if ( args[ i ] ) {
+				result = true;
+				break;
+			}
+		}
+		return result;
+	};
+
 	formulae.AND = function () {
 		var args = utils.flatten( arguments );
 		var result = true;
