@@ -1,6 +1,7 @@
 <?php
 
 $page = 'quote';
+$viewSlug = 'page-employee-dashboard';
 
 $cookieName = 'ruser';
 
@@ -23,4 +24,4 @@ if ( isset( $_COOKIE[ $cookieName ] ) ) {
 $viewName = "Quote";
 $viewPath = __DIR__ . '/pricing.php';
 // Return the path of the template to be rendered
-return [ $viewName, $viewPath ];
+return [ $viewName, $viewPath, $viewSlug ];

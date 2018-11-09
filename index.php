@@ -37,7 +37,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="<?php echo $viewSlug ?? '' ?>" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" class="<?php echo $viewSlug ?? '' ?>" data-page="<?php echo $viewSlug ?? '' ?>" xmlns="http://www.w3.org/1999/xhtml"
 	prefix="og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml">
 
 <head>
@@ -58,7 +58,7 @@
 
 <!--  ★  MARKUP GOES HERE  ★  -->
 
-<div id="page-wrapper" data-page="<?php echo $viewName ?>"><!-- Page Wrapper -->
+<div id="page-wrapper"><!-- Page Wrapper -->
 
 	<!-- Page Content -->
 	<div id="page-content">
