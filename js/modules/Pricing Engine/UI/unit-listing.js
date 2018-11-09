@@ -42,10 +42,15 @@ $( document ).on( "click", ".js_unit_list_item", function ( event ) {
 	$unitListItem.addClass( "selected" );
 
 	/*
-	 * If on a mobile device, continue to show the unit details on the same page
-	 * 	otherwise open the unit on a new tab
+	 * Opening the unit on a new tab:
+	 * If, A] it is the "Pricing Index" page, and B] on a mobile device,
+	 * 		continue to show the unit details on the same page
+	 * 			otherwise open the unit on a new tab
 	 */
-	if ( $( document ).width() > 640 ) {
+	if (
+		$( "html" ).data( "page" ) == "page-pricing-index"
+		&& $( document ).width() > 640
+	) {
 		return;
 	}
 
