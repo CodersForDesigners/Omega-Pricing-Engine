@@ -128,7 +128,7 @@
 					{{/unless}}
 					no-overflow
 			">
-				<div class="image block zoom-on-hover-{{@index}}" style="background-image: url( 'account/media/{{ Background }}' );">
+				<div class="image block {{#if this.[Aspect Ratio] }} aspect-ratioed {{/if}} zoom-on-hover-{{@index}}" style="{{#if this.[Aspect Ratio] }} padding-top: calc( 100% / {{this.[Aspect Ratio] }} ); {{/if}} background-image: url( 'account/media/{{ Background }}' );">
 					{{#if Foreground }}
 						<img class="block" src="account/media/{{ Foreground }}">
 					{{/if}}

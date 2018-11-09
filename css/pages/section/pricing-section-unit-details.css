@@ -161,6 +161,15 @@
 	cursor: -webkit-zoom-in;
 	cursor: zoom-in;
 }
+.pricing-section .unit-details .detail-section .image.aspect-ratioed {
+	height: 0;
+}
+.pricing-section .unit-details .detail-section .image.aspect-ratioed img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
 
 @media ( max-width: 640px ) {
 	/* For small screens, preserve the whitespace ( and text-wrapping ), as expressed in the spreadsheet, so that the text does not overflow */

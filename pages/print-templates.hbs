@@ -37,7 +37,7 @@
 						image-row
 					{{/unless}}
 			">
-				<div class="image block" style="background-image: url( 'account/media/{{ Background }}' );">
+				<div class="image block {{#if this.[Aspect Ratio] }} aspect-ratioed {{/if}}" style="{{#if this.[Aspect Ratio] }} padding-top: calc( 100% / {{this.[Aspect Ratio] }} ); {{/if}} background-image: url( 'account/media/{{ Background }}' );">
 					{{#if Foreground }}
 						<img class="block" src="account/media/{{ Foreground }}">
 					{{/if}}
