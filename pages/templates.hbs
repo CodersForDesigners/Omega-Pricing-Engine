@@ -115,24 +115,20 @@
 
 		{{else if (is Content "Image")}}
 
-			{{!-- Zoom the image on hover --}}
-			<style type="text/css">
-				.zoom-on-hover-{{@index}}:hover {
-					transform: scale( {{this.[Scale Factor] }} );
-				}
-			</style>
-
 			<div class="
 					{{#unless (is Layout "Full-width")}}
 						image-row
 					{{/unless}}
 					no-overflow
-			">
-				<div class="image block {{#if this.[Aspect Ratio] }} aspect-ratioed {{/if}} zoom-on-hover-{{@index}}" style="{{#if this.[Aspect Ratio] }} padding-top: calc( 100% / {{this.[Aspect Ratio] }} ); {{/if}} background-image: url( 'account/media/{{ Background }}' );">
+			" style="{{#if this.[Scale Factor] }} --scale-factor: {{this.[Scale Factor] }} {{/if}}">
+				{{#if this.[Scale Factor] }}
+					<input type="checkbox" name="image-{{@index}}" id="image-zoom-{{@index}}" class="hidden zoom-trigger js_zoom_trigger" {{#if (is ../context "modification")}} checked {{/if}}>
+				{{/if}}
+				<label class="image block h2 {{#if this.[Aspect Ratio] }} aspect-ratioed {{/if}}" style="{{#if this.[Aspect Ratio] }} padding-top: calc( 100% / {{this.[Aspect Ratio] }} ); {{/if}} background-image: url( 'account/media/{{ Background }}' );" for="image-zoom-{{@index}}">
 					{{#if Foreground }}
 						<img class="block" src="account/media/{{ Foreground }}">
 					{{/if}}
-				</div>
+				</label>
 			</div>
 
 		{{else if (is Content "Space")}}

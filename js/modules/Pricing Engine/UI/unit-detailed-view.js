@@ -18,6 +18,20 @@ $( function () {
 
 /*
  *
+ * When an image that can be zoomed is clicked at least once,
+ *	do not show the helper overlay anymore.
+ *
+ */
+$( document ).on( "change", ".js_zoom_trigger", function ( event ) {
+
+	waitFor( 1 ).then( function () {
+		$( "html" ).addClass( "image-zoomed-into" );
+	} );
+
+} );
+
+/*
+ *
  * When a unit modification is inputted or changed
  * 	re-render the unit view.
  *
@@ -30,8 +44,8 @@ $( document ).on( "change", ".js_unit_modification__binary", function ( event ) 
 	$( document ).trigger( "modification/changed", modification );
 
 } );
-// For manual input modifications
 
+// For manual input modifications
 /*
  *
  * On hitting the "ENTER" or "RETURN" key, commit the modification value
@@ -126,6 +140,7 @@ $( document ).on( "unit-details/render", function ( event, data ) {
 	var modifications = __OMEGA.modifications;
 
 	var unitDetailsMarkup = __UI.templates.unitDetails( {
+		context: data.context,
 		points: points,
 		// modifications: modifications
 	} );
