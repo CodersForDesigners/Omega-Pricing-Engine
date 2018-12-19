@@ -9,7 +9,7 @@
 	/*--base-font: 'Roboto', Arial, sans-serif;*/
 	--display-font: 'aktiv-grotesk', 'Arial Black', Arial, sans-serif;
 	/*--display-font: 'Montserrat', 'Arial Black', Arial, sans-serif;*/
-	
+
 	/* ## Weights */
 	--weight-thin: 200;
 	--weight-regular: 400;
@@ -21,21 +21,21 @@
 	/* ## Colors */
 	--light : #FFFFFF;
 	--off-light : #E8EBEC;
-	
+
 	--neutral : #8A979F;
-	
+
 	--off-dark : #2D4351;
 	--dark : #172F3E;
-	
+
 	--yellow : #FCE38A;
 	--off-yellow : #F38181;
 
 	--red : #FF7676;
 	--off-red : #F54EA2;
-	
+
 	--blue : #17EAD9;
 	--off-blue : #6078EA;
-	
+
 	--green : #42E695;
 	--off-green : #3BB2B8;
 
@@ -59,9 +59,22 @@
 	--moz-gradient-blue: -moz-linear-gradient(135deg, var(--blue) 0%, var(--off-blue) 100%);
 	--webkit-gradient-blue: -webkit-linear-gradient(135deg, var(--blue) 0%, var(--off-blue) 100%);
 	--gradient-blue: linear-gradient(135deg, var(--blue) 0%, var(--off-blue) 100%);
-	
+
 	--moz-gradient-green: -moz-linear-gradient(135deg, var(--green) 0%, var(--off-green) 100%);
 	--webkit-gradient-green: -webkit-linear-gradient(135deg, var(--green) 0%, var(--off-green) 100%);
 	--gradient-green: linear-gradient(135deg, var(--green) 0%, var(--off-green) 100%);
+
+	/*
+	 *
+	 * Client-specific colors
+	 *
+	 */
+	/* -- Klassik -- */
+	--klassik-red: #D33755;
+	--klassik-blue: #142B3F;
+	--klassik-gray: #8192A2;
+	--gradient-klassik-red: linear-gradient( to right, #D33755, #F75C7A );
+	--gradient-klassik-blue: linear-gradient( to right, #142B3F, #344E66 );
+	--gradient-klassik-gray: linear-gradient( to right, #8192A2, #DDE1E6 );
 
 }

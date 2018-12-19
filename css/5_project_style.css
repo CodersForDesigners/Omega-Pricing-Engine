@@ -381,6 +381,17 @@ select:disabled {
 	color: var(--light);
 	background-color: var(--off-green); }
 
+	/* -- Client-specific colors -- */
+.fill-klassik-red {
+	background-color: var(--klassik-red);
+}
+.fill-klassik-blue {
+	background-color: var(--klassik-blue);
+}
+.fill-klassik-gray {
+	background-color: var(--klassik-gray);
+}
+
 /* -- Gradients -- */
 
 .fill-light.gradient {
@@ -412,6 +423,17 @@ select:disabled {
 	-webkit-background: var(--webkit-gradient-green);
 	-moz-background: var(--moz-gradient-green);
 	background: var(--gradient-green); }
+
+	/* -- Client-specific colors -- */
+.fill-klassik-red.gradient {
+	background-image: var(--gradient-klassik-red);
+}
+.fill-klassik-blue.gradient {
+	background-image: var(--gradient-klassik-blue);
+}
+.fill-klassik-gray.gradient {
+	background-image: var(--gradient-klassik-gray);
+}
 
 
 
