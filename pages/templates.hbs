@@ -64,17 +64,17 @@
 
 	{{#each units}}
 
-		<a class="unit-item clearfix js_unit_list_item js_user_required {{#if Highlight }}highlight{{/if}}" data-unit="{{ Unit }}" data-views="{{ ../freePreviews }}" href="{{ ../rootPath }}/{{ Unit }}" target="_blank">
-			<span class="title h2 bold">{{ Unit }}</span>
+		<a class="unit-item clearfix js_unit_list_item js_user_required {{#if Highlight }}highlight{{/if}}" style="{{#if Color}}--gradient-color: var(--gradient-{{Color}}){{/if}}" data-unit="{{ Unit }}" data-views="{{ ../freePreviews }}" href="{{ ../rootPath }}/{{ Unit }}" target="_blank">
+			<span class="title h2 bold" style="{{#if Color}}background-color: var(--{{Color}}); background-image: none;{{/if}}">{{ Unit }}</span>
 			<span class="price">
 				<span class="price-label small">Basic Price</span>
 				<span class="price-amount h6 bold">{{ this.[Basic Price Amount Label] }}</span>
 				<span class="price-unit small bold">{{ this.[Basic Price Unit Label] }}</span>
 			</span>
 			<span class="meta">
-				<span class="floor label bold">{{ this.[Floor Label] }}</span>
+				<span class="floor label bold {{#if Color}}fill-dark{{/if}}" style="{{#if Color}}background-color: var(--{{Color}}){{/if}}">{{ this.[Floor Label] }}</span>
 				<span class="area label bold">{{ Area }} SFT</span>
-				<span class="type label bold fill-blue gradient">{{ Class }}</span>
+				<span class="type label bold">{{ Class }}</span>
 			</span>
 			<span class="action label bold">Get Full Price</span>
 		</a>
