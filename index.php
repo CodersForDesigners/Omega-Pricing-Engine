@@ -29,7 +29,7 @@
 	/*
 	 * Versioning Assets to invalidate the browser cache
 	 */
-	$ver = '?v=20180726_4';
+	$ver = '?v=20181221_1';
 
 	// included external php files with functions.
 	require_once 'inc/head.php';
