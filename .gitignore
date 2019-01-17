@@ -2,6 +2,9 @@
 # the .DS_Store files everywhere
 .DS_Store
 
+# the configuration directory
+/configuration
+
 # the media directory
 /media
 
@@ -10,6 +13,9 @@
 
 # the data directory
 /data
+
+# the logs directory
+/logs
 
 # the account directory
 /account
