@@ -42,6 +42,16 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 		__OMEGA.settings.apiEndpoint = __OMEGA.settings[ "API Endpoint (dev)" ];
 	}
 
+	// Prune out incompatible formulas that Google Sheets generates on exporting
+	var _cellName;
+	var cell;
+	var unitSheet = workbook.Sheets.Units;
+	for ( _cellName in unitSheet ) {
+		cell = unitSheet[ _cellName ];
+		if ( cell.f && cell.f.startsWith( "IFERROR(__xludf.DUMMYFUNCTION" ) )
+			cell.f = "";
+	}
+
 	// Get the units
 	var units = XLSX.utils.sheet_to_json( workbook.Sheets.Units, { raw: true } );
 
