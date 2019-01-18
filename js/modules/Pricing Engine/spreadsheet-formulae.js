@@ -15,6 +15,7 @@
 		error: new Error( "#ERROR!" ),
 		value: new Error( "#VALUE!" ),
 		number: new Error( "#NUM!" ),
+		na: new Error( "#N/A!" ),
 	}
 	var daysOfTheWeek = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ];
 	var monthsOfTheYear = [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ];
@@ -205,6 +206,20 @@
 		return operand1 != operand2;
 	};
 
+	formulae.CHOOSE = function () {
+		if ( arguments.length < 2 )
+			return error.na;
+
+		var index = arguments[ 0 ];
+		if ( index < 1 || index > 254 )
+			return error.value;
+
+		if ( arguments.length < index + 1 )
+			return error.value;
+
+		return arguments[ index ];
+	};
+
 	formulae.CONCATENATE = function () {
 		var args = utils.flatten( arguments );
 
@@ -219,6 +234,15 @@
 		}
 
 		return args.join( "" );
+	};
+
+	formulae.ROUND = function( number, digits ) {
+		number = utils.parseNumber( number );
+		digits = utils.parseNumber( digits );
+		if ( utils.anyIsError( number, digits ) ) {
+			return error.value;
+		}
+		return Math.round( number * Math.pow( 10, digits ) ) / Math.pow( 10, digits );
 	};
 
 	formulae.ROUNDUP = function ( number, digits ) {
@@ -282,6 +306,28 @@
 		}
 
 		return date.getDate();
+
+	};
+
+	formulae.WEEKDAY = function ( date, baseFormat ) {
+
+		date = utils.parseDate( date );
+
+		if ( date instanceof Error ) {
+			return date;
+		}
+
+		var dayInSequence = date.getDay();
+		baseFormat = baseFormat || 1;
+		// reference:
+		// 	WEEKDAY function in Google Sheets
+		// 	https://support.google.com/docs/answer/3092985?hl=en
+		if ( baseFormat == 1 )
+			return dayInSequence + 1;
+		if ( baseFormat == 2 )
+			return dayInSequence ? dayInSequence : 7;
+		if ( baseFormat == 3 )
+			return dayInSequence ? dayInSequence - 1 : 6;
 
 	};
 
