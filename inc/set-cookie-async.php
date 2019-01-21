@@ -5,7 +5,10 @@ if ( empty( $_GET ) )
 
 $cookieName = $_GET[ '_cookie' ];
 $cookieDuration = (int) $_GET[ '_duration' ];
-$cookieValue = base64_encode( $_GET[ 'data' ] );
+if ( empty( $_GET[ 'value' ] ) )
+	$cookieValue = base64_encode( $_GET[ 'data' ] );
+else
+	$cookieValue = $_GET[ 'value' ];
 
 setcookie( $cookieName, $cookieValue, time() + $cookieDuration, '/' );
 
