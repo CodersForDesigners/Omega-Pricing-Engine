@@ -181,7 +181,9 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 			.map( function ( modification ) {
 				var key = "[M] " + modification.Name + " ";
 				var defaultValue;
-				var value = parseStringToNumber( modification.Value );
+				var value = parseStringToNumber(
+					unit[ key + "( value )" ] || modification.Value
+				);
 				var options = modification.Options;
 				if ( options && unit[ key + "( default )" ] ) {
 					defaultValue = modification.Options.find( function ( option ) {
