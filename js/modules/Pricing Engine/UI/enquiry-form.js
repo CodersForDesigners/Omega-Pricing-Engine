@@ -142,7 +142,7 @@ $( document ).on( "submit", ".js_enquiry_form", function ( event ) {
 	/* -----
 	 * Process and Assemble the data
 	 ----- */
-	var names = $name.val().split( /\s+/ );
+	var names = $name.val().trim().split( /\s+/ );
 	var firstName = names[ 0 ];
 	var lastName = names.slice( 1 ).join( " " );
 	var emailAddress = $email.val();
