@@ -135,8 +135,6 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 		// Parse the modification's numeric fields to valid JavaScript numbers
 		.map( function ( modification ) {
 
-			modification.Value = parseStringToNumber( modification.Value );
-
 			if ( modification.Options ) {
 				modification.Options = modification.Options.split( /\n+/ ).map( function ( labelAndValue ) {
 					labelAndValue = labelAndValue.split( /\s+=\s+/ );
