@@ -347,6 +347,22 @@ function slugify ( string, options ) {
 __UTIL.template.slugify = slugify;
 
 /*
+ * Returns the absolute value of a number, i.e. sans the "+" or "-"
+ */
+function getAbsoluteValueOfNumber ( number ) {
+	return Math.abs( number );
+}
+__UTIL.template.getAbsoluteValueOfNumber = getAbsoluteValueOfNumber;
+
+/*
+ * Returns the sign of a number, i.e. either "+" or "-"
+ */
+function getSignOfNumber ( number ) {
+	return number >= 0 ? "+" : "-";
+}
+__UTIL.template.getSignOfNumber = getSignOfNumber;
+
+/*
  *
  * This opens a new page in an iframe and closes it once it has loaded
  *

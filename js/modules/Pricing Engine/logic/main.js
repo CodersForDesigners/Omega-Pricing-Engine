@@ -156,6 +156,7 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 			modification.Value = parseStringToNumber( modification.Value );
 			modification[ "Minimum value" ] = parseStringToNumber( modification[ "Minimum value" ] );
 			modification[ "Maximum value" ] = parseStringToNumber( modification[ "Maximum value" ] );
+			modification.valueInLabel = modification[ "Display value in label?" ];
 
 			return modification;
 
@@ -197,7 +198,8 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 				var object = {
 					name: modification.Name,
 					type: modification[ "Input type" ],
-					label: modification.Label
+					label: modification.Label,
+					valueInLabel: modification.valueInLabel
 				};
 				if ( defaultValue ) object.default = defaultValue;
 				if ( value ) object.value = value;
