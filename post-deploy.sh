@@ -29,7 +29,7 @@ ln -s ../data/${PROJECT_DIR}/logs logs
 
 # Set up all the scheduled tasks with cron
 chmod 744 setup/import-pricing-sheet.php
-php setup/import-pricing-sheet.php
+php setup/import-pricing-sheet.php > logs/import-pricing-sheet.log 2>&1
 
 CURRENT_WORKING_DIR=`pwd`
 HOME=${CURRENT_WORKING_DIR}/logs
