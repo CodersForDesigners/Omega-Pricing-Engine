@@ -561,6 +561,7 @@ function createUser ( phoneNumber, context, project ) {
 		createUser__AjaxRequest.done( function ( response ) {
 			var userData = {
 				_id: response.data._id,
+				uid: response.data.uid,
 				phoneNumber: phoneNumber
 			};
 			__OMEGA.user = userData;
