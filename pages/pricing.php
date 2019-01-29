@@ -614,7 +614,7 @@
 		var unit = "<?php echo $unit ?>";
 		var unitIndex = __OMEGA.units
 			.filter( function ( unit ) {
-				return unit.Sold ? false : unit.Availability;
+				return unit.Availability;
 			} )
 			.findIndex( function ( currentUnit ) {
 				return currentUnit.Unit == unit;

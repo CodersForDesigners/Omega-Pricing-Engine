@@ -19,7 +19,7 @@ $( document ).on( "unit-listing/build", function ( event, data ) {
 		unitsInListing = allUnits
 							// cannot forget to filter out ones that aren't available
 						.filter( function ( unit ) {
-							return unit.Sold ? false : unit.Availability;
+							return unit.Availability;
 						} )
 							// keep ones that that (even partially) match
 						.filter( function ( unit ) {
