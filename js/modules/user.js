@@ -39,11 +39,60 @@ Loginner.registerLoginPrompt = function registerLoginPrompt ( name, handlers ) {
  */
 function getUser ( identifyingAttribute, options ) {
 
-	if ( ! identifyingAttribute ) {
-		return;
+	if ( identifyingAttribute && typeof identifyingAttribute == "object" ) {
+		options = identifyingAttribute;
+		identifyingAttribute = null;
+	}
+	else
+		options = options || { };
+
+	var user = __OMEGA.user;
+	if ( ! user )
+		user = getCookieData( "omega-user" );
+
+	// If the uid is not a number ( i.e. base64 encoded ),
+	// 	then the data has to be normalized to the new storage convention
+	if ( user.uid ) {
+		if ( user.uid != parseInt( user.uid, 10 ) ) {
+			user.uid = atob( user.uid );
+			loginUser( user );
+		}
 	}
 
-	options = options || { };
+	// Determine whether the user being requested and the one stored locally
+	// 	are the same. If no identifying attribute has been specified, then we
+	// 	we assume they are the same.
+	var userHasChanged;
+	if ( identifyingAttribute ) {
+		if ( options.by && user[ options.by ] != identifyingAttribute )
+			userHasChanged = true;
+		else if ( user.uid != identifyingAttribute )
+			userHasChanged = true;
+	}
+	else
+		userHasChanged = false;
+
+
+	// If the user object contains more than just the meta details,
+	// 	then there's no need to re-fetch it from the server
+	if ( ! userHasChanged ) {
+		if ( user.name )
+			return Promise.resolve( user );
+	}
+
+	// If only the meta-data has been requested,
+	// 	and the user being requested ain't different, then return that
+	if ( options.meta )
+		if ( ! userHasChanged )
+			return Promise.resolve( user );
+
+
+	/*
+	 * If no user was found in local storage,
+	 *	or the user being requested was different,
+	 * 	then, we'll attempt to fetch the user from the server
+	 */
+	identifyingAttribute = identifyingAttribute || user.uid;
 	options.by = options.by || 'uidv2';
 
 	var project = __OMEGA.settings.Project;
@@ -73,6 +122,7 @@ function getUser ( identifyingAttribute, options ) {
 
 		ajaxRequest.done( function ( response ) {
 			var user = response.data;
+			__OMEGA.user = user;
 			resolve( user );
 		} );
 		ajaxRequest.fail( function ( jqXHR, textStatus, e ) {
@@ -192,13 +242,6 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	 ----- */
 	var phoneNumber = $phoneCountryCode.val().replace( /[^+\d]/g, "" )
 					+ $phoneNumber.val();
-
-	/* -----
-	 * Store the data on the side
-	 ----- */
-	__OMEGA.user = __OMEGA.user || { };
-	__OMEGA.user.phoneNumber = phoneNumber;
-
 
 	/* -----
 	 * Process the data
