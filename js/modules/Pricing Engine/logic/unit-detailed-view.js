@@ -88,7 +88,10 @@ $( document ).on( "unit/view", function ( event, data ) {
 		$( document ).trigger( "emi-calculator/render", { total: grandTotal } );
 
 		// 7. Expose a hook
-		$( document ).trigger( "unit/view/done", { total: grandTotal } );
+		$( document ).trigger( "unit/view/done", {
+			unitNumber: selectedUnitNumber,
+			total: grandTotal
+		} );
 
 	} );
 
