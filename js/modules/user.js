@@ -701,6 +701,52 @@ function registerConversion ( name ) {
 
 /*
  *
+ * Add a note to a user
+ *
+ */
+function addNoteToUser ( title, content ) {
+
+	getUser( { meta: true } ).then( function ( user ) {
+
+		if ( ! user )
+			return Promise.reject( {
+				code: -1,
+				message: "No user found to associate the note with."
+			} );
+
+		var project = __OMEGA.settings.Project;
+		var requestPayload = {
+			title: title,
+			content: content
+		};
+
+		return new Promise( function ( resolve, reject ) {
+
+			var apiEndpoint = __OMEGA.settings.apiEndpoint;
+			var url = apiEndpoint
+					+ "/users/" + user.uid
+					+ "/notes?project=" + project;
+			var addNoteToUser__AjaxRequest = $.ajax( {
+				url: url,
+				method: "POST",
+				data: requestPayload
+			} );
+			addNoteToUser__AjaxRequest.done( function ( response ) {
+				resolve( response );
+			} );
+			addNoteToUser__AjaxRequest.fail( function ( jqXHR, textStatus, e ) {
+				var errorResponse = getErrorResponse( jqXHR, textStatus, e );
+				reject( errorResponse );
+			} );
+
+		} );
+
+	} );
+
+}
+
+/*
+ *
  * Close a given login prompt
  *
  */
