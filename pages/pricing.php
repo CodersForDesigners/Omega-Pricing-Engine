@@ -556,6 +556,7 @@
 <script type="text/javascript" src="js/modules/Pricing Engine/logic/unit-detailed-view.js<?= $ver ?>"></script>
 <?php if ( $page != 'quote' ) : ?>
 	<script type="text/javascript" src="js/modules/login-trap.js<?= $ver ?>"></script>
+	<script type="text/javascript" src="js/modules/tracking.js<?= $ver ?>"></script>
 <?php endif; ?>
 
 <script type="text/javascript">
