@@ -76,19 +76,8 @@ function getUser ( identifyingAttribute, options ) {
 			resolve( user );
 		} );
 		ajaxRequest.fail( function ( jqXHR, textStatus, e ) {
-			var statusCode = -1;
-			var message;
-			if ( jqXHR.responseJSON ) {
-				statusCode = jqXHR.responseJSON.statusCode;
-				message = jqXHR.responseJSON.message;
-			}
-			else if ( typeof e == "object" ) {
-				message = e.stack;
-			}
-			else {
-				message = jqXHR.responseText;
-			}
-			reject( { code: statusCode, message: message } );
+			var errorResponse = getErrorResponse( jqXHR, textStatus, e );
+			reject( errorResponse );
 		} );
 
 	} );
@@ -333,19 +322,8 @@ function sendOTP ( phoneNumber ) {
 		} );
 
 		ajaxRequest.fail( function ( jqXHR, textStatus, e ) {
-			var statusCode = -1;
-			var message;
-			if ( jqXHR.responseJSON ) {
-				statusCode = jqXHR.responseJSON.statusCode;
-				message = jqXHR.responseJSON.message;
-			}
-			else if ( typeof e == "object" ) {
-				message = e.stack;
-			}
-			else {
-				message = jqXHR.responseText;
-			}
-			reject( { code: statusCode, message: message } );
+			var errorResponse = getErrorResponse( jqXHR, textStatus, e );
+			reject( errorResponse );
 			// reject( statusCode, "Something went wrong. Please try again." );
 		} );
 
@@ -505,19 +483,8 @@ function verifyOTP ( otp ) {
 			}
 		} );
 		verificationFlow.fail( function ( jqXHR, textStatus, e ) {
-			var statusCode = -1;
-			var message;
-			if ( jqXHR.responseJSON ) {
-				statusCode = jqXHR.responseJSON.statusCode;
-				message = jqXHR.responseJSON.message;
-			}
-			else if ( typeof e == "object" ) {
-				message = e.stack;
-			}
-			else {
-				message = jqXHR.responseText;
-			}
-			reject( { code: statusCode, message: message } );
+			var errorResponse = getErrorResponse( jqXHR, textStatus, e );
+			reject( errorResponse );
 			// reject( statusCode, "The OTP you provided does not match the one we sent you." );
 		} );
 
@@ -570,19 +537,8 @@ function createUser ( phoneNumber, context, project ) {
 		} );
 
 		createUser__AjaxRequest.fail( function ( jqXHR, textStatus, e ) {
-			var statusCode = -1;
-			var message;
-			if ( jqXHR.responseJSON ) {
-				statusCode = jqXHR.responseJSON.statusCode;
-				message = jqXHR.responseJSON.message;
-			}
-			else if ( typeof e == "object" ) {
-				message = e.stack;
-			}
-			else {
-				message = jqXHR.responseText;
-			}
-			reject( { code: statusCode, message: message } );
+			var errorResponse = getErrorResponse( jqXHR, textStatus, e );
+			reject( errorResponse );
 		} );
 
 	} );
@@ -616,19 +572,8 @@ function updateUser ( id, project, data ) {
 			resolve();
 		} );
 		updateUser__AjaxRequest.fail( function ( jqXHR, textStatus, e ) {
-			var statusCode = -1;
-			var message;
-			if ( jqXHR.responseJSON ) {
-				statusCode = jqXHR.responseJSON.statusCode;
-				message = jqXHR.responseJSON.message;
-			}
-			else if ( typeof e == "object" ) {
-				message = e.stack;
-			}
-			else {
-				message = jqXHR.responseText;
-			}
-			reject( { code: statusCode, message: message } );
+			var errorResponse = getErrorResponse( jqXHR, textStatus, e );
+			reject( errorResponse );
 		} );
 
 	} );
@@ -655,6 +600,30 @@ function loginUser ( user ) {
 	var cookieName = "omega-user-id";
 	var cookie = user.uid;
 	setCookie( cookieName, cookie, 90 * 24 * 60 * 60 );
+}
+
+/*
+ *
+ * Handle error / exception response helper
+ *
+ */
+function getErrorResponse ( jqXHR, textStatus, e ) {
+	var statusCode = -1;
+	var message;
+	if ( jqXHR.responseJSON ) {
+		statusCode = jqXHR.responseJSON.statusCode;
+		message = jqXHR.responseJSON.message;
+	}
+	else if ( typeof e == "object" ) {
+		message = e.stack;
+	}
+	else {
+		message = jqXHR.responseText;
+	}
+	return {
+		code: statusCode,
+		message: message
+	};
 }
 
 /*
