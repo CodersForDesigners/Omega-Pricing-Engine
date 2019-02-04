@@ -258,6 +258,10 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 			Loginner.prompts[ loginPrompt ].onLogin.call( domForm, user );
 		} )
 		.catch( function ( { code, message } ) {
+			// Store their phone number on the side
+			__OMEGA.potentialUser = {
+				phoneNumber: phoneNumber
+			};
 			// If no user was found, send an OTP
 			if ( code == 1 ) {
 				return sendOTP( phoneNumber )
@@ -447,7 +451,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 			// If the OTP matched,
 			var context = $form.closest( "[ data-loginner ]" ).data( "context" );
 			// Register the user
-			var phoneNumber = __OMEGA.user.phoneNumber;
+			var phoneNumber = __OMEGA.potentialUser.phoneNumber;
 			var project = __OMEGA.settings.Project;
 				// Call the `onOTPVerified` hook
 			if ( Loginner.prompts[ loginPrompt ].onOTPVerified )
