@@ -261,11 +261,11 @@
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row.modification .title {
-		line-height: 36px;
+		line-height: 26px;
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row.modification .check-label {
-		margin: 6px 0;
+		margin: 3px 0;
 	}
 
 	.pricing-section .unit-details .detail-section .image-row {
@@ -278,15 +278,15 @@
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row {
-		padding: 6px 80px;
+		padding: 3px 80px;
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row.modification .title {
-		line-height: 40px;
+		line-height: 28px;
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row.modification .check-label {
-		margin: 8px 0;
+		margin: 4px 0;
 	}
 
 	.pricing-section .unit-details .detail-section .image-row {
