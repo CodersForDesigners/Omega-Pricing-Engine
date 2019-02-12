@@ -322,6 +322,12 @@
 	transition: box-shadow .2s ease-out, transform .3s .2s ease-out;
 }
 
+@media ( min-width: 641px ) and ( max-height: 1050px ) {
+	.page-pricing-individual .pricing-section .unit-details .total {
+		transform: translateY( 0 ) !important;
+	}
+}
+
 .pricing-section .unit-details .total .title .unit-number {
 	display: inline-block;
 	padding: 0 8px;
