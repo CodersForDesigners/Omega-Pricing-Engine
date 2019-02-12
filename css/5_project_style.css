@@ -333,7 +333,7 @@ select:disabled {
 	background-color: var(--light); }
 
 .fill-off-light {
-	color: var(--neutral);
+	color: var(--dark);
 	background-color: var(--off-light); }
 
 .fill-neutral {
