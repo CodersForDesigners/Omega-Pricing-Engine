@@ -148,7 +148,7 @@ $( document ).on( "submit", ".js_user_search_for_quote_form", function ( event )
 	 * Process the data
 	 ----- */
 	// Fetch the user
-	getUser( userId )
+	getLead( userId )
 		.then( function ( user ) {
 
 			if ( ! user.isProspect ) {

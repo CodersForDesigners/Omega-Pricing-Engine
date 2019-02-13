@@ -114,7 +114,7 @@ $( document ).on( "submit", ".js_unit_link_form", function ( event ) {
 	 * Process the data
 	 ----- */
 	// Fetch the user
-	getUser( userId )
+	getLead( userId )
 		.then( function ( user ) {
 
 			// Build and Plonk in the Unit Link URL into the textbox
