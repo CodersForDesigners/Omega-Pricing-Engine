@@ -73,6 +73,9 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 	},
 	onLogin: function ( user ) {
 
+		__OMEGA.lastSeenAt = Date.now();
+		$( document ).trigger( "user/logged-in" );
+
 		// Hide the login form
 		$( ".js_unit_listing_login_prompt" ).removeClass( "show" );
 

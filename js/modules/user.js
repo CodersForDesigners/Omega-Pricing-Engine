@@ -72,6 +72,7 @@ function getUser ( identifyingAttribute, options ) {
 	else
 		userHasChanged = false;
 
+	var userLastSeenAt = user.lastSeenAt || null;
 
 	// If the user object contains more than just the meta details,
 	// 	then there's no need to re-fetch it from the server
@@ -122,6 +123,7 @@ function getUser ( identifyingAttribute, options ) {
 
 		ajaxRequest.done( function ( response ) {
 			var user = response.data;
+			user.lastSeenAt = userLastSeenAt || Date.now();
 			__OMEGA.user = user;
 			resolve( user );
 		} );
@@ -640,6 +642,7 @@ function loginUser ( user ) {
 		uid: user.uid,
 		phoneNumber: user.phoneNumber,
 		project: user.project,
+		lastSeenAt: Date.now()
 	}
 	setCookie( cookieName, cookie, 90 * 24 * 60 * 60 );
 
