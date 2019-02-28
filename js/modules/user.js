@@ -227,23 +227,41 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	 * Pull the data from the form
 	 ----- */
 	// country code
-	$phoneCountryCode = $form.find( "[ name = 'phone-country-code' ]" );
+	var $phoneCountryCode = $form.find( "[ name = 'phone-country-code' ]" );
+	var phoneCountryCode = $phoneCountryCode.val().replace( /[^+\d]/g, "" );
 	// phone number
-	$phoneNumber = $form.find( "[ name = 'phone-number' ]" );
+	var $phoneNumber = $form.find( "[ name = 'phone-number' ]" );
 
 	/* -----
 	 * Sanitize the data
 	 ----- */
-	// phone number
 	$phoneNumber.val( function ( _i, value ) {
 		return value.replace( /\D/g, "" );
 	} );
 
 	/* -----
+	 * Validate the data
+	 ----- */
+	$form.find( ".js_error" ).removeClass( "js_error" );
+	// phone number length
+	// If it's an Indian phone number, make sure it's the right length
+	if ( phoneCountryCode == "+91" ) {
+		if ( $phoneNumber.val().length != 10 ) {
+			$phoneNumber.addClass( "js_error" );
+			Loginner.prompts[ loginPrompt ].onPhoneValidationError( "Please enter a 10-digit number." );
+		}
+	}
+	// If the form has even one error ( i.e. validation issue )
+	// do not proceed
+	if ( $form.find( ".js_error" ).length ) {
+		$form.find( "input, select, button" ).prop( "disabled", false );
+		return;
+	}
+
+	/* -----
 	 * Assemble the data
 	 ----- */
-	var phoneNumber = $phoneCountryCode.val().replace( /[^+\d]/g, "" )
-					+ $phoneNumber.val();
+	var phoneNumber = phoneCountryCode + $phoneNumber.val();
 
 	/* -----
 	 * Process the data
