@@ -89,6 +89,7 @@ $( document ).on( "unit/view", function ( event, data ) {
 
 		// 7. Expose a hook
 		$( document ).trigger( "unit/view/done", {
+			context: eventData.context,
 			unitNumber: selectedUnitNumber,
 			total: grandTotal
 		} );
