@@ -49,6 +49,9 @@ $( document ).on( "pricing-engine/render/after", function ( event, data ) {
  */
 $( document ).on( "unit/view/done", function ( event, data ) {
 
+	if ( data.context == "modification" )
+		return;
+
 	var unitNumber = data.unitNumber;
 	var noteContent = "Customer viewed unit #" + unitNumber + " on the Pricing Engine";
 	addNoteToUser( "Omega Customer Insights", noteContent );
