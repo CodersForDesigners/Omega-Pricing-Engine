@@ -194,10 +194,10 @@
 
 	<div class="detail-row modification modification-multiple clearfix {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
 		<div class="title float-left {{#if (or this.Disabled modification.disabled) }}strike{{/if}}">
-			{{ modification.label }}
-			{{#if modification.valueInLabel}}
+			{{~ modification.label ~}}
+			{{~#if modification.valueInLabel~}}
 				({{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}})
-			{{/if}}
+			{{~/if~}}
 		</div>
 		<div class="value float-right">
 			<select class="js_unit_modification__multiple" name="{{ modification.name }}" {{#if (or this.Disabled modification.disabled) }} disabled {{/if}}>
@@ -215,10 +215,10 @@
 
 	<div class="detail-row clearfix modification {{ this.[Font Size] }} {{ this.[Font Weight] }} text-{{ Color }}">
 		<div class="title float-left {{#if (or this.Disabled modification.disabled) }}strike{{/if}}">
-			{{ modification.label }}
-			{{#if modification.valueInLabel}}
-				({{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}})
-			{{/if}}
+			{{~ modification.label ~}}
+			{{~#if modification.valueInLabel~}}
+				{{#noop}}{{/noop}} ({{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}})
+			{{~/if~}}
 		</div>
 		<div class="value float-right">
 			<input class="check-box hidden js_unit_modification__binary" id="mod-{{slugify modification.name }}" data-value-when-checked="{{ modification.value }}" type="checkbox" name="{{ modification.name }}" {{#if (is modification.value currentValue) }} checked="true" {{/if}} {{#if (or this.Disabled modification.disabled) }} disabled {{/if}}>

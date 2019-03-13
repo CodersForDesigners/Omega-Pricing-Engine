@@ -77,7 +77,8 @@
 }
 
 .pricing-section .unit-details .detail-section .detail-row.modification .title {
-	line-height: 32px;
+	line-height: 16px;
+	padding: 8px 0;
 }
 
 .pricing-section .unit-details .detail-section .detail-row.modification input,
@@ -261,7 +262,8 @@
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row.modification .title {
-		line-height: 26px;
+		line-height: 16px;
+		padding: 5px 0;
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row.modification .check-label {
@@ -282,7 +284,8 @@
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row.modification .title {
-		line-height: 28px;
+		line-height: 16px;
+		padding: 6px 0;
 	}
 
 	.pricing-section .unit-details .detail-section .detail-row.modification .check-label {
