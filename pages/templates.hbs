@@ -196,7 +196,7 @@
 		<div class="title float-left {{#if (or this.Disabled modification.disabled) }}strike{{/if}}">
 			{{~ modification.label ~}}
 			{{~#if modification.valueInLabel~}}
-				({{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}})
+				{{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}}
 			{{~/if~}}
 		</div>
 		<div class="value float-right">
@@ -217,7 +217,7 @@
 		<div class="title float-left {{#if (or this.Disabled modification.disabled) }}strike{{/if}}">
 			{{~ modification.label ~}}
 			{{~#if modification.valueInLabel~}}
-				{{#noop}}{{/noop}} ({{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}})
+				{{#noop}}{{/noop}} {{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}}
 			{{~/if~}}
 		</div>
 		<div class="value float-right">
@@ -236,7 +236,7 @@
 			<span>
 				{{ modification.label }}
 				{{#if modification.valueInLabel}}
-					({{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}})
+					{{getSignOfNumber modification.value}}₹{{getAbsoluteValueOfNumber modification.value}}
 				{{/if}}
 			</span>
 		</div>
