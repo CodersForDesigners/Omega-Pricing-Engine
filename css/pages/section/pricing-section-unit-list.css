@@ -597,50 +597,57 @@
 	transition: opacity .3s .3s ease-out;
 }
 
+.unit-list .phone-trap .trap-content .phone form {
+	display: flex;
+	flex-wrap: wrap;
+}
+
 .unit-list .phone-trap .trap-content .phone .title,
 .unit-list .phone-trap .trap-content .otp .title {
 	line-height: 20px;
 	margin-bottom: 5px;
 }
 
-.unit-list .phone-trap .trap-content .phone .invisible-select,
-.unit-list .phone-trap .trap-content .phone .visible-select {
-	position: absolute;
-	top: 25px;
-	left: 0;
-	width: 80px;
-	color: var(--light);
-	background-color: var(--off-dark);
+.unit-list .phone-trap .trap-content .phone .phone-country-code {
+	position: relative;
+	background-image: none;
+	color: var(--dark);
+	background-color: var(--off-light);
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
+	padding-right: 0;
 }
 
+.unit-list .phone-trap .trap-content .phone .visible-select {
+	pointer-events: none;
+	font-weight: var(--weight-regular);
+	letter-spacing: normal;
+}
 .unit-list .phone-trap .trap-content .phone .invisible-select {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 	z-index: 2;
 	opacity: 0;
 }
 
-.unit-list .phone-trap .trap-content .phone .visible-select {
-	text-align: left;
-	z-index: 3;
-	pointer-events: none;
-	background-image: url('../../../media/pricing/select-light.svg');
-}
 
 .unit-list .phone-trap .trap-content .phone .input {
-	position: relative;
-	z-index: 1;
+	position: static;
 	display: inline-block;
-	width: 100%;
-	padding-left: 90px;
-	padding-right: 90px;
+	width: 41%;
+	flex-grow: 1;
+	border-radius: 0;
+	padding-bottom: 0.9rem;
+	padding-left: 0.5rem;
+}
+.unit-list .phone-trap .trap-content .phone .input:focus {
+	box-shadow: none;
 }
 
 .unit-list .phone-trap .trap-content .phone .submit {
-	position: absolute;
-	top: 25px;
-	right: 0;
-	z-index: 4;
 	padding: 0;
 	width: 80px;
 	color: var(--light);
@@ -755,15 +762,6 @@
 		transform: scale(18);
 	}
 
-	.unit-list .phone-trap .trap-content .phone .invisible-select,
-	.unit-list .phone-trap .trap-content .phone .visible-select {
-		width: 90px;
-	}
-
-	.unit-list .phone-trap .trap-content .phone .input {
-		padding-left: 100px;
-		padding-right: 100px;
-	}
 	.unit-list .phone-trap .trap-content .phone .submit {
 		width: 90px;
 	}
@@ -792,15 +790,6 @@
 		transform: scale(20);
 	}
 
-	.unit-list .phone-trap .trap-content .phone .invisible-select,
-	.unit-list .phone-trap .trap-content .phone .visible-select {
-		width: 100px;
-	}
-
-	.unit-list .phone-trap .trap-content .phone .input {
-		padding-left: 110px;
-		padding-right: 110px;
-	}
 	.unit-list .phone-trap .trap-content .phone .submit {
 		width: 100px;
 	}

@@ -127,10 +127,12 @@
 							<div class="phone show">
 								<form class="loginner_form_phone">
 									<div class="title h6 text-light block">Enter Mobile Number</div>
-									<select class="label invisible-select inline-middle js_phone_country_code" name="phone-country-code">
-										<?php require __DIR__ . '/phone-country-codes.php'; ?>
-									</select>
-									<div class="visible-select button select js_phone_country_code_label" style="background-image: url( media/pricing/select-light.svg )">IN +91</div>
+									<div class="phone-country-code button select">
+										<select class="invisible-select js_phone_country_code" name="phone-country-code">
+											<?php require __DIR__ . '/phone-country-codes.php'; ?>
+										</select>
+										<span class="visible-select label js_phone_country_code_label">IN +91</span>
+									</div>
 									<input class="label input inline-middle" type="text" name="phone-number" required>
 									<button class="submit inline-middle" type="submit">Send</button>
 									<div class="note label clearfix">
@@ -247,10 +249,12 @@
 						<div class="phone js_phone_form_section">
 							<form class="loginner_form_phone">
 								<div class="title h6 text-light block">Enter Mobile Number</div>
-								<select class="label invisible-select inline-middle js_phone_country_code" name="phone-country-code">
-									<?php require __DIR__ . '/phone-country-codes.php'; ?>
-								</select>
-								<div class="visible-select button select js_phone_country_code_label" style="background-image: url( media/pricing/select-light.svg )">IN +91</div>
+								<div class="phone-country-code button select">
+									<select class="invisible-select js_phone_country_code" name="phone-country-code">
+										<?php require __DIR__ . '/phone-country-codes.php'; ?>
+									</select>
+									<span class="visible-select label js_phone_country_code_label">IN +91</span>
+								</div>
 								<input class="label input inline-middle" type="text" name="phone-number">
 								<button class="submit inline-middle" type="submit">Send</button>
 								<div class="note label clearfix">
