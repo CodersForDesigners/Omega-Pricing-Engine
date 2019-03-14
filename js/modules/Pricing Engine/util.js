@@ -187,6 +187,20 @@ function notify ( message, options ) {
 	// Animate it in
 	$notification.get( 0 ).offsetTop; //
 	$notification.addClass( "show" );
+	// For devices that auto-zoom when focusing on a form element,
+	//  	we offset the notification accordingly
+	if ( window.screen ) {
+		if ( window.screen.height != window.innerHeight ) {
+			// We wait for a bit because on Chrome on Android, the height value
+			//  	takes into account the open virtual keyboard
+			setTimeout( function () {
+				var verticalOffset = Math.floor(
+					( ( 1 - window.innerHeight / window.screen.height ) * 1000 ) / 2
+				);
+				$notification.css( "transform", "translateY( " + verticalOffset + "% )" );
+			}, 500 )
+		}
+	}
 
 	// "Attempt" to remove the notification after a while
 	// If the notification has already been removed by hitting the close button,
