@@ -733,7 +733,7 @@ function addNoteToUser ( title, content ) {
 
 	getUser( { meta: true } ).then( function ( user ) {
 
-		if ( ! user )
+		if ( ! ( user && user.uid ) )
 			return Promise.reject( {
 				code: -1,
 				message: "No user found to associate the note with."
