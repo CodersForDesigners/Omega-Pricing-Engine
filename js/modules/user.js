@@ -483,7 +483,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 					// Log the user in
 					loginUser( user );
 					// Then, close the login prompt
-					Loginner.prompts[ loginPrompt ].onLogin.call( domForm, user );
+					Loginner.prompts[ loginPrompt ].onLogin.call( domForm, user, context );
 				} )
 				.catch( function ( { code, message } ) {
 					if ( code == 1 ) {
