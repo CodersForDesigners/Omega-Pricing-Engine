@@ -504,3 +504,43 @@ function trackPageVisit ( name ) {
 	}, 1500 );
 
 }
+
+
+
+/*
+ *
+ * "Post" a mail
+ *
+ * @params
+ * 	name -> the url of the page
+ *
+ */
+function postMail ( subject, body, to ) {
+
+	var data = {
+		subject,
+		body,
+		to
+	};
+
+	var apiEndpoint = __OMEGA.settings.apiEndpoint;
+	var url = apiEndpoint + "/mail";
+
+	var ajaxRequest = $.ajax( {
+		url: url,
+		method: "POST",
+		data: data,
+		dataType: "json"
+	} );
+
+	return new Promise( function ( resolve, reject ) {
+		ajaxRequest.done( function ( response ) {
+			resolve( response );
+		} );
+		ajaxRequest.fail( function ( jqXHR, textStatus, e ) {
+			var errorResponse = getErrorResponse( jqXHR, textStatus, e );
+			reject( errorResponse );
+		} );
+	} );
+
+}
