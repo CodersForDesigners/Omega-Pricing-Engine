@@ -31,6 +31,9 @@ Loginner.registerLoginPrompt = function registerLoginPrompt ( name, handlers ) {
 /*
  *
  * Gets a user from the database, given an id.
+ * @args
+ * 	identifyingAttribute -> a value holding identifiable information on a user, but with no context; ex. a UID or a phone-number, but no mention what the value is
+ * 	options -> an object containing additional context on the identifyingAttribute
  *
  * Returns a promise with,
  * @params
@@ -39,13 +42,17 @@ Loginner.registerLoginPrompt = function registerLoginPrompt ( name, handlers ) {
  */
 function getUser ( identifyingAttribute, options ) {
 
+	// Support different types of function invocations
+		// The "just one object" argument approach
 	if ( identifyingAttribute && typeof identifyingAttribute == "object" ) {
 		options = identifyingAttribute;
 		identifyingAttribute = null;
 	}
+		// The second argument `options` object approach
 	else
 		options = options || { };
 
+	// Pull the user from the (memory/cookie) cache ( if there )
 	var user = __OMEGA.user;
 	if ( ! user )
 		user = getCookieData( "omega-user" );
@@ -60,8 +67,8 @@ function getUser ( identifyingAttribute, options ) {
 	}
 
 	// Determine whether the user being requested and the one stored locally
-	// 	are the same. If no identifying attribute has been specified, then we
-	// 	we assume they are the same.
+	// 	are the same. If no identifying attribute has been specified,
+	// 	then we assume they are the same.
 	var userHasChanged;
 	if ( identifyingAttribute ) {
 		if ( options.by && user[ options.by ] != identifyingAttribute )
@@ -123,8 +130,11 @@ function getUser ( identifyingAttribute, options ) {
 
 		ajaxRequest.done( function ( response ) {
 			var user = response.data;
+			// Set the current timestamp as when the user was "last seen"
 			user.lastSeenAt = userLastSeenAt || Date.now();
+			// Cache the user object under the namespace
 			__OMEGA.user = user;
+			// Finally, return the user object
 			resolve( user );
 		} );
 		ajaxRequest.fail( function ( jqXHR, textStatus, e ) {
