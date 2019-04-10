@@ -22,6 +22,7 @@ var docCookies={getItem:function(e){return e?decodeURIComponent(document.cookie.
  * Public API
  *
  */
+__OMEGA.query = { user: { attempts: 0 } };
 var Loginner = window.Loginner = { };
 Loginner.prompts = { };
 Loginner.registerLoginPrompt = function registerLoginPrompt ( name, handlers ) {
@@ -70,7 +71,12 @@ function getUser ( identifyingAttribute, options ) {
 	// 	are the same. If no identifying attribute has been specified,
 	// 	then we assume they are the same.
 	var userHasChanged;
-	if ( identifyingAttribute ) {
+		// But before that, if it has been awhile since the user's information
+		//  has been refreshed, then we fetch the user again regardless
+	var userLastUpdated = getCookieData( "omega-user-updated" );
+	if ( ! ( userLastUpdated && userLastUpdated.when ) )
+		userHasChanged = true;
+	else if ( identifyingAttribute ) {
 		if ( options.by && user[ options.by ] != identifyingAttribute )
 			userHasChanged = true;
 		else if ( user.uid != identifyingAttribute )
@@ -134,11 +140,46 @@ function getUser ( identifyingAttribute, options ) {
 			user.lastSeenAt = userLastSeenAt || Date.now();
 			// Cache the user object under the namespace
 			__OMEGA.user = user;
+			// Check if the user is a duplicate, if so attempt to log out and log in again with using the phone-number
+			if ( user.isDuplicate ) {
+				if ( __OMEGA.query.user.attempts < 1 ) {
+					__OMEGA.query.user.attempts += 1;
+					return resolve( getUser( user.phoneNumber, { by: "phoneNumber" } ) );
+				}
+				else
+					postMail(
+						"Duplicate User on Re-fetch",
+						`Got a duplicate user the first time.
+						Tried again using the phone number ${ user.phoneNumber } and then got a duplicate user once more.
+
+						Name: ${ user.name }
+						UID: ${ user.uid }
+						Phone number: ${ user.phoneNumber }`
+					);
+			}
+			// Set a cookie for when the user was last pulled with fresh data
+			setCookie( "omega-user-updated", {
+				when: ( new Date() ).getTime()
+			}, 60 * 60 );
+			// Reset the fetch attempts
+			__OMEGA.query.user.attempts = 0;
 			// Finally, return the user object
 			resolve( user );
 		} );
 		ajaxRequest.fail( function ( jqXHR, textStatus, e ) {
 			var errorResponse = getErrorResponse( jqXHR, textStatus, e );
+			// If we previously got a duplicate user, and now we got nothing
+			var user = __OMEGA.user;
+			if ( user && user.isDuplicate && __OMEGA.query.user.attempts >= 1 )
+				postMail(
+					"No User on Re-fetching a Duplicate one",
+					`Got a duplicate user the first time.
+					Tried again using the phone number ${ user.phoneNumber } and then got no user.
+
+					Name: ${ user.name }
+					UID: ${ user.uid }
+					Phone number: ${ user.phoneNumber }`
+				);
 			reject( errorResponse );
 		} );
 
