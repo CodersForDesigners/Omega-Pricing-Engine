@@ -25,8 +25,9 @@ $( function () {
  */
 $( document ).on( "enquiry-form/show", function () {
 
-	if ( isUserLoggedIn() )
+	getUser( { meta: true } ).then( function ( user ) {
 		__UI.$enquiryFormSection.removeClass( "hidden" );
+	} )
 
 } );
 
