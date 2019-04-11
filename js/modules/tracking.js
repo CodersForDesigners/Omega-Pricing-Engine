@@ -25,11 +25,11 @@ $( document ).on( "pricing-engine/render/after", function ( event, data ) {
 	if ( $( "html" ).data( "page" ) != "page-pricing-index" )
 		return;
 
-	getUser().then( function ( user ) {
+	getUser( { meta: true } ).then( function ( user ) {
 
 		if ( user.lastSeenAt )
 			if ( Date.now() - parseInt( user.lastSeenAt, 10 ) < ( 60 * 60 * 1000 ) )
-				return;
+				return loginUser( user );
 
 		var noteContent = "Customer SEARCHED for Units on the Listing Page.";
 		addNoteToUser( "Omega Event Log", noteContent );
