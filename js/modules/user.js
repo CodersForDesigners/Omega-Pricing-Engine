@@ -619,16 +619,13 @@ function verifyOTP ( otp ) {
  */
 function createUser ( phoneNumber, context, project ) {
 
-	// Get the current timestamp
-	var timestamp = getDateAndTimeStamp( { separator: "-" } );
-
 	// Build the payload
 	var userImplicitNamePrefix = __OMEGA.settings.userImplicitNamePrefix;
 	var assignmentRuleId = __OMEGA.settings.assignmentRuleId;
 	var requestPayload = {
 		phoneNumber: phoneNumber,
-		firstName: userImplicitNamePrefix + " " + context,
-		lastName: timestamp,
+		specificContext: context,
+		context: "Website",
 		project: project,
 		assignmentRuleId: assignmentRuleId
 	};
