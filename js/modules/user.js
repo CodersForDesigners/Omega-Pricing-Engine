@@ -782,7 +782,7 @@ function registerConversion ( name ) {
  */
 function addNoteToUser ( title, content ) {
 
-	getUser( { meta: true } ).then( function ( user ) {
+	return getUser( { meta: true } ).then( function ( user ) {
 
 		if ( ! ( user && user.uid ) )
 			return Promise.reject( {
