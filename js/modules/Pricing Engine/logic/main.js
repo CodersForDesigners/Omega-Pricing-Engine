@@ -29,6 +29,7 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 
 	// Set some global values
 	__OMEGA.settings.apiEndpoint = __OMEGA.settings[ "API Endpoint" ]
+	__OMEGA.settings.centralApiEndpoint = __OMEGA.settings[ "Central API Endpoint" ]
 	__OMEGA.settings.OTPTemplate = __OMEGA.settings[ "OTP Template" ];
 	__OMEGA.settings.userImplicitNamePrefix = __OMEGA.settings[ "User Implicit Name Prefix" ];
 	__OMEGA.settings.projectBaseURL = __OMEGA.settings[ "Project Name Base URL" ] || "";
