@@ -520,21 +520,22 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 	verifyOTP( otp )
 		.then( function ( response ) {
 			// If the OTP matched,
-			var context = $form.closest( "[ data-loginner ]" ).data( "context" );
+			var context = Loginner.prompts[ loginPrompt ].context;
+			var specificContext = $form.closest( "[ data-loginner ]" ).data( "context" );
 			// Register the user
 			var phoneNumber = __OMEGA.potentialUser.phoneNumber;
 			var project = __OMEGA.settings.Project;
 				// Call the `onOTPVerified` hook
 			if ( Loginner.prompts[ loginPrompt ].onOTPVerified )
-				Loginner.prompts[ loginPrompt ].onOTPVerified( context, phoneNumber, project );
+				Loginner.prompts[ loginPrompt ].onOTPVerified( specificContext, phoneNumber, project );
 
-			createUser( phoneNumber, project, context )
+			createUser( phoneNumber, project, specificContext, context )
 				// Then, log in the user
 				.then( function ( user ) {
 					// Log the user in
 					loginUser( user );
 					// Then, close the login prompt
-					Loginner.prompts[ loginPrompt ].onLogin.call( domForm, user, context );
+					Loginner.prompts[ loginPrompt ].onLogin.call( domForm, user, specificContext );
 				} )
 				.catch( function ( { code, message } ) {
 					if ( code == 1 ) {
@@ -542,7 +543,7 @@ $( document ).on( "submit", ".loginner_form_otp", function ( event ) {
 					}
 				} )
 			// Register a conversion
-			// registerConversion( context );
+			// registerConversion( specificContext );
 			// Close the login prompt
 			// closeLoginPrompt( loginPrompt );
 		} )
