@@ -38,7 +38,10 @@ $( function () {
 $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 
 	// Plug in the page title
-	document.title = __OMEGA.settings[ "Page Title" ] + " | " + document.title;
+	if ( $( "html" ).data( "page" ) == "page-pricing-index" )
+		document.title = __OMEGA.settings[ "Page Title" ] + " | " + document.title;
+	else
+		document.title = document.title + " | " + __OMEGA.settings[ "Page Title" ];
 	// Plug in the page heading
 	$( ".js_page_heading" ).text( __OMEGA.settings[ "Page Heading" ] );
 
