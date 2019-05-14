@@ -42,7 +42,7 @@ if ( $singleUnitIsBeingViewed and empty( $unit ) ) {
 	// Show 404 page
 }
 
-$viewName = 'Pricing for #' . $unit;
+$viewName = $unit . ' Pricing';
 $viewPath = __DIR__ . '/pricing.php';
 $meta = json_decode( file_get_contents( __DIR__ . '/../account/data/meta.json' ), true );
 
