@@ -85,6 +85,19 @@ function main () {
 	$service = new Google_Service_Drive( $client );
 
 	$pricingSheetMeta = json_decode( file_get_contents( __DIR__ . '/../configuration/pricing-sheet.json' ), true );
+
+	// First, fetch the dependencies the main sheet refers to
+	//  	However, discard the responses
+	$dependencies = $pricingSheetMeta[ 'dependencies' ];
+	foreach ( $dependencies as $dependencyId ) {
+		$service->files->export(
+			$dependencyId,
+			'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+			[ 'alt' => 'media' ]
+		);
+	}
+
+	// Now, fetch the main sheet
 	$fileId = $pricingSheetMeta[ 'id' ];
 	$response = $service->files->export(
 		$fileId,
