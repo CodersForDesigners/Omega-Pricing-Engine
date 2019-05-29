@@ -347,7 +347,7 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 			__OMEGA.user = __OMEGA.user || { };
 			__OMEGA.user.otpSessionId = otpSessionId;
 			var domOTPForm = $form.closest( "[ data-loginner ]" ).find( ".loginner_form_otp" ).get( 0 );
-			Loginner.prompts[ loginPrompt ].onShowOTP( domForm, domOTPForm );
+			Loginner.prompts[ loginPrompt ].onShowOTP( domForm, domOTPForm, phoneNumber, project );
 		} )
 		.catch( function ( { code, message } ) {
 			if ( code == 1 ) {
