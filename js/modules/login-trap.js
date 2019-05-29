@@ -41,14 +41,15 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 			context: "Login Prompt"
 		} );
 	},
-	onPhoneSend: function () {
+	onPhoneSend: function ( phoneNumber, project ) {
 		$( this ).find( "[ type = submit ]" ).text( "Sending" );
 	},
-	onShowOTP: function ( domPhoneForm, domOTPForm ) {
+	onShowOTP: function ( domPhoneForm, domOTPForm, phoneNumber, project ) {
 		$( domPhoneForm ).parent().removeClass( "show" );
 		$( domOTPForm ).parent().addClass( "show" );
+		addPotentialCustomer( phoneNumber, project );
 	},
-	onOTPSend: function () {
+	onOTPSend: function ( phoneNumber ) {
 		$( this ).find( "[ type = submit ]" ).text( "Sending" );
 	},
 	onPhoneError: function ( code, message ) {
@@ -67,9 +68,10 @@ Loginner.registerLoginPrompt( "Unit Listing", {
 		$( this ).find( "[ type = submit ]" ).text( "Send" );
 		$( this ).find( "input, select, button" ).prop( "disabled", false );
 	},
-	onOTPVerified: function ( context, phoneNumber ) {
+	onOTPVerified: function ( context, phoneNumber, project ) {
 		var url = "user/new/" + context.toLowerCase().replace( /[\s|]+/g, "-" );
 		trackPageVisit( url );
+		verifyPotentialCustomer( phoneNumber, project );
 	},
 	onLogin: function ( user ) {
 
@@ -139,12 +141,13 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 			context: "Login Prompt"
 		} );
 	},
-	onPhoneSend: function () {
+	onPhoneSend: function ( phoneNumber, project ) {
 		$( this ).find( "[ type = submit ]" ).text( "Sending" );
 	},
-	onShowOTP: function ( domPhoneForm, domOTPForm ) {
+	onShowOTP: function ( domPhoneForm, domOTPForm, phoneNumber, project ) {
 		$( domPhoneForm ).parent().removeClass( "show" );
 		$( domOTPForm ).parent().addClass( "show" );
+		addPotentialCustomer( phoneNumber, project );
 	},
 	onOTPSend: function () {
 		$( this ).find( "[ type = submit ]" ).text( "Sending" );
@@ -163,9 +166,10 @@ Loginner.registerLoginPrompt( "Individual Unit View", {
 		} );
 		$( this ).find( "[ type = submit ]" ).text( "Send" );
 	},
-	onOTPVerified: function ( context, phoneNumber ) {
+	onOTPVerified: function ( context, phoneNumber, project ) {
 		var url = "user/new/" + context.toLowerCase().replace( /[\s|]+/g, "-" );
 		trackPageVisit( url );
+		verifyPotentialCustomer( phoneNumber, project );
 	},
 	onLogin: function ( user ) {
 
