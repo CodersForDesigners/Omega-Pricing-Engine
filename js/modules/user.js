@@ -318,7 +318,8 @@ $( document ).on( "submit", ".loginner_form_phone", function ( event ) {
 	 * Process the data
 	 ----- */
 	// Authenticate the user
-	Loginner.prompts[ loginPrompt ].onPhoneSend.call( domForm );
+	var project = __OMEGA.settings.Project;
+	Loginner.prompts[ loginPrompt ].onPhoneSend.call( domForm, phoneNumber, project );
 	getUser( phoneNumber, { by: "phoneNumber" } )
 		.then( function ( user ) {
 			// Store the user on the side
