@@ -1,8 +1,0 @@
-
-# PATH=/bin:/usr/bin:/usr/local/bin:/var/www/<pricing-intallation>/setup
-# HOME=/var/www/data/<pricing-intallation>/logs/
-SHELL=/bin/sh
-MAILTO="adi@lazaro.in"
-
-# Import the pricing sheet from Google Drive at 2am everyday
-0		2		*		*		*	import-pricing-sheet.php > import-pricing-sheet.log 2>&1

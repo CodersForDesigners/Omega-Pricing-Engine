@@ -21,7 +21,7 @@ set_time_limit( 0 );
 // if ( php_sapi_name() != 'cli' )
 	// throw new Exception( 'This application must be run on the command line.' );
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 
 function getClient () {
@@ -29,7 +29,7 @@ function getClient () {
 	$client = new Google_Client();
 	$client->setApplicationName( 'Omega Pricing Sheet Import' );
 	$client->setScopes( Google_Service_Drive::DRIVE );
-	$authCredentialsFilename = __DIR__ . '/../configuration/google-credentials.json';
+	$authCredentialsFilename = __DIR__ . '/../../__environment/configuration/google-credentials.json';
 	$client->setAuthConfig( $authCredentialsFilename );
 	$client->setAccessType( 'offline' );
 	$client->setPrompt( 'select_account consent' );
@@ -40,7 +40,7 @@ function getClient () {
 	 * created automatically when the authorization flow completes for the first
 	 * time.
 	 */
-	$tokenPath = __DIR__ . '/../configuration/google-token.json';
+	$tokenPath = __DIR__ . '/../../__environment/configuration/google-token.json';
 	if ( file_exists( $tokenPath ) ) {
 		$accessToken = json_decode( file_get_contents( $tokenPath ), true );
 		$client->setAccessToken( $accessToken );
@@ -84,7 +84,7 @@ function main () {
 	$client = getClient();
 	$service = new Google_Service_Drive( $client );
 
-	$pricingSheetMeta = json_decode( file_get_contents( __DIR__ . '/../configuration/pricing-sheet.json' ), true );
+	$pricingSheetMeta = json_decode( file_get_contents( __DIR__ . '/../../__environment/configuration/pricing-sheet.json' ), true );
 
 	// First, fetch the dependencies the main sheet refers to
 	//  	However, discard the responses
@@ -107,7 +107,7 @@ function main () {
 	$content = $response->getBody()->getContents();
 
 	// Write the contents to disk
-	$outputFilename = __DIR__ . '/../account/data/numbers.xlsx';
+	$outputFilename = __DIR__ . '/../../account/data/numbers.xlsx';
 	file_put_contents( $outputFilename, $content );
 
 }
