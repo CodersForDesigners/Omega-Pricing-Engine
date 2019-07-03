@@ -44,13 +44,17 @@ $( document ).on( "spreadsheet/load", function ( event, workbook ) {
 	}
 
 	// Prune out incompatible formulas that Google Sheets generates on exporting
+	var _sheet
 	var _cellName;
 	var cell;
-	var unitSheet = workbook.Sheets.Units;
-	for ( _cellName in unitSheet ) {
-		cell = unitSheet[ _cellName ];
-		if ( cell.f && cell.f.startsWith( "IFERROR(__xludf.DUMMYFUNCTION" ) )
-			cell.f = "";
+	var sheetsWithUnsupportedFormulaes = [ workbook.Sheets[ "Units" ], workbook.Sheets[ "Units (executive)" ], workbook.Sheets[ "Units (manager)" ], workbook.Sheets[ "Units (super-manager)" ] ];
+	for ( var _i = 0; _i < sheetsWithUnsupportedFormulaes.length; _i += 1 ) {
+		_sheet = sheetsWithUnsupportedFormulaes[ _i ];
+		for ( _cellName in _sheet ) {
+			cell = _sheet[ _cellName ];
+			if ( cell.f && cell.f.startsWith( "IFERROR(__xludf.DUMMYFUNCTION" ) )
+				cell.f = "";
+		}
 	}
 
 	// Get the units
