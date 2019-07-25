@@ -208,14 +208,14 @@
 
 	formulae.CHOOSE = function () {
 		if ( arguments.length < 2 )
-			return error.na;
+			return errors.na;
 
 		var index = arguments[ 0 ];
 		if ( index < 1 || index > 254 )
-			return error.value;
+			return errors.value;
 
 		if ( arguments.length < index + 1 )
-			return error.value;
+			return errors.value;
 
 		return arguments[ index ];
 	};
@@ -240,7 +240,7 @@
 		number = utils.parseNumber( number );
 		digits = utils.parseNumber( digits );
 		if ( utils.anyIsError( number, digits ) ) {
-			return error.value;
+			return errors.value;
 		}
 		return Math.round( number * Math.pow( 10, digits ) ) / Math.pow( 10, digits );
 	};
