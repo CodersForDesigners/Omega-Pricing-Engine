@@ -391,6 +391,9 @@ select:disabled {
 .fill-klassik-gray {
 	background-color: var(--klassik-gray);
 }
+.fill-klassik-green {
+	background-color: var(--klassik-green);
+}
 
 /* -- Gradients -- */
 
@@ -433,6 +436,9 @@ select:disabled {
 }
 .fill-klassik-gray.gradient {
 	background-image: var(--gradient-klassik-gray);
+}
+.fill-klassik-gray.gradient {
+	background-image: var(--gradient-klassik-green);
 }
 
 
