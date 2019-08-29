@@ -73,8 +73,10 @@
 	--klassik-red: #D33755;
 	--klassik-blue: #142B3F;
 	--klassik-gray: #8192A2;
+	--klassik-green: #27af82;
 	--gradient-klassik-red: linear-gradient( to right, #D33755, #F75C7A );
 	--gradient-klassik-blue: linear-gradient( to right, #142B3F, #344E66 );
 	--gradient-klassik-gray: linear-gradient( to right, #8192A2, #DDE1E6 );
+	--gradient-klassik-green: linear-gradient( to right, #27af82, #0ec180 );
 
 }
